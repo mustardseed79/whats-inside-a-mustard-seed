@@ -26,6 +26,22 @@
     { id: "keto", title: "Keto", blurb: "Very low carb, with most of the energy from fat and protein. Look for the net-carb estimate on each recipe.", slugs: ["savory-food-such-as-i-love"] },
     { id: "carnivore-keto", title: "Carnivore Keto", blurb: "Animal foods only, kept fatty and close to zero carb. The strictest of the three.", slugs: [] }
   ];
+  // Quick finders on the home page. Lists are hand-picked from each card's stated time and servings.
+  const FINDERS = [
+    { id: "quick", title: "Quick Meals", note: "45 minutes or less", blurb: "Recipes with a stated total time of 45 minutes or less, plus the coffee drinks.",
+      slugs: ["manna-in-the-morning", "morning-by-morning", "my-cup-overflows", "heritage", "with-joy", "banner-of-love", "every-bitter-thing-is-sweet", "satisfy-every-living-thing", "food-for-her-household", "come-here-and-eat"] },
+    { id: "crowd", title: "Feeds a Crowd", note: "10 or more servings", blurb: "Big batches for family gatherings, potlucks, and feast days.",
+      slugs: ["a-portion-for-seven", "savory-food-such-as-i-love", "answer-me-speedily", "wait-patiently", "food-for-her-household", "taste-and-see", "rejoice-seven-days"] },
+    { id: "ahead", title: "Make Ahead", note: "Prep early, serve later", blurb: "Recipes that chill, slow cook, or rest, so most of the work is done before guests arrive.",
+      slugs: ["savory-food-such-as-i-love", "a-portion-for-seven", "wait-patiently", "taste-and-see", "fruit-in-its-season", "garden-of-spices", "good-land", "sweeter-than-honey", "majestic-trees", "park-of-pomegranates"] }
+  ];
+  // HaMotzi, the family's blessing before every meal (text supplied by Alexis)
+  const HAMOTZI = `<div class="blessing">
+      <p class="bl-he" lang="he" dir="rtl">בָּרוּךְ אַתָּה יהוה, אֱלֹהֵינוּ, מֶלֶךְ הָעוֹלָם, הַמוֹצִיא לֶחֶם מִן הַאָרֶץ, וְהוֹצִיא יֵשׁוּעַ הַמַשִׁיחַ מִן הָשְׁאוֹל.</p>
+      <p class="bl-tr">Barukḥ Atah <bdi lang="he">יהוה</bdi>, Eloheinu, Melekḥ HaOlam, hamotzi lekḥem min ha’aretz, v’hotzi Yeshua HaMashi'akḥ min ha'she’ol.</p>
+      <p class="bl-en">Blessed are You, O <bdi lang="he">יהוה</bdi> our Elohim, King of the Universe, who brings forth bread from the earth, and who brought forth Messiah Yeshua from the grave.</p>
+    </div>`;
+  const NEWEST = "every-bitter-thing-is-sweet";
   const dietsOf = slug => DIETS.filter(d => d.slugs.includes(slug)).map(d => d.title);
 
   // ---------------- nutrition helpers ----------------
@@ -85,6 +101,28 @@
         <p class="subtitle">Clean-eating recipes, each named from The Word of <span lang="he">יהוה</span></p>
         <p class="home-count">${BOOK.length} pages · scale any recipe · check off steps · print a card</p>
       </header>
+      <section class="start no-print" aria-labelledby="start-h">
+        <h2 id="start-h">Welcome to the Staton Family Kitchen</h2>
+        <p class="start-lead">These are the recipes I make for the two men in my life, my son and my soon-to-be husband. Every recipe follows the clean food rules of Leviticus 11, and every name comes from The Word of <span lang="he">יהוה</span>. <a href="#/about">A little about me</a></p>
+        <details class="howto"${store && store.getItem("ms-tips") === "closed" ? "" : " open"}>
+          <summary>How to use this book</summary>
+          <ol class="tips">
+            <li><b>Open a recipe.</b> Tap any picture or name below.</li>
+            <li><b>Change the amount.</b> Pick more or fewer servings, and every ingredient updates for you.</li>
+            <li><b>Cook along.</b> Tap ingredients and steps to check them off. Timers start right from the step.</li>
+            <li><b>Print a card.</b> Each recipe prints as a 5x7 card or a full page.</li>
+            <li><b>Keep it on your phone.</b> In your browser menu, choose Add to Home screen.</li>
+          </ol>
+        </details>
+        <details class="howto bless-home">
+          <summary>Our blessing before every meal</summary>
+          <h3 class="bl-h">HaMotzi</h3>
+          ${HAMOTZI}
+        </details>
+        ${BY[NEWEST] ? `<div class="newest"><p class="eyebrow">Newest recipe</p><ul class="toc-list">${recipeRow(BY[NEWEST])}</ul></div>` : ""}
+        <h3 class="qf-h">Quick finders</h3>
+        <div class="qf" role="group" aria-label="Quick finders">${FINDERS.map(f => `<button type="button" class="qf-btn fchip-like" data-cat="${f.id}" aria-pressed="${home.cat === f.id}"><span class="qf-t">${f.title}</span><span class="qf-n">${f.note} · ${f.slugs.filter(x => BY[x]).length} recipes</span></button>`).join("")}</div>
+      </section>
       <div class="finder no-print" role="search">
         <label class="search"><span class="sr-only">Search recipes</span>
           <input id="q" type="search" placeholder="Search by name, verse, or ingredient" value="${esc(home.q)}" autocomplete="off">
@@ -92,7 +130,7 @@
         <div class="filters" role="group" aria-label="Filter by section">${chips.map(([id, t]) => `<button type="button" class="fchip" data-cat="${id}" aria-pressed="${home.cat === id}">${t}</button>`).join("")}</div>
       </div>
       <div id="toc"></div>
-      <footer class="foot"><div class="rule"></div><p>What's Inside a Mustard Seed?</p></footer>
+      <footer class="foot"><div class="rule"></div><p class="dedication">For the two men in my life, with all my love.</p><p>What's Inside a Mustard Seed?</p></footer>
     </div>`;
     const q = $("#q");
     q.addEventListener("input", () => { home.q = q.value; renderToc(); });
@@ -102,6 +140,14 @@
     const out = [];
     let shown = 0;
     const want = id => home.cat === "all" || home.cat === id;
+    const F = FINDERS.find(f => f.id === home.cat);
+    if (F) {
+      const rs = F.slugs.map(x => BY[x]).filter(Boolean).filter(matches);
+      $("#toc").innerHTML = `<section class="toc-cat" id="cat-${F.id}"><h2>${F.title}</h2><p class="diet-blurb">${F.blurb}</p>
+        ${rs.length ? `<ul class="toc-list">${rs.map(recipeRow).join("")}</ul>` : `<p class="no-results">Nothing in ${F.title} matches “${esc(home.q)}”.</p>`}
+        <p class="qf-back"><button type="button" class="link-btn fchip-reset" data-cat="all">Show all recipes</button></p></section>`;
+      return;
+    }
     CATS.forEach(c => {
       if (!want(c.id)) return;
       const rs = BOOK.filter(r => r.cat === c.id && matches(r));
@@ -136,9 +182,17 @@
     $("#toc").innerHTML = out.join("") || "";
     if (!shown && home.q) $("#toc").innerHTML = `<p class="no-results">Nothing matches “${esc(home.q)}”. Try an ingredient like “bison” or “honey”.</p>`;
   }
+  document.addEventListener("toggle", e => {
+    if (e.target.classList && e.target.classList.contains("howto") && store) store.setItem("ms-tips", e.target.open ? "open" : "closed");
+  }, true);
   document.addEventListener("click", e => {
-    const f = e.target.closest(".fchip");
-    if (f) { home.cat = f.dataset.cat; document.querySelectorAll(".fchip").forEach(b => b.setAttribute("aria-pressed", String(b === f))); renderToc(); }
+    const f = e.target.closest(".fchip, .qf-btn, .fchip-reset");
+    if (f) {
+      home.cat = f.dataset.cat;
+      document.querySelectorAll(".fchip, .qf-btn").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.cat === home.cat)));
+      renderToc();
+      if (!f.classList.contains("fchip")) { const t = $(".finder"); if (t) t.scrollIntoView({ behavior: "smooth", block: "start" }); }
+    }
   });
 
   // ---------------- RECIPE PAGE ----------------
@@ -723,13 +777,61 @@
     window.scrollTo(0, 0);
   }
 
+  // ---------------- ABOUT ----------------
+  function renderAbout() {
+    document.title = "About Me | What's Inside a Mustard Seed?";
+    $("#tb-toc").hidden = false;
+    main.innerHTML = `
+    <div class="page about">
+      <header class="masthead">
+        <div class="rule"></div>
+        <img class="emblem big" src="assets/emblem.png" alt="What's Inside a Mustard Seed? emblem" width="200" height="200">
+        <h1 class="book-title">A Little About Me</h1>
+        <p class="subtitle">The heart behind the Staton Family Kitchen</p>
+      </header>
+      <div class="about-body">
+        <p>Hi there, I'm Alexis, and I'm so glad you're here.</p>
+        <p>If you've ever stood in a warm kitchen while something simmers on the stove, you know the feeling. The whole house smells like dinner. Someone sneaks a taste before it's ready. For a little while, the rest of the world can wait.</p>
+        <p>I know that feeling well, because the kitchen has always been my favorite place to be.</p>
+        <h2>Where It Started</h2>
+        <p>I've loved cooking since I was a little girl. Long before I knew what a recipe card was, the kitchen was where I felt at peace. Measuring, stirring, and waiting on something to come out of the oven let my mind rest. It was quiet, it was mine, and it made sense when other things didn't.</p>
+        <p>That hasn't changed. I still cook to slow down, catch my breath, and give thanks.</p>
+        <h2>The Heart of Our Home</h2>
+        <p>Now I don't cook alone. I cook with my son and my fiancé, and those are some of my favorite moments. We chop and stir side by side, we taste as we go, and we laugh when something doesn't turn out quite right. Cooking together brings peace to our life together.</p>
+        <p>I've always believed the kitchen is the heart of the house. It's where we talk about our day, where we bless our food with HaMotzi, and where a regular weeknight turns into a memory.</p>
+        <h2>Our Blessing Before Every Meal</h2>
+        <p>This is the prayer we always say before we eat any meal. It's called HaMotzi.</p>
+        ${HAMOTZI}
+        <h2>How This Book Came Together</h2>
+        <p>This book started as a way to keep our family's favorite recipes in one place, so they wouldn't live only in my head or on scraps of paper. Then I wanted to share them with you.</p>
+        <p>Every recipe follows the clean food rules of Leviticus 11, so you'll find beef bacon instead of pork, and no shellfish. Our home is also coconut free, so you won't find coconut here either. Each recipe is named from a verse in The Word of <span lang="he">יהוה</span>, and the verse is printed right on the card.</p>
+        <h2>Why It's Called Mustard Seed</h2>
+        <blockquote class="verse"><p>“Because of your lack of Emunah; for truly I say to you, if there is Emunah in you even as a grain of mustard, you will say to this mountain, ‘Move away from here,’ and it will move away; and nothing would prevail over you.”</p><cite>Matai 17:20, <a href="https://theword.link/ktuvim-shel-brit-hakhadashah-%D7%9B%D7%AA%D7%95%D7%91%D7%99%D7%9D-%D7%A9%D7%9C-%D7%91%D7%A8%D7%99%D7%AA-%D7%94%D7%97%D7%93%D7%A9%D7%94/matai-%D7%9E%D7%AA%D7%99/matai-17-%D7%9E%D7%AA%D7%99-%D7%99%D7%96/" target="_blank" rel="noopener">The Word of <span lang="he">יהוה</span></a></cite></blockquote>
+        <p>Yeshua said that faith as small as a mustard seed can move mountains, and that the mustard seed, the smallest of seeds, grows into something people can rest under. Mustard Seed is the name I've given to almost everything I build, from my work as a legal videographer and notary to the book I'm writing about my own life. I believe small things, done faithfully, can grow into something that feeds a lot of people.</p>
+        <h2>Why Your Table Matters to Me</h2>
+        <p>I'm a mom, and my time is precious. The moments I get with my son, my family, and with God in my scriptures mean everything to me, and I know your time is just as valuable.</p>
+        <p>Between work, school, practice, and a hundred other things, getting dinner on the table can feel like one more job. If these recipes save you a little time, ease a little stress, and bring your family to the table a little more often, then this book is doing exactly what I hoped. My prayer is that it becomes a small blessing in your kitchen.</p>
+        <h2>When I'm Not in the Kitchen</h2>
+        <p>When I'm not in the kitchen, you'll probably find me near the water, on a hiking trail, riding bikes with my son, or traveling somewhere new. And yes, I'm usually already thinking about what to cook when I get home.</p>
+        <h2>My Support System</h2>
+        <p>None of this would be possible without God, who is my strength, and my family. My son and my future husband are my biggest cheerleaders and my most honest taste testers, especially on the nights a new recipe needs one more try.</p>
+        <p>Thank you so much for cooking with me. I'll see you in the kitchen.</p>
+        <p class="about-sign">With love, Alexis</p>
+        <p class="dedication">For the two men in my life, with all my love.</p>
+      </div>
+      <p class="qf-back"><a class="btn-home" href="#/">Browse the recipes</a></p>
+      <footer class="foot"><div class="rule"></div><p>What's Inside a Mustard Seed?</p></footer>
+    </div>`;
+    window.scrollTo(0, 0);
+  }
+
   // ---------------- router ----------------
   let suppress = false;
   function route() {
     if (suppress) return;
     const { slug, params } = parseHashQuery();
     R = null; state = null;
-    if (!slug) renderHome(); else renderRecipe(slug, params);
+    if (!slug) renderHome(); else if (slug === "about") renderAbout(); else renderRecipe(slug, params);
     const pm = params.get("print");
     if (pm) setPrint(pm);
     main.focus({ preventScroll: true });

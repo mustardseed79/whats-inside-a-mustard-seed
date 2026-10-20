@@ -1421,7 +1421,7 @@ window.BOOK = [
 "items": [
 {
 "t": "li",
-"text": "For Wyatt: Use turkey kielbasa if he likes it better. It cooks the same way."
+"text": "For my son: Use turkey kielbasa if he likes it better. It cooks the same way."
 },
 {
 "t": "li",
@@ -1689,14 +1689,14 @@ window.BOOK = [
 }
 },
 {
-"text": "1–2 teaspoons cayenne or chili powder (optional, for heat; leave out for Wyatt)",
+"text": "1–2 teaspoons cayenne or chili powder (optional, for heat; leave out for my son)",
 "q": {
 "lo": 1.0,
 "hi": 2.0,
 "kind": "vol",
 "f": 1,
 "uw": "teaspoons",
-"rest": "cayenne or chili powder (optional, for heat; leave out for Wyatt)",
+"rest": "cayenne or chili powder (optional, for heat; leave out for my son)",
 "pre": ""
 },
 "n_opt": {
@@ -2488,7 +2488,7 @@ window.BOOK = [
 "text": "Stack it. Bottom bun → ketchup → slider with cheese → a piece of turkey bacon → top bun."
 },
 {
-"text": "Cool for little hands. Let them sit 2 minutes before serving to Wyatt; the cheese and meat are very hot inside.",
+"text": "Cool for little hands. Let them sit 2 minutes before serving to my son; the cheese and meat are very hot inside.",
 "timer": 2
 }
 ]
@@ -3425,7 +3425,7 @@ window.BOOK = [
 },
 {
 "t": "li",
-"text": "<b>For Wyatt:</b> Turkey bacon works in the jam too. It's leaner and cooks faster, so add a little butter or oil to the pan in step 1."
+"text": "<b>For my son:</b> Turkey bacon works in the jam too. It's leaner and cooks faster, so add a little butter or oil to the pan in step 1."
 },
 {
 "t": "li",
@@ -4236,7 +4236,7 @@ window.BOOK = [
 }
 },
 {
-"text": "Optional: 4 slices beef bacon, chopped (or turkey bacon for Wyatt)",
+"text": "Optional: 4 slices beef bacon, chopped (or turkey bacon for my son)",
 "plain": true
 }
 ]
@@ -4364,7 +4364,7 @@ window.BOOK = [
 },
 {
 "t": "li",
-"text": "For Wyatt: He loves it spicy, so keep the red pepper flakes in, and use turkey bacon (his favorite)."
+"text": "For my son: He loves it spicy, so keep the red pepper flakes in, and use turkey bacon (his favorite)."
 },
 {
 "t": "li",
@@ -4438,7 +4438,7 @@ window.BOOK = [
 },
 {
 "t": "li",
-"text": "Rotini or fusilli: Twisty and kid-friendly, great for Wyatt."
+"text": "Rotini or fusilli: Twisty and kid-friendly, great for my son."
 },
 {
 "t": "li",
@@ -4481,7 +4481,7 @@ window.BOOK = [
 },
 {
 "t": "li",
-"text": "A love-feast dish: Named for the banqueting-house of Shir HaShirim, a sweet one to make for Kevin."
+"text": "A love-feast dish: Named for the banqueting-house of Shir HaShirim, a sweet one to make for my soon to be husband."
 },
 {
 "t": "li",
@@ -4785,7 +4785,7 @@ window.BOOK = [
 },
 {
 "t": "li",
-"text": "For Wyatt: Cut his chicken into small strips before cooking; check them at 20 minutes total."
+"text": "For my son: Cut his chicken into small strips before cooking; check them at 20 minutes total."
 },
 {
 "t": "li",
@@ -5003,7 +5003,7 @@ window.BOOK = [
 "name": "Toppings (optional)",
 "items": [
 {
-"text": "Crumbled beef bacon (turkey bacon for Wyatt)"
+"text": "Crumbled beef bacon (turkey bacon for my son)"
 },
 {
 "text": "Shredded cheddar"
@@ -5300,7 +5300,7 @@ window.BOOK = [
 "name": "Toppings (optional)",
 "items": [
 {
-"text": "Crumbled beef bacon (turkey bacon for Wyatt)"
+"text": "Crumbled beef bacon (turkey bacon for my son)"
 },
 {
 "text": "Shredded cheddar"
@@ -5615,7 +5615,7 @@ window.BOOK = [
 "name": "Toppings (optional)",
 "items": [
 {
-"text": "Crumbled beef bacon (turkey bacon for Wyatt)"
+"text": "Crumbled beef bacon (turkey bacon for my son)"
 },
 {
 "text": "Shredded cheddar"
