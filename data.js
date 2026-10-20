@@ -9353,6 +9353,349 @@ window.BOOK = [
 ]
 },
 {
+"slug": "call-her-blessed",
+"scripture": "Call Her Blessed",
+"dish": "Her Son's Favorite Meatloaf",
+"cat": "Meats",
+"sub": "Beef",
+"photo": "assets/photos/call-her-blessed.jpg",
+"subtitle": "A one-pound meatloaf with a ketchup, yellow mustard, and brown sugar topping",
+"verse": {
+"text": "Her children rise up and call her blessed; her husband also, and he praises her: ‘Many daughters have done valiantly, but you exceed them all.’",
+"ref": "Mishlei 31:28–29",
+"url": "https://dvaryahuah.org/haketuvim-%d7%94%d7%9b%d7%aa%d7%95%d7%91%d7%99%d7%9d/mishlei-shlomo-%d7%9e%d7%a9%d7%9c%d7%99-%d7%a9%d7%9c%d7%9e%d7%94/mishlim-31-%d7%9e%d7%a9%d7%9c%d7%99%d7%9d-%d7%9c%d7%90/"
+},
+"servingsText": "4 servings (one 1-pound meatloaf)",
+"base": 4,
+"time": "About 1 hour 45 minutes (15 minutes prep, about 1½ hours in the oven)",
+"need": "A large mixing bowl, a small bowl, and a small baking pan about 1 inch deep (about 9 by 11 inches), stainless steel, a good aluminum pan, or ceramic. A glass loaf pan works too.",
+"clean": "Beef is clean (VaYikra 11:3). Worcestershire sauce is made with anchovies, which have fins and scales, so it's clean. Cheese with meat is allowed in this book.",
+"source": "My own recipe, from the Staton Family Kitchen",
+"extraMeta": {},
+"options": [],
+"groups": [
+{
+"name": "Meatloaf",
+"note": "",
+"items": [
+{
+"q": {
+"lo": 16,
+"hi": null,
+"kind": "wt",
+"f": 1,
+"uw": "",
+"rest": "90/10 lean ground beef",
+"pre": "",
+"smart": true
+},
+"n": {
+"cal": 799,
+"fat": 45,
+"sat": 18,
+"carb": 0,
+"fiber": 0,
+"sugar": 0,
+"protein": 91,
+"sodium": 299
+},
+"note": "Stay around 90 percent lean. 80/20 is too fatty for this one."
+},
+{
+"q": {
+"lo": 24,
+"hi": null,
+"kind": "vol",
+"f": 1,
+"uw": "",
+"rest": "finely shredded cheese",
+"pre": "",
+"smart": true
+},
+"n": {
+"cal": 226,
+"fat": 18.6,
+"sat": 10.5,
+"carb": 0.7,
+"fiber": 0,
+"sugar": 0.3,
+"protein": 12.8,
+"sodium": 365
+},
+"note": "Use finely shredded, not thick slices. Thick slices don't work."
+},
+{
+"q": {
+"lo": 2,
+"hi": null,
+"kind": "each",
+"f": 1,
+"uw": "",
+"rest": "large eggs",
+"pre": "",
+"smart": true
+},
+"n": {
+"cal": 143,
+"fat": 9.5,
+"sat": 3.1,
+"carb": 0.7,
+"fiber": 0,
+"sugar": 0.4,
+"protein": 12.6,
+"sodium": 142
+}
+},
+{
+"q": {
+"lo": 1,
+"hi": null,
+"kind": "each",
+"f": 1,
+"uw": "",
+"rest": "large sleeve Ritz crackers, crushed by hand",
+"pre": "",
+"smart": true
+},
+"n": {
+"cal": 500,
+"fat": 28,
+"sat": 6,
+"carb": 63,
+"fiber": 1,
+"sugar": 6,
+"protein": 6,
+"sodium": 840
+}
+},
+{
+"q": {
+"lo": 6,
+"hi": null,
+"kind": "vol",
+"f": 1,
+"uw": "",
+"rest": "Mrs. Dash Garlic & Herb seasoning",
+"pre": "",
+"smart": true
+},
+"n": {
+"cal": 15,
+"fat": 0,
+"sat": 0,
+"carb": 3,
+"fiber": 1,
+"sugar": 0,
+"protein": 0.5,
+"sodium": 0
+}
+},
+{
+"q": {
+"lo": 6,
+"hi": 9,
+"kind": "vol",
+"f": 1,
+"uw": "",
+"rest": "Worcestershire sauce",
+"pre": "",
+"smart": true
+},
+"n": {
+"cal": 30,
+"fat": 0,
+"sat": 0,
+"carb": 7,
+"fiber": 0,
+"sugar": 6,
+"protein": 0,
+"sodium": 390
+}
+},
+{
+"q": {
+"lo": 1,
+"hi": null,
+"kind": "vol",
+"f": 1,
+"uw": "",
+"rest": "minced garlic",
+"pre": "",
+"smart": true
+},
+"n": {
+"cal": 4,
+"fat": 0,
+"sat": 0,
+"carb": 1,
+"fiber": 0,
+"sugar": 0,
+"protein": 0.2,
+"sodium": 0
+}
+}
+]
+},
+{
+"name": "Topping",
+"note": "",
+"items": [
+{
+"q": {
+"lo": 12,
+"hi": null,
+"kind": "vol",
+"f": 1,
+"uw": "",
+"rest": "ketchup",
+"pre": "",
+"smart": true
+},
+"n": {
+"cal": 80,
+"fat": 0,
+"sat": 0,
+"carb": 20,
+"fiber": 0,
+"sugar": 16,
+"protein": 1,
+"sodium": 640
+}
+},
+{
+"q": {
+"lo": 6,
+"hi": null,
+"kind": "vol",
+"f": 1,
+"uw": "",
+"rest": "yellow mustard, it has to be yellow",
+"pre": "",
+"smart": true
+},
+"n": {
+"cal": 20,
+"fat": 1,
+"sat": 0,
+"carb": 2,
+"fiber": 1,
+"sugar": 0,
+"protein": 1,
+"sodium": 340
+}
+},
+{
+"q": {
+"lo": 3,
+"hi": null,
+"kind": "vol",
+"f": 1,
+"uw": "",
+"rest": "brown sugar, heaping",
+"pre": "",
+"smart": true
+},
+"n": {
+"cal": 52,
+"fat": 0,
+"sat": 0,
+"carb": 13.4,
+"fiber": 0,
+"sugar": 13.3,
+"protein": 0,
+"sodium": 4
+}
+}
+]
+}
+],
+"sections": [
+{
+"title": "Before you start",
+"steps": [
+{
+"text": "Heat the oven to <b>350°F</b>."
+},
+{
+"text": "Lightly grease the pan with beef tallow or olive oil. Go light, because the meatloaf cooks in its own juices."
+}
+]
+},
+{
+"title": "Mix",
+"steps": [
+{
+"text": "Put the ground beef in a large bowl and crack in the eggs."
+},
+{
+"text": "Add the Worcestershire sauce, Mrs. Dash, garlic, and cheese."
+},
+{
+"text": "Take the Ritz crackers out a few at a time and crush them over the bowl with your hands."
+},
+{
+"text": "Mix by hand just until everything looks even all the way through. No milk needed."
+}
+]
+},
+{
+"title": "Shape",
+"steps": [
+{
+"text": "Shape it into a flat, even loaf about 2 to 3 inches thick and pat the top level. Skip the tall football shape so it cooks faster and more evenly."
+},
+{
+"text": "Don't press it to the sides. Leave at least an inch between the meatloaf and the edges so the grease has somewhere to go. It will shrink a little as it bakes."
+}
+]
+},
+{
+"title": "Bake and top",
+"steps": [
+{
+"text": "Bake for 45 minutes.",
+"timer": 45
+},
+{
+"text": "While it bakes, stir the ketchup, yellow mustard, and brown sugar together in a small bowl and set it aside."
+},
+{
+"text": "Take the meatloaf out and spread the topping over the top."
+},
+{
+"text": "Bake 30 to 45 minutes more, until the center is done.",
+"timer": 45,
+"tip": "Check it at 30 minutes. For a 1-pound meatloaf, 45 and 45 is my sweet spot. A thermometer in the center should read 160°F."
+},
+{
+"text": "Cut it into pieces and serve."
+}
+]
+}
+],
+"notes": [
+{
+"title": "Kitchen Notes",
+"items": [
+{
+"t": "li",
+"text": "For my son: I made this on Saturday evening after Shabbat, and he loved it so much he ate the whole pound. This is how I'll keep making his little meatloaves."
+},
+{
+"t": "li",
+"text": "I don't add milk to mine. You can if you want to, but I don't."
+},
+{
+"t": "li",
+"text": "Making more than a pound? Keep the same 2 to 3 inch thickness and give it at least an inch of space from the edges of the pan."
+}
+]
+}
+],
+"nutritionNote": "Estimates per serving, calculated from USDA FoodData Central reference values and typical labels. Assumes cheddar cheese and 2 tablespoons of Worcestershire sauce, and counts all of the fat in the beef even though some cooks out into the pan.",
+"downloads": []
+},
+{
 "slug": "rejoice-seven-days",
 "type": "menu",
 "scripture": "Rejoice Seven Days",
