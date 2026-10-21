@@ -868,7 +868,7 @@ window.BOOK = [
 "timer": 2
 },
 {
-"text": "Brown the beef. Add the garlic and ground beef. Break the meat apart as it cooks, about 8 minutes, until no pink remains.",
+"text": "Brown the beef. Add the garlic and ground beef. Break the meat apart as it cooks, about 8–10 minutes, until no pink remains (160°F).",
 "timer": 8
 },
 {
@@ -2467,11 +2467,11 @@ window.BOOK = [
 "timer": 2
 },
 {
-"text": "Cook. Lay the patties in the pan, away from you, leaving space between them. Cook 2–3 minutes per side, flipping once. Small bison patties cook very fast.",
-"timer": 2
+"text": "Cook. Lay the patties in the pan, away from you, leaving space between them. Cook 3–4 minutes per side, flipping once, about 7–8 minutes total.",
+"timer": 3
 },
 {
-"text": "Check that it's done. These are thin, so poke the thermometer in from the side. It's done at 160°F, or when the center has no pink."
+"text": "Check that it's done. These are thin, so poke the thermometer in from the side. It's done at 160°F, or when the center has no pink. Not there yet? Cook 1 more minute per side and check again. Never serve ground bison below 160°F."
 },
 {
 "text": "Melt the cheese. During the last minute, add a half-slice of American cheese to each and cover the pan until melted."
@@ -2754,8 +2754,8 @@ window.BOOK = [
 "text": "<b>Shape.</b> Gently form 4 thick patties, about 1 inch thick and slightly wider than the buns, without overworking the meat. Press a shallow dimple in the center of each. Season both sides with the salt, pepper, and garlic powder."
 },
 {
-"text": "<b>Cook.</b> Heat the oil or butter in a cast-iron skillet over medium-high. Cook the patties 4–5 minutes per side, until the center reads 160°F. Bison is very lean and cooks faster than beef, so watch it closely.",
-"timer": 4
+"text": "<b>Cook.</b> Heat the oil or butter in a cast-iron skillet over medium-high. Cook the patties 5–6 minutes per side (about 10–12 minutes total for a 1-inch patty), until the center reads 160°F. Not there yet? Turn the heat to medium, cover, and check every 2 minutes. Never serve ground bison below 160°F.",
+"timer": 5
 },
 {
 "text": "<b>Sauce and cheese.</b> Brush the cooked patties with the hot sauce and butter. In the last minute, add a slice of pepper jack to each patty and cover the pan to melt it."
@@ -3394,8 +3394,8 @@ window.BOOK = [
 "text": "<b>Shape.</b> Gently form 4 thick patties, about 1 inch thick and slightly wider than the buns, without overworking the meat. Press a shallow dimple in the center of each. Season both sides with the salt, pepper, and garlic powder."
 },
 {
-"text": "<b>Cook.</b> Heat the oil or butter in a cast-iron skillet over medium-high. Cook the patties 4–5 minutes per side, until the center reads 160°F. Bison is very lean and cooks faster than beef, so watch it closely.",
-"timer": 4
+"text": "<b>Cook.</b> Heat the oil or butter in a cast-iron skillet over medium-high. Cook the patties 5–6 minutes per side (about 10–12 minutes total for a 1-inch patty), until the center reads 160°F. Not there yet? Turn the heat to medium, cover, and check every 2 minutes. Never serve ground bison below 160°F.",
+"timer": 5
 },
 {
 "text": "<b>Cheese.</b> In the last minute, add a slice of fontina to each patty and cover the pan to melt it."
@@ -3726,8 +3726,8 @@ window.BOOK = [
 "text": "<b>Shape.</b> Gently form 4 thick patties, about 1 inch thick and slightly wider than the buns, without overworking the meat. Press a shallow dimple in the center of each. Season both sides with the salt, pepper, and garlic powder."
 },
 {
-"text": "<b>Cook.</b> Heat the oil or butter in a cast-iron skillet over medium-high. Cook the patties 4–5 minutes per side, until the center reads 160°F. Bison is very lean and cooks faster than beef, so watch it closely.",
-"timer": 4
+"text": "<b>Cook.</b> Heat the oil or butter in a cast-iron skillet over medium-high. Cook the patties 5–6 minutes per side (about 10–12 minutes total for a 1-inch patty), until the center reads 160°F. Not there yet? Turn the heat to medium, cover, and check every 2 minutes. Never serve ground bison below 160°F.",
+"timer": 5
 },
 {
 "text": "<b>Cheese.</b> In the last minute, add a slice of white cheddar to each patty and cover the pan to melt it."
@@ -4280,10 +4280,10 @@ window.BOOK = [
 "timer": 3
 },
 {
-"text": "Stir and cook. Stir and cook 3–4 more minutes, turning the pieces, until golden on most sides."
+"text": "Stir and cook. Stir and cook 4–5 more minutes, turning the pieces, until golden on most sides."
 },
 {
-"text": "Check that it's done. Push the thermometer into the biggest piece. It's done at 165°F. No thermometer? Cut a big piece in half: no pink inside and the juices run clear."
+"text": "Check that it's done. Push the thermometer into the biggest piece. It's done at 165°F. No thermometer? Cut a big piece in half: no pink inside and the juices run clear. Not there yet? Cook 2 more minutes and check again."
 },
 {
 "text": "Set it aside. Move the chicken to a plate. Don't wash the pan; the brown bits are flavor."
@@ -5987,8 +5987,8 @@ window.BOOK = [
 "text": "<b>Heat the pot.</b> Set a large pot or Dutch oven (5.5 qt) over medium-high heat."
 },
 {
-"text": "<b>Brown the sausage.</b> Add the turkey sausage, breaking it up with your spatula, and sauté until cooked through, about 5 minutes. Move it to a paper towel–lined plate to drain.",
-"timer": 5
+"text": "<b>Brown the sausage.</b> Add the turkey sausage, breaking it up with your spatula, and sauté 8–10 minutes, until there's no pink and it reaches 165°F (turkey sausage is poultry). Not there yet? Cook 2 more minutes and check again. Move it to a paper towel–lined plate to drain.",
+"timer": 8
 },
 {
 "text": "<b>Onion and garlic.</b> Add the diced onion to the pot and sauté 5 minutes, until soft and golden. Add the garlic and sauté 1 minute more.",
@@ -9664,7 +9664,7 @@ window.BOOK = [
 "text": "Take the meatloaf out and spread the topping over the top."
 },
 {
-"text": "Bake 30 to 45 minutes more, until the center is done.",
+"text": "Bake 30 to 45 minutes more, until a thermometer in the center reads 160°F and the juices run clear. Not there yet? Bake 10 more minutes and check again.",
 "timer": 45,
 "tip": "Check it at 30 minutes. For a 1-pound meatloaf, 45 and 45 is my sweet spot. A thermometer in the center should read 160°F."
 },
