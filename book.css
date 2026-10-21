@@ -187,13 +187,40 @@ h1 .dish { display: block; margin-top: 8px; font-size: .52em; font-weight: 600; 
 .about-ch p { font-size: 17.5px; line-height: 1.8; margin: 0 0 1em; }
 .about-bless .blessing { margin-top: 10px; }
 
-/* family snapshots on the About page */
-.about-snaps { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 18px; margin: 22px auto 8px; }
-.about-snaps .snap { margin: 0; padding: 8px 8px 26px; background: #fff; border: 1px solid rgba(184,146,58,.55); box-shadow: 0 8px 22px rgba(28,43,76,.14); flex: 1 1 200px; max-width: 260px; }
-.about-snaps.n1 .snap { max-width: 380px; }
-.about-snaps .snap img { display: block; width: 100%; height: 240px; object-fit: cover; }
-.about-snaps.n1 .snap img { height: auto; }
-.about-snaps .snap:nth-child(odd) { transform: rotate(-2deg); }
-.about-snaps .snap:nth-child(even) { transform: rotate(1.8deg); margin-top: 10px; }
-@media (max-width: 560px) { .about-snaps .snap { max-width: 82%; flex-basis: 100%; } .about-snaps .snap img { height: auto; } }
-@media print { .about-snaps .snap { transform: none; box-shadow: none; } }
+/* family snapshots on the About page: taped polaroids */
+.about-snaps { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 0; margin: 34px auto 18px; padding: 0 12px; }
+.about-snaps .snap { position: relative; margin: 0; padding: 12px 12px 46px; background: #fffdf8; border: 0; box-shadow: 0 1px 2px rgba(28,43,76,.12), 0 12px 26px rgba(28,43,76,.18); width: 236px; flex: 0 0 auto; transition: transform .25s ease, box-shadow .25s ease; z-index: 1; }
+.about-snaps .snap img { display: block; width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: cover; filter: saturate(.95) contrast(1.02); box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
+.about-snaps.n1 .snap { width: 320px; }
+/* tape */
+.about-snaps .snap::before { content: ""; position: absolute; top: -13px; left: 50%; width: 92px; height: 26px; margin-left: -46px; background: rgba(233,214,160,.72); box-shadow: 0 1px 2px rgba(0,0,0,.08); transform: rotate(-3deg); clip-path: polygon(3% 0, 97% 4%, 100% 50%, 97% 100%, 2% 96%, 0 50%); }
+.about-snaps .snap:nth-child(3n+2)::before { left: 14px; margin-left: 0; width: 70px; transform: rotate(-38deg); top: -6px; left: -18px; }
+.about-snaps .snap:nth-child(3n+2)::after { content: ""; position: absolute; top: -6px; right: -18px; width: 70px; height: 24px; background: rgba(233,214,160,.72); box-shadow: 0 1px 2px rgba(0,0,0,.08); transform: rotate(38deg); clip-path: polygon(3% 0, 97% 4%, 100% 50%, 97% 100%, 2% 96%, 0 50%); }
+.about-snaps .snap:nth-child(3n)::before { background: rgba(28,43,76,.18); transform: rotate(4deg); }
+/* tilt and overlap */
+.about-snaps .snap:nth-child(4n+1) { transform: rotate(-4deg); }
+.about-snaps .snap:nth-child(4n+2) { transform: rotate(3deg) translateY(14px); margin-left: -26px; z-index: 2; }
+.about-snaps .snap:nth-child(4n+3) { transform: rotate(-2deg) translateY(-6px); margin-left: -22px; }
+.about-snaps .snap:nth-child(4n) { transform: rotate(5deg) translateY(10px); margin-left: -24px; z-index: 2; }
+.about-snaps.n1 .snap { transform: rotate(-2.5deg); margin-left: 0; }
+.about-snaps.n3 .snap:nth-child(3) { margin-left: 0; margin-top: -30px; transform: rotate(-3deg) translateX(10px); z-index: 3; }
+.about-snaps.n4 .snap:nth-child(3) { margin-left: 0; margin-top: -24px; }
+.about-snaps.n4 .snap:nth-child(4) { margin-top: -24px; }
+.about-snaps.n3, .about-snaps.n4 { max-width: 520px; margin-left: auto; margin-right: auto; }
+.about-snaps .snap:hover { transform: rotate(0) scale(1.06); z-index: 5; box-shadow: 0 2px 4px rgba(28,43,76,.14), 0 20px 40px rgba(28,43,76,.24); }
+/* keep faces in frame */
+.about-snaps .snap img[src*="snack-shack"] { object-position: 8% 12%; }
+.about-snaps .snap img[src*="kevin-bakery"] { object-position: center 30%; }
+.about-snaps .snap img[src*="alexis-wyatt"] { object-position: center 22%; }
+.about-snaps .snap img[src*="tallit"] { object-position: center 30%; }
+.about-snaps .snap img[src*="astros"] { object-position: center 55%; }
+.about-snaps .snap img[src*="wyatt-chopping"] { object-position: 60% center; }
+.about-snaps .snap img[src*="venice"] { object-position: 40% center; }
+@media (max-width: 560px) {
+  .about-snaps .snap { width: 46%; padding: 8px 8px 30px; }
+  .about-snaps.n1 .snap { width: 78%; }
+  .about-snaps .snap:nth-child(n) { margin-left: -4%; }
+  .about-snaps .snap:first-child, .about-snaps.n1 .snap { margin-left: 0; }
+  .about-snaps .snap::before { width: 60px; margin-left: -30px; height: 20px; }
+}
+@media print { .about-snaps .snap { box-shadow: none; border: 1px solid #ddd; } }

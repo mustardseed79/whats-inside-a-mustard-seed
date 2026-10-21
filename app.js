@@ -792,11 +792,12 @@
 
   // ---------------- ABOUT ----------------
   const SNAPS = {
-    1: [["astros", "Wyatt, Alexis, and Kevin at an Astros game"], ["pool", "Alexis, Wyatt, and Kevin in the pool by the water"], ["kevin-bakery", "Kevin at a bakery table with pastries and iced coffee"]],
+    1: [["wyatt-chopping", "Wyatt slicing sweet potatoes at the kitchen counter"], ["snack-shack", "Wyatt with the bagged treats for Wyatt's Kosher Snack Shack"], ["kevin-bakery", "Kevin at a bakery table with pastries and iced coffee"]],
     2: [["tallit", "Kevin in his tallit with Alexis"]],
     4: [["wyatt-scroll", "Wyatt leaning over a long scroll laid out across the tables"]],
     5: [["alexis-wyatt", "Alexis kissing Wyatt on the cheek"]],
-    7: [["rome", "Kevin and Alexis at the Colosseum in Rome"], ["venice", "Kevin and Alexis in Italy"]]
+    6: [["wyatt-shabbat-1", "Wyatt reading by the Shabbat candles"], ["wyatt-shabbat-2", "Wyatt reading his book by candlelight"]],
+    7: [["rome", "Kevin and Alexis at the Colosseum in Rome"], ["venice", "Kevin and Alexis in Italy"], ["astros", "Wyatt, Alexis, and Kevin at an Astros game"], ["pool", "Alexis, Wyatt, and Kevin in the pool by the water"]]
   };
   function snaps(list) {
     if (!list) return "";
@@ -807,7 +808,7 @@
     $("#tb-toc").hidden = false;
     const chapters = [
       ["Where it started", "I've loved cooking since I was a little girl. Long before I knew what a recipe card was, the kitchen was where I felt at peace. Measuring, stirring, and waiting on something to come out of the oven let my mind rest. It was quiet, it was mine, and it made sense when other things didn't. I still cook to slow down, catch my breath, and give thanks."],
-      ["Who's in my kitchen now", "These days I don't cook alone, and honestly, I don't want to. Kevin, my soon-to-be husband, is a seriously good cook. I mean it. The man can cook. My son Wyatt loves being in the kitchen as much as we do, and he'll take the heat in anything you hand him, the spicier the better. Some nights it's all three of us bumping elbows at the counter, tasting as we go and laughing when something doesn't turn out quite right. That's the good stuff. That's what this book is really about."],
+      ["Who's in my kitchen now", "These days I don't cook alone, and honestly, I don't want to. Kevin, my soon-to-be husband, is a seriously good cook. I mean it. The man can cook. My son Wyatt loves being in the kitchen as much as we do, and he'll take the heat in anything you hand him, the spicier the better. And that kid doesn't just cook, he's a businessman. He opened his very own business, Wyatt's Kosher Snack Shack. Yes, my kid has a business. I'm not crying, you're crying. Some nights it's all three of us bumping elbows at the counter, tasting as we go and laughing when something doesn't turn out quite right. That's the good stuff. That's what this book is really about."],
       ["The heart of the house", "I've always believed the kitchen is the heart of the house. It's where we talk about our day, where we bless our food, and where a regular weeknight turns into a memory. And yes, sometimes it's where the marinade ends up in my eyeball. Those stories are in here too."],
       ["Why I wrote it all down", "This book started as a way to keep our family's favorite recipes in one place, so they wouldn't live only in my head or on scraps of paper. Every recipe follows the clean food rules of Leviticus 11, beef bacon and never pork, no shellfish, and no coconut ever in our home. Each one is named from a verse in The Word of <span lang=\"he\">יהוה</span>, and behind each one is a little story of what really happened when we made it. If you read one and think, \"Oh my word, that happened to me too,\" then I did my job."],
       ["The mustard seed", "Yeshua said that faith as small as a mustard seed can move mountains, and that the smallest of seeds grows into something people can rest under. Mustard Seed is the name I've given to almost everything I build, from my work as a legal videographer and notary to the book I'm writing about my own life. I believe small things, done faithfully, can grow into something that feeds a lot of people."],
@@ -827,7 +828,7 @@
       <blockquote class="verse"><p>“Because of your lack of Emunah; for truly I say to you, if there is Emunah in you even as a grain of mustard, you will say to this mountain, ‘Move away from here,’ and it will move away; and nothing would prevail over you.”</p><cite>Matai 17:20, <a href="https://theword.link/ktuvim-shel-brit-hakhadashah-%D7%9B%D7%AA%D7%95%D7%91%D7%99%D7%9D-%D7%A9%D7%9C-%D7%91%D7%A8%D7%99%D7%AA-%D7%94%D7%97%D7%93%D7%A9%D7%94/matai-%D7%9E%D7%AA%D7%99/matai-17-%D7%9E%D7%AA%D7%99-%D7%99%D7%96/" target="_blank" rel="noopener">The Word of <span lang="he">יהוה</span></a></cite></blockquote>
       <div class="about-chapters">
         ${chapters.map(([h, t], i) => `<section class="about-ch"><p class="ch-num">${["I","II","III","IV","V","VI"][i]}</p><h2>${h}</h2><p>${t}</p>${snaps(SNAPS[i])}</section>`).join("")}
-        <section class="about-ch about-bless"><p class="ch-num">VII</p><h2>Before every meal</h2><p>This is the prayer we always say before we eat. It's called HaMotzi.</p>${HAMOTZI}</section>
+        <section class="about-ch about-bless"><p class="ch-num">VII</p><h2>Before every meal</h2><p>This is the prayer we always say before we eat. It's called HaMotzi.</p>${HAMOTZI}${snaps(SNAPS[6])}</section>
         <section class="about-ch"><p class="ch-num">VIII</p><h2>When I'm not in the kitchen</h2><p>You'll probably find me near the water, on a hiking trail, riding bikes with my son, or traveling somewhere new. And yes, I'm usually already thinking about what we're cooking when we get home.</p>${snaps(SNAPS[7])}</section>
       </div>
       <div class="about-close">
