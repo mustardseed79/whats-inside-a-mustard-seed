@@ -41,7 +41,7 @@
       <p class="bl-tr">Barukḥ Atah <bdi lang="he">יהוה</bdi>, Eloheinu, Melekḥ HaOlam, hamotzi lekḥem min ha’aretz, v’hotzi Yeshua HaMashi'akḥ min ha'she’ol.</p>
       <p class="bl-en">Blessed are You, O <bdi lang="he">יהוה</bdi> our Elohim, King of the Universe, who brings forth bread from the earth, and who brought forth Messiah Yeshua from the grave.</p>
     </div>`;
-  const NEWEST = "call-her-blessed";
+  const NEWEST = "eat-with-joy";
   const dietsOf = slug => DIETS.filter(d => d.slugs.includes(slug)).map(d => d.title);
 
   // ---------------- nutrition helpers ----------------
@@ -103,7 +103,7 @@
       </header>
       <section class="start no-print" aria-labelledby="start-h">
         <h2 id="start-h">Welcome to the Staton Family Kitchen</h2>
-        <p class="start-lead">These are the recipes I make for the two men in my life, my son and my soon-to-be husband. Every recipe follows the clean food rules of Leviticus 11, and every name comes from The Word of <span lang="he">יהוה</span>. <a href="#/about">A little about me</a></p>
+        <p class="start-lead">This isn't one woman's recipe box. It's our whole family's kitchen. Kevin is a flat-out fantastic cook (yes, I'll say it out loud), my son Wyatt loves to get in there and cook right alongside us, and I'm usually the one writing it all down. These are the recipes we make together, the ones we fight over the last bite of, and the stories of everything that went sideways along the way. Every recipe follows the clean food rules of Leviticus 11, and every name comes from The Word of <span lang="he">יהוה</span>. <a href="#/about">A little about me</a></p>
         <details class="howto"${store && store.getItem("ms-tips") === "closed" ? "" : " open"}>
           <summary>How to use this book</summary>
           <ol class="tips">
@@ -130,7 +130,7 @@
         <div class="filters" role="group" aria-label="Filter by section">${chips.map(([id, t]) => `<button type="button" class="fchip" data-cat="${id}" aria-pressed="${home.cat === id}">${t}</button>`).join("")}</div>
       </div>
       <div id="toc"></div>
-      <footer class="foot"><div class="rule"></div><p class="dedication">For the two men in my life, with all my love.</p><p>What's Inside a Mustard Seed?</p></footer>
+      <footer class="foot"><div class="rule"></div><p class="dedication">For my family, and for every family who pulls up a chair.</p><p>What's Inside a Mustard Seed?</p></footer>
     </div>`;
     const q = $("#q");
     q.addEventListener("input", () => { home.q = q.value; renderToc(); });
@@ -420,6 +420,7 @@
       </section>
 
       <div id="notes"></div>
+      ${storyHTML(R)}
 
       <section class="block export no-print" aria-labelledby="exp-h">
         <h2 id="exp-h">Save, print, and share</h2>
@@ -615,6 +616,18 @@
     flush();
     return html;
   }
+  function storyHTML(r) {
+    const s = r.story; if (!s) return "";
+    return `<section class="kstory" aria-labelledby="ks-h">
+        <div class="ks-orn" aria-hidden="true"><span></span><img src="assets/emblem.png" alt=""><span></span></div>
+        <p class="ks-eyebrow">${s.eyebrow || "From our kitchen table"}</p>
+        <h2 id="ks-h" class="ks-title">${s.title}</h2>
+        ${s.lede ? `<p class="ks-lede">${s.lede}</p>` : ""}
+        <div class="ks-body">${s.paras.map((p, i) => `<p${i === 0 ? ' class="ks-first"' : ""}>${p}</p>`).join("")}</div>
+        ${s.pull ? `<blockquote class="ks-pull">${s.pull}</blockquote>` : ""}
+        <p class="ks-sign">${s.sign || "Alexis"}</p>
+      </section>`;
+  }
   function renderNotes() {
     $("#notes").innerHTML = (R.notes || []).map(n => {
       const body = noteItems(n.items || []) + (n.subs || []).map(s => `<h3>${s.title}</h3>${noteItems(s.items)}`).join("");
@@ -781,60 +794,35 @@
   function renderAbout() {
     document.title = "About Me | What's Inside a Mustard Seed?";
     $("#tb-toc").hidden = false;
-    const ing = [
-      ["1", "little girl who found peace at the stove"],
-      ["1", "son, my whole heart and my favorite kitchen helper"],
-      ["1", "soon-to-be husband, my biggest cheerleader and most honest taste tester"],
-      ["", "A grain of mustard-seed faith"],
-      ["", "The clean food rules of Leviticus 11 (beef bacon, never pork, and no shellfish)"],
-      ["", "No coconut, ever, in our home"],
-      ["1", "blessing before every meal"],
-      ["", "A pinch of laughter when a recipe doesn't turn out quite right"]
-    ];
-    const steps = [
-      ["Start young.", "I've loved cooking since I was a little girl. Long before I knew what a recipe card was, the kitchen was where I felt at peace. Measuring, stirring, and waiting on something to come out of the oven let my mind rest. It was quiet, it was mine, and it made sense when other things didn't. I still cook to slow down, catch my breath, and give thanks."],
-      ["Add the people you love.", "Now I don't cook alone. I cook with my son and my fiancé, and those are some of my favorite moments. We chop and stir side by side, we taste as we go, and we laugh when something doesn't turn out quite right. Cooking together brings peace to our life together."],
-      ["Let it simmer at the heart of the house.", "I've always believed the kitchen is the heart of the house. It's where we talk about our day, where we bless our food, and where a regular weeknight turns into a memory."],
-      ["Bless the bread.", "This is the prayer we always say before we eat any meal. It's called HaMotzi." + HAMOTZI],
-      ["Write it all down.", "This book started as a way to keep our family's favorite recipes in one place, so they wouldn't live only in my head or on scraps of paper. Every recipe follows the clean food rules of Leviticus 11, and each one is named from a verse in The Word of <span lang=\"he\">יהוה</span>, printed right on the card."],
-      ["Plant a small seed.", "Yeshua said that faith as small as a mustard seed can move mountains, and that the mustard seed, the smallest of seeds, grows into something people can rest under. Mustard Seed is the name I've given to almost everything I build, from my work as a legal videographer and notary to the book I'm writing about my own life. I believe small things, done faithfully, can grow into something that feeds a lot of people."],
-      ["Share the table.", "I'm a mom, and my time is precious. The moments I get with my son, my family, and with God in my scriptures mean everything to me, and I know your time is just as valuable. If these recipes save you a little time, ease a little stress, and bring your family to the table a little more often, then this book is doing exactly what I hoped. My prayer is that it becomes a small blessing in your kitchen."]
+    const chapters = [
+      ["Where it started", "I've loved cooking since I was a little girl. Long before I knew what a recipe card was, the kitchen was where I felt at peace. Measuring, stirring, and waiting on something to come out of the oven let my mind rest. It was quiet, it was mine, and it made sense when other things didn't. I still cook to slow down, catch my breath, and give thanks."],
+      ["Who's in my kitchen now", "These days I don't cook alone, and honestly, I don't want to. Kevin, my soon-to-be husband, is a seriously good cook. I mean it. The man can cook. My son Wyatt loves being in the kitchen as much as we do, and he'll take the heat in anything you hand him, the spicier the better. Some nights it's all three of us bumping elbows at the counter, tasting as we go and laughing when something doesn't turn out quite right. That's the good stuff. That's what this book is really about."],
+      ["The heart of the house", "I've always believed the kitchen is the heart of the house. It's where we talk about our day, where we bless our food, and where a regular weeknight turns into a memory. And yes, sometimes it's where the marinade ends up in my eyeball. Those stories are in here too."],
+      ["Why I wrote it all down", "This book started as a way to keep our family's favorite recipes in one place, so they wouldn't live only in my head or on scraps of paper. Every recipe follows the clean food rules of Leviticus 11, beef bacon and never pork, no shellfish, and no coconut ever in our home. Each one is named from a verse in The Word of <span lang=\"he\">יהוה</span>, and behind each one is a little story of what really happened when we made it. If you read one and think, \"Oh my word, that happened to me too,\" then I did my job."],
+      ["The mustard seed", "Yeshua said that faith as small as a mustard seed can move mountains, and that the smallest of seeds grows into something people can rest under. Mustard Seed is the name I've given to almost everything I build, from my work as a legal videographer and notary to the book I'm writing about my own life. I believe small things, done faithfully, can grow into something that feeds a lot of people."],
+      ["Pull up a chair", "I'm a mom, and my time is precious. The moments I get with my son, my family, and with God in my scriptures mean everything to me, and I know your time is just as valuable. If these recipes save you a little time, ease a little stress, and bring your family to the table a little more often, then this book is doing exactly what I hoped. My prayer is that it becomes a small blessing in your kitchen."]
     ];
     main.innerHTML = `
     <article class="page about">
       <header class="masthead">
         <div class="rule"></div>
-        <img class="emblem big" src="assets/emblem.png" alt="What's Inside a Mustard Seed? emblem" width="200" height="200">
+        <img class="emblem" src="assets/emblem.png" alt="What's Inside a Mustard Seed? emblem" width="120" height="120">
         <p class="book"><a href="#/">What's Inside a Mustard Seed?</a></p>
-        <h1>A Little About Me<span class="dish">The Heart Behind the Staton Family Kitchen</span></h1>
+        <h1>A Little About Me<span class="dish">Alexis, and the Staton Family Kitchen</span></h1>
       </header>
+      <figure class="about-portrait"><img src="assets/photos/about-alexis.jpg" alt="Alexis" onerror="this.closest('figure').remove()"></figure>
+      <p class="about-hello">Hi there, I'm Alexis, and I'm so glad you're here.</p>
+      <p class="about-intro">Mom, soon-to-be wife, child of God, and yes, a little bit of a smart mouth. If you've ever stood in a warm kitchen while something simmers on the stove, you know the feeling. The whole house smells like dinner, someone sneaks a taste before it's ready, and for a little while the rest of the world can wait.</p>
       <blockquote class="verse"><p>“Because of your lack of Emunah; for truly I say to you, if there is Emunah in you even as a grain of mustard, you will say to this mountain, ‘Move away from here,’ and it will move away; and nothing would prevail over you.”</p><cite>Matai 17:20, <a href="https://theword.link/ktuvim-shel-brit-hakhadashah-%D7%9B%D7%AA%D7%95%D7%91%D7%99%D7%9D-%D7%A9%D7%9C-%D7%91%D7%A8%D7%99%D7%AA-%D7%94%D7%97%D7%93%D7%A9%D7%94/matai-%D7%9E%D7%AA%D7%99/matai-17-%D7%9E%D7%AA%D7%99-%D7%99%D7%96/" target="_blank" rel="noopener">The Word of <span lang="he">יהוה</span></a></cite></blockquote>
-      <dl class="facts">
-        <div><dt>Cook:</dt><dd>Alexis</dd></div>
-        <div><dt>Kitchen:</dt><dd>The Staton Family Kitchen, Willis, Texas</dd></div>
-        <div><dt>Serves:</dt><dd>My family, our friends, and anyone who pulls up a chair</dd></div>
-        <div><dt>Prep time:</dt><dd>A lifetime, starting when I was a little girl</dd></div>
-      </dl>
-      <p class="about-intro">Hi there, I'm Alexis, and I'm so glad you're here. If you've ever stood in a warm kitchen while something simmers on the stove, you know the feeling. The whole house smells like dinner, someone sneaks a taste before it's ready, and for a little while the rest of the world can wait. The kitchen has always been my favorite place to be.</p>
-      <section class="block" aria-labelledby="a-ing">
-        <div class="block-head"><h2 id="a-ing">Ingredients</h2></div>
-        <div class="ing-group"><ul>${ing.map(([q, t]) => `<li><span class="ing-line">${q ? `<span class="qty">${q}</span> ` : ""}<span class="ing-name">${t}</span></span></li>`).join("")}</ul></div>
-      </section>
-      <section class="block" aria-labelledby="a-steps">
-        <div class="block-head"><h2 id="a-steps">Steps</h2></div>
-        <ol class="a-steps">${steps.map(([h, t], i) => `<li class="a-step"><span class="num" aria-hidden="true">${i + 1}</span><div class="step-body"><p><b>${h}</b> ${t.split("<div")[0]}</p>${t.includes("<div") ? "<div" + t.split("<div").slice(1).join("<div") : ""}</div></li>`).join("")}</ol>
-      </section>
-      <section class="block note-block" aria-labelledby="a-notes">
-        <h2 id="a-notes">Cook's Notes</h2>
-        <h3>When I'm not in the kitchen</h3>
-        <p class="note-p">You'll probably find me near the water, on a hiking trail, riding bikes with my son, or traveling somewhere new. And yes, I'm usually already thinking about what to cook when I get home.</p>
-        <h3>My support system</h3>
-        <p class="note-p">None of this would be possible without God, who is my strength, and my family. My son and my future husband are my biggest cheerleaders and my most honest taste testers, especially on the nights a new recipe needs one more try.</p>
-      </section>
+      <div class="about-chapters">
+        ${chapters.map(([h, t], i) => `<section class="about-ch"><p class="ch-num">${["I","II","III","IV","V","VI"][i]}</p><h2>${h}</h2><p>${t}</p></section>`).join("")}
+        <section class="about-ch about-bless"><p class="ch-num">VII</p><h2>Before every meal</h2><p>This is the prayer we always say before we eat. It's called HaMotzi.</p>${HAMOTZI}</section>
+        <section class="about-ch"><p class="ch-num">VIII</p><h2>When I'm not in the kitchen</h2><p>You'll probably find me near the water, on a hiking trail, riding bikes with my son, or traveling somewhere new. And yes, I'm usually already thinking about what we're cooking when we get home.</p></section>
+      </div>
       <div class="about-close">
-        <p>Thank you so much for cooking with me. I'll see you in the kitchen.</p>
+        <p>None of this would be possible without God, who is my strength, and my family, my biggest cheerleaders and my most honest taste testers.</p>
+        <p>Thank you so much for cooking with us. I'll see you in the kitchen.</p>
         <p class="about-sign">With love, Alexis</p>
-        <p class="dedication">For the two men in my life, with all my love.</p>
         <p class="qf-back"><a class="btn-home" href="#/">Browse the recipes</a></p>
       </div>
       <footer class="foot"><div class="rule"></div><p>What's Inside a Mustard Seed? • About the Cook</p></footer>
