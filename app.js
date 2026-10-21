@@ -792,12 +792,14 @@
 
   // ---------------- ABOUT ----------------
   const SNAPS = {
-    1: [["wyatt-chopping", "Wyatt slicing sweet potatoes at the kitchen counter"], ["snack-shack", "Wyatt with the bagged treats for Wyatt's Kosher Snack Shack"], ["kevin-bakery", "Kevin at a bakery table with pastries and iced coffee"]],
-    2: [["tallit", "Kevin in his tallit with Alexis"]],
-    4: [["wyatt-scroll", "Wyatt leaning over a long scroll laid out across the tables"]],
-    5: [["alexis-wyatt", "Alexis kissing Wyatt on the cheek"]],
-    6: [["wyatt-shabbat-1", "Wyatt reading by the Shabbat candles"], ["wyatt-shabbat-2", "Wyatt reading his book by candlelight"]],
-    7: [["rome", "Kevin and Alexis at the Colosseum in Rome"], ["venice", "Kevin and Alexis in Italy"], ["astros", "Wyatt, Alexis, and Kevin at an Astros game"], ["pool", "Alexis, Wyatt, and Kevin in the pool by the water"]]
+    1: [["wyatt-chopping", "Wyatt slicing sweet potatoes at the kitchen counter"], ["kevin-bakery", "Kevin at a bakery table with pastries and iced coffee"]],
+    2: [["shack-sign", "Wyatt putting the letters on his Snack Shack sign"], ["shack-proud", "Wyatt standing proud beside Wyatt's Kosher Snack Shack"], ["shack-menu", "The Wyatt's Kosher Snack Shack menu"], ["shack-cakepops", "Chocolate cake balls with sprinkles"], ["shack-coffeecake", "Cinnamon swirl coffee cake"], ["shack-donations", "Wyatt's sign: I accept donations, thank you for supporting my little business"]],
+    3: [["tallit", "Kevin in his tallit with Alexis"], ["shema", "The Shema on a scroll"]],
+    4: [["muffins", "A tray of fresh-baked muffins"]],
+    5: [["wyatt-scroll", "Wyatt leaning over a long scroll laid out across the tables"]],
+    6: [["alexis-wyatt", "Alexis kissing Wyatt on the cheek"]],
+    bless: [["wyatt-shabbat-1", "Wyatt reading by the Shabbat candles"], ["wyatt-shabbat-2", "Wyatt reading his book by candlelight"]],
+    away: [["rome", "Kevin and Alexis at the Colosseum in Rome"], ["venice", "Kevin and Alexis in Italy"], ["astros", "Wyatt, Alexis, and Kevin at an Astros game"], ["pool", "Alexis, Wyatt, and Kevin in the pool by the water"]]
   };
   function snaps(list) {
     if (!list) return "";
@@ -808,7 +810,8 @@
     $("#tb-toc").hidden = false;
     const chapters = [
       ["Where it started", "I've loved cooking since I was a little girl. Long before I knew what a recipe card was, the kitchen was where I felt at peace. Measuring, stirring, and waiting on something to come out of the oven let my mind rest. It was quiet, it was mine, and it made sense when other things didn't. I still cook to slow down, catch my breath, and give thanks."],
-      ["Who's in my kitchen now", "These days I don't cook alone, and honestly, I don't want to. Kevin, my soon-to-be husband, is a seriously good cook. I mean it. The man can cook. My son Wyatt loves being in the kitchen as much as we do, and he'll take the heat in anything you hand him, the spicier the better. And that kid doesn't just cook, he's a businessman. He opened his very own business, Wyatt's Kosher Snack Shack. Yes, my kid has a business. I'm not crying, you're crying. Some nights it's all three of us bumping elbows at the counter, tasting as we go and laughing when something doesn't turn out quite right. That's the good stuff. That's what this book is really about."],
+      ["Who's in my kitchen now", "These days I don't cook alone, and honestly, I don't want to. Kevin, my soon-to-be husband, is a seriously good cook. I mean it. The man can cook. My son Wyatt loves being in the kitchen as much as we do, and he'll take the heat in anything you hand him, the spicier the better. And that kid doesn't just cook, he's a businessman. More on that in a minute. Some nights it's all three of us bumping elbows at the counter, tasting as we go and laughing when something doesn't turn out quite right. That's the good stuff. That's what this book is really about."],
+      ["Wyatt's Kosher Snack Shack", "Every great cook needs a side hustle, and my son found his. Wyatt opened his very own business, Wyatt's Kosher Snack Shack. He made the sign himself, letter by letter, set up shop in the yard under the tent, and put out a menu that would make any coffee shop jealous. To drink: lemonade, sweet tea, Southern sweet tea, and Arnold Palmers. Sneaky snacks: strawberry, vanilla, chocolate, and lemon cake balls, cinnamon swirl coffee cake, and something called golf ball fortune. Don't ask me, ask the boss. He even had a little sign that said, \"I accept donations! Thank you for supporting my little business!\" Yes, my kid has a business. I'm not crying, you're crying."],
       ["The heart of the house", "I've always believed the kitchen is the heart of the house. It's where we talk about our day, where we bless our food, and where a regular weeknight turns into a memory. And yes, sometimes it's where the marinade ends up in my eyeball. Those stories are in here too."],
       ["Why I wrote it all down", "This book started as a way to keep our family's favorite recipes in one place, so they wouldn't live only in my head or on scraps of paper. Every recipe follows the clean food rules of Leviticus 11, beef bacon and never pork, no shellfish, and no coconut ever in our home. Each one is named from a verse in The Word of <span lang=\"he\">יהוה</span>, and behind each one is a little story of what really happened when we made it. If you read one and think, \"Oh my word, that happened to me too,\" then I did my job."],
       ["The mustard seed", "Yeshua said that faith as small as a mustard seed can move mountains, and that the smallest of seeds grows into something people can rest under. Mustard Seed is the name I've given to almost everything I build, from my work as a legal videographer and notary to the book I'm writing about my own life. I believe small things, done faithfully, can grow into something that feeds a lot of people."],
@@ -827,9 +830,9 @@
       <p class="about-intro">Mom, soon-to-be wife, child of God, and yes, a little bit of a smart mouth. If you've ever stood in a warm kitchen while something simmers on the stove, you know the feeling. The whole house smells like dinner, someone sneaks a taste before it's ready, and for a little while the rest of the world can wait.</p>
       <blockquote class="verse"><p>“Because of your lack of Emunah; for truly I say to you, if there is Emunah in you even as a grain of mustard, you will say to this mountain, ‘Move away from here,’ and it will move away; and nothing would prevail over you.”</p><cite>Matai 17:20, <a href="https://theword.link/ktuvim-shel-brit-hakhadashah-%D7%9B%D7%AA%D7%95%D7%91%D7%99%D7%9D-%D7%A9%D7%9C-%D7%91%D7%A8%D7%99%D7%AA-%D7%94%D7%97%D7%93%D7%A9%D7%94/matai-%D7%9E%D7%AA%D7%99/matai-17-%D7%9E%D7%AA%D7%99-%D7%99%D7%96/" target="_blank" rel="noopener">The Word of <span lang="he">יהוה</span></a></cite></blockquote>
       <div class="about-chapters">
-        ${chapters.map(([h, t], i) => `<section class="about-ch"><p class="ch-num">${["I","II","III","IV","V","VI"][i]}</p><h2>${h}</h2><p>${t}</p>${snaps(SNAPS[i])}</section>`).join("")}
-        <section class="about-ch about-bless"><p class="ch-num">VII</p><h2>Before every meal</h2><p>This is the prayer we always say before we eat. It's called HaMotzi.</p>${HAMOTZI}${snaps(SNAPS[6])}</section>
-        <section class="about-ch"><p class="ch-num">VIII</p><h2>When I'm not in the kitchen</h2><p>You'll probably find me near the water, on a hiking trail, riding bikes with my son, or traveling somewhere new. And yes, I'm usually already thinking about what we're cooking when we get home.</p>${snaps(SNAPS[7])}</section>
+        ${chapters.map(([h, t], i) => `<section class="about-ch"><p class="ch-num">${["I","II","III","IV","V","VI","VII"][i]}</p><h2>${h}</h2><p>${t}</p>${snaps(SNAPS[i])}</section>`).join("")}
+        <section class="about-ch about-bless"><p class="ch-num">VIII</p><h2>Before every meal</h2><p>This is the prayer we always say before we eat. It's called HaMotzi.</p>${HAMOTZI}${snaps(SNAPS.bless)}</section>
+        <section class="about-ch"><p class="ch-num">IX</p><h2>When I'm not in the kitchen</h2><p>You'll probably find me near the water, on a hiking trail, riding bikes with my son, or traveling somewhere new. And yes, I'm usually already thinking about what we're cooking when we get home.</p>${snaps(SNAPS.away)}</section>
       </div>
       <div class="about-close">
         <p>None of this would be possible without God, who is my strength, and my family, my biggest cheerleaders and my most honest taste testers.</p>
