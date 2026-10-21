@@ -1689,14 +1689,14 @@ window.BOOK = [
 }
 },
 {
-"text": "1–2 teaspoons cayenne or chili powder (optional, for heat; leave out for my son)",
+"text": "1–2 teaspoons cayenne or chili powder (optional, for heat; use less or skip if you're sensitive to heat)",
 "q": {
 "lo": 1.0,
 "hi": 2.0,
 "kind": "vol",
 "f": 1,
 "uw": "teaspoons",
-"rest": "cayenne or chili powder (optional, for heat; leave out for my son)",
+"rest": "cayenne or chili powder (optional, for heat; use less or skip if you're sensitive to heat)",
 "pre": ""
 },
 "n_opt": {

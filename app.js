@@ -120,6 +120,7 @@
           ${HAMOTZI}
         </details>
         ${BY[NEWEST] ? `<div class="newest"><p class="eyebrow">Newest recipe</p><ul class="toc-list">${recipeRow(BY[NEWEST])}</ul></div>` : ""}
+        <a class="plan-cta" href="#/plan"><span class="qf-t">Weekly Meal Plan</span><span class="qf-n">Pick a meal for each day and get a shopping list sorted by store section</span></a>
         <h3 class="qf-h">Quick finders</h3>
         <div class="qf" role="group" aria-label="Quick finders">${FINDERS.map(f => `<button type="button" class="qf-btn fchip-like" data-cat="${f.id}" aria-pressed="${home.cat === f.id}"><span class="qf-t">${f.title}</span><span class="qf-n">${f.note} · ${f.slugs.filter(x => BY[x]).length} recipes</span></button>`).join("")}</div>
       </section>
@@ -856,13 +857,204 @@
     window.scrollTo(0, 0);
   }
 
+  // ---------------- WEEKLY MEAL PLAN ----------------
+  const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const PKEY = "ms-plan";
+  const PLANNABLE = BOOK.filter(r => r.groups && r.type !== "menu");
+  const AISLES = [
+    ["skip", /^water\b/],
+    ["Coffee", /nespresso|brewed coffee|sweetener/],
+    ["Frozen", /tots|cool whip|puff pastry|phyllo|^ice\b/],
+    ["Canned and Jarred", /broth|stock\b|diced tomatoes|tomato sauce|(black|pinto|kidney) beans|sun-dried|condensed milk|preserves|fig spread/],
+    ["Oils", /grease|olive oil|\boil\b/],
+    ["Sauces and Condiments", /ketchup|mustard|worcestershire|hot sauce|chili sauce|vinegar|balsamic|dressing|remoulade|ranch|pickled/],
+    ["Meat", /beef|bison|chicken|turkey|sausage|brisket|bacon/],
+    ["Dairy and Eggs", /cheese|parmesan|mozzarella|ricotta|feta|cream|butter|milk|yogurt|\beggs?\b/],
+    ["Spices and Seasonings", /salt|black pepper|pepper flakes|paprika|cayenne|chili powder|chili flakes|garlic powder|onion powder|seasoning|dried basil|dried parsley|basil or parsley|mrs\.? dash|cinnamon|sesame seeds|bay lea/],
+    ["Baking and Sweets", /flour|sugar|honey|maple|pudding|wafers|crackers|caramel|vanilla/],
+    ["Pasta, Rice and Grains", /pasta|farfalle|noodles|rice/],
+    ["Bread and Bakery", /\bbuns?\b|rolls|bread/],
+    ["Vegetables and Fruit", /onion|garlic|potato|tomato|pepper|jalape|kale|spinach|lettuce|cilantro|dill|thyme|lime|lemon|orange|pineapple|avocado|cucumber|zucchini|broccoli|corn|brussels|banana|pomegranate|vegetables/]
+  ];
+  const AISLE_ORDER = ["Meat", "Dairy and Eggs", "Vegetables and Fruit", "Bread and Bakery", "Pasta, Rice and Grains", "Canned and Jarred", "Sauces and Condiments", "Spices and Seasonings", "Oils", "Baking and Sweets", "Frozen", "Coffee", "Everything Else"];
+  const aisleOf = name => { const n = name.toLowerCase().replace(/\([^)]*\)/g, " ").trim(); const a = AISLES.find(([, re]) => re.test(n)); return a ? a[0] : "Everything Else"; };
+  // the same grocery item written different ways in different recipes
+  const ALIAS = [[/^(fine |kosher |sea )?salt$|^salt (for|or)\b/, "salt"], [/^(coarse )?black pepper$/, "black pepper"], [/^(finely )?grated parmesan( cheese)?$/, "grated Parmesan cheese"],
+    [/^heavy (whipping )?cream$/, "heavy cream"], [/^chicken broth( or stock)?$/, "chicken broth"]];
+  const aliasOf = n => { const a = ALIAS.find(([re]) => re.test(n)); return a ? a[1] : null; };
+  const normName = s => strip(s).toLowerCase().replace(/\([^)]*\)/g, " ").replace(/[,;:].*$/, "").replace(/\b(large|medium|small|fresh|finely|optional|for garnish)\b/g, " ").replace(/\s+/g, " ").trim();
+  const unitName = (r, n) => { const u = r.unit || "servings"; return n === 1 ? (u === "glasses" ? "glass" : u.replace(/s$/, "")) : u; };
+  const minFor = r => (r.meat && r.meat.noSingle ? Math.ceil((r.meat.min / r.meat.baseLb) * r.base) : 1);
+  let plan = null;
+  function loadPlan() {
+    try { const p = JSON.parse((store && store.getItem(PKEY)) || "null"); if (p && Array.isArray(p.days) && p.days.length === 7) { p.have = p.have || []; p.days = p.days.map(d => (d || []).filter(m => BY[m.slug] && BY[m.slug].groups)); return p; } } catch (e) {}
+    return { days: DAYS.map(() => []), have: [] };
+  }
+  function savePlan() { try { store && store.setItem(PKEY, JSON.stringify(plan)); } catch (e) {} }
+  function both(kind, lo, hi) {
+    const a = smart(kind, lo, "us"), b = smart(kind, hi, "us");
+    if (a === b) return a;
+    const ua = a.replace(/^\S+\s?/, ""), ub = b.replace(/^\S+\s?/, "");
+    return ua && (ua === ub || ua + "s" === ub) ? a.split(" ")[0] + "–" + b : a + " to " + b;
+  }
+  function shoppingList() {
+    const map = new Map(), prevR = R;
+    plan.days.forEach((meals, d) => meals.forEach(m => {
+      const r = BY[m.slug]; if (!r || !r.groups) return;
+      const s = m.servings / r.base, opts = {};
+      (r.options || []).forEach(o => (opts[o.id] = o.default));
+      const onx = x => !x.option || opts[x.option];
+      R = r;
+      r.groups.filter(onx).forEach(g => g.items.filter(onx).forEach(it => {
+        let e;
+        if (it.plain || !it.q) {
+          const t = strip(it.text); e = { key: "p:" + normName(t), plain: t, name: t, cls: t };
+        } else {
+          const q = it.q, L = ingLine(it, s, "us"), anchor = it.anchor && r.meat;
+          const kind = anchor ? "wt" : q.kind, f = kind === "each" ? 1 : q.f || 1;
+          const lo = anchor ? r.meat.baseLb * 16 * s : q.lo * f * s, hi = anchor ? lo : (q.hi != null ? q.hi : q.lo) * f * s;
+          const base = anchor ? it.atext : q.rest;
+          const nn = normName(base), al = aliasOf(nn);
+          e = { key: [kind, kind === "each" ? (q.uw || "").replace(/s$/, "") : "", q.wt || "", al ? al.toLowerCase() : nn].join("|"), kind, q, lo, hi, L, base, alias: al, name: strip(L.rest), cls: base };
+        }
+        const aisle = aisleOf(e.cls);
+        if (aisle === "skip") return;
+        const use = DAYS[d].slice(0, 3) + " · " + r.dish;
+        const cur = map.get(e.key);
+        if (cur) { cur.n++; cur.lo += e.lo || 0; cur.hi += e.hi || 0; cur.uses.add(use); }
+        else map.set(e.key, Object.assign(e, { n: 1, uses: new Set([use]), aisle }));
+      }));
+    }));
+    R = prevR;
+    const lines = [...map.values()].map(e => {
+      let qty = "", name = e.name;
+      if (e.plain) { qty = ""; }
+      else if (e.n === 1) { qty = e.L.qty; name = strip(e.L.rest); }
+      else if (e.kind === "each") {
+        const c = e.q.wt ? canLine(e.q, e.lo, "us") : null;
+        if (c) { qty = c.qty; name = strip(c.rest); }
+        else { const nv = niceEach(e.lo); qty = nv.str + (e.q.uw ? " " + unitWord(e.q.uw, nv.val) : ""); const b = dropAside(e.base); name = e.q.uw ? b : nv.val > 1 ? pluralHead(b) : single(b); }
+      } else { qty = both(e.kind, e.lo, e.hi); name = e.alias || dropAside(e.base.replace(/\s*\(\d[\d.]* (?:oz|ounces?)\)/gi, "")); }
+      return { key: e.key, aisle: e.aisle, qty: (e.n === 1 && e.q && e.q.pre ? "" : "") + qty, name, uses: [...e.uses] };
+    });
+    return AISLE_ORDER.map(a => ({ aisle: a, items: lines.filter(l => l.aisle === a).sort((x, y) => x.name.localeCompare(y.name)) })).filter(g => g.items.length);
+  }
+  function recipeOptions() {
+    const groups = [];
+    CATS.forEach(c => {
+      const list = PLANNABLE.filter(r => r.cat === c.id);
+      if (list.length) groups.push(`<optgroup label="${esc(c.title)}">${list.map(r => `<option value="${r.slug}">${esc(r.dish)} (${esc(r.scripture)})</option>`).join("")}</optgroup>`);
+    });
+    return groups.join("");
+  }
+  function renderPlan() {
+    document.title = "Weekly Meal Plan | What's Inside a Mustard Seed?";
+    $("#tb-toc").hidden = false;
+    plan = loadPlan();
+    main.innerHTML = `
+    <article class="page plan">
+      <header class="masthead">
+        <div class="rule"></div>
+        <img class="emblem" src="assets/emblem.png" alt="What's Inside a Mustard Seed? emblem" width="120" height="120">
+        <p class="book"><a href="#/">What's Inside a Mustard Seed?</a></p>
+        <h1>Weekly Meal Plan<span class="dish">Pick your meals, then shop it in one trip</span></h1>
+      </header>
+      <blockquote class="verse"><p>“She rises also while it is yet night, and gives food to her household, and a portion to her maidens.”</p><cite>Mishlei 31:15, <a href="https://dvaryahuah.org/haketuvim-%d7%94%d7%9b%d7%aa%d7%95%d7%91%d7%99%d7%9d/mishlei-shlomo-%d7%9e%d7%a9%d7%9c%d7%99-%d7%a9%d7%9c%d7%9e%d7%94/mishlim-31-%d7%9e%d7%a9%d7%9c%d7%99%d7%9d-%d7%9c%d7%90/" target="_blank" rel="noopener">The Word of <span lang="he">יהוה</span></a></cite></blockquote>
+      <ol class="tips plan-how no-print">
+        <li><b>Pick a recipe for each day.</b> Add more than one if you want a side or a dessert.</li>
+        <li><b>Set the servings.</b> Use the minus and plus buttons for how many you're feeding.</li>
+        <li><b>Shop the list.</b> Everything is added up and sorted by store section. Tap an item to check it off.</li>
+      </ol>
+      <div id="plan-days" class="plan-days"></div>
+      <p class="plan-clear no-print"><button type="button" class="link-btn" id="plan-reset">Clear the whole week</button></p>
+      <section class="block plan-shop" aria-labelledby="shop-h">
+        <div class="block-head"><h2 id="shop-h">Shopping List</h2><span class="scale-note" id="shop-count"></span></div>
+        <div id="shop"></div>
+        <div class="export-grid no-print" id="shop-tools">
+          <button type="button" class="btn primary" id="shop-print">Print or save as PDF</button>
+          <button type="button" class="btn" id="shop-share">Share or copy the list</button>
+          <button type="button" class="btn" id="shop-uncheck">Uncheck everything</button>
+        </div>
+        <p class="hint">Amounts are added up from each recipe at the servings you picked. Double-check your pantry for salt, pepper, oil, and spices before you go.</p>
+      </section>
+      <nav class="pager no-print"><span></span><a href="#/" class="pg mid">Table of Contents</a><span></span></nav>
+      <footer class="foot"><div class="rule"></div><p>What's Inside a Mustard Seed? • Weekly Meal Plan</p></footer>
+    </article>`;
+    const opts = recipeOptions();
+    const drawDays = () => {
+      $("#plan-days").innerHTML = plan.days.map((meals, d) => `
+        <section class="pday${meals.length ? "" : " empty"}" data-day="${d}">
+          <h2>${DAYS[d]}</h2>
+          ${meals.length ? `<ul class="pmeals">${meals.map((m, i) => { const r = BY[m.slug], mn = minFor(r); return `
+            <li class="pmeal" data-i="${i}">
+              <img src="assets/thumbs/${r.slug}.jpg" alt="" width="56" height="56" loading="lazy">
+              <a class="pm-name" href="#/${r.slug}?servings=${m.servings}"><span class="pm-dish">${esc(r.dish)}</span><span class="pm-scr">${esc(r.scripture)}</span></a>
+              <div class="pm-serv" role="group" aria-label="Servings for ${esc(r.dish)}">
+                <button type="button" class="step-btn no-print" data-act="dec" aria-label="Fewer servings"${m.servings <= mn ? " disabled" : ""}>−</button>
+                <span class="pm-n"><b>${m.servings}</b> ${esc(unitName(r, m.servings))}</span>
+                <button type="button" class="step-btn no-print" data-act="inc" aria-label="More servings"${m.servings >= 99 ? " disabled" : ""}>+</button>
+              </div>
+              <button type="button" class="pm-x no-print" data-act="del" aria-label="Remove ${esc(r.dish)}">×</button>
+            </li>`; }).join("")}</ul>` : `<p class="pnone">Nothing planned yet</p>`}
+          <label class="padd no-print"><span class="sr-only">Add a recipe to ${DAYS[d]}</span>
+            <select data-add="${d}"><option value="">${meals.length ? "+ Add another dish" : "+ Choose a recipe"}</option>${opts}</select>
+          </label>
+        </section>`).join("");
+    };
+    const drawShop = () => {
+      const list = shoppingList(), have = new Set(plan.have);
+      const n = list.reduce((a, g) => a + g.items.length, 0), meals = plan.days.reduce((a, d) => a + d.length, 0);
+      $("#shop-count").textContent = n ? `${n} items for ${meals} ${meals === 1 ? "meal" : "meals"}` : "";
+      $("#shop-tools").hidden = !n;
+      $("#shop").innerHTML = n ? list.map(g => `
+        <div class="aisle"><h3>${g.aisle}</h3><ul>${g.items.map(it => `
+          <li${have.has(it.key) ? ' class="got"' : ""}><label><input type="checkbox" data-key="${esc(it.key)}"${have.has(it.key) ? " checked" : ""}>
+            <span class="ing-line">${it.qty ? `<span class="qty">${esc(it.qty)}</span> ` : ""}<span class="ing-name">${esc(it.name)}</span></span>
+            <span class="ing-note">${esc(it.uses.join(", "))}</span></label></li>`).join("")}</ul></div>`).join("")
+        : `<p class="toc-empty">Pick a recipe for any day above and your shopping list will show up here.</p>`;
+    };
+    const redraw = () => { savePlan(); drawDays(); drawShop(); };
+    redraw();
+    $("#plan-days").addEventListener("change", e => {
+      const sel = e.target.closest("select[data-add]"); if (!sel || !sel.value) return;
+      const r = BY[sel.value], d = +sel.dataset.add;
+      plan.days[d].push({ slug: r.slug, servings: Math.max(r.base, minFor(r)) });
+      redraw(); toast(`${r.dish} added to ${DAYS[d]}`);
+      const s = $(`.pday[data-day="${d}"] select`); s && s.focus();
+    });
+    $("#plan-days").addEventListener("click", e => {
+      const b = e.target.closest("button[data-act]"); if (!b) return;
+      const d = +b.closest(".pday").dataset.day, i = +b.closest(".pmeal").dataset.i, m = plan.days[d][i], r = BY[m.slug];
+      if (b.dataset.act === "del") plan.days[d].splice(i, 1);
+      else m.servings = clamp(m.servings + (b.dataset.act === "inc" ? 1 : -1), minFor(r), 99);
+      redraw();
+      const again = $(`.pday[data-day="${d}"] .pmeal[data-i="${i}"] button[data-act="${b.dataset.act}"]`); again && !again.disabled && again.focus();
+    });
+    $("#shop").addEventListener("change", e => {
+      const c = e.target.closest("input[data-key]"); if (!c) return;
+      const have = new Set(plan.have); c.checked ? have.add(c.dataset.key) : have.delete(c.dataset.key);
+      plan.have = [...have]; savePlan(); c.closest("li").classList.toggle("got", c.checked);
+    });
+    $("#plan-reset").onclick = () => { if (!plan.days.some(d => d.length) || confirm("Clear every meal from this week?")) { plan = { days: DAYS.map(() => []), have: [] }; redraw(); } };
+    $("#shop-uncheck").onclick = () => { plan.have = []; redraw(); };
+    $("#shop-print").onclick = () => printAs("full");
+    $("#shop-share").onclick = async () => {
+      const lines = ["Shopping List, What's Inside a Mustard Seed?", ""];
+      plan.days.forEach((m, d) => m.length && lines.push(`${DAYS[d]}: ${m.map(x => `${BY[x.slug].dish} (${x.servings} ${unitName(BY[x.slug], x.servings)})`).join(", ")}`));
+      shoppingList().forEach(g => { lines.push("", g.aisle.toUpperCase()); g.items.forEach(it => lines.push(`[ ] ${it.qty ? it.qty + " " : ""}${it.name}`)); });
+      const text = lines.join("\n");
+      try { if (navigator.share) return await navigator.share({ title: "Shopping List", text }); await navigator.clipboard.writeText(text); toast("Shopping list copied"); } catch (err) { if (err && err.name !== "AbortError") toast("Couldn't copy the list"); }
+    };
+    window.scrollTo(0, 0);
+  }
+
   // ---------------- router ----------------
   let suppress = false;
   function route() {
     if (suppress) return;
     const { slug, params } = parseHashQuery();
     R = null; state = null;
-    if (!slug) renderHome(); else if (slug === "about") renderAbout(); else renderRecipe(slug, params);
+    if (!slug) renderHome(); else if (slug === "about") renderAbout(); else if (slug === "plan") renderPlan(); else renderRecipe(slug, params);
     const pm = params.get("print");
     if (pm) setPrint(pm);
     main.focus({ preventScroll: true });

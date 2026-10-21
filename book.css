@@ -243,3 +243,61 @@ h1 .dish { display: block; margin-top: 8px; font-size: .52em; font-weight: 600; 
 .fortune:nth-child(5) { transform: rotate(-2deg); }
 .fortune:nth-child(6) { transform: rotate(2.2deg) translateX(22px); }
 @media (max-width: 560px) { .about-ch .fortune { max-width: 92%; font-size: 13px; } .fortune:nth-child(n) { translate: 0; } .fortune:nth-child(2), .fortune:nth-child(4), .fortune:nth-child(6) { transform: rotate(1.5deg); } }
+
+/* ---------- weekly meal plan ---------- */
+.tb-links { display: flex; gap: 8px; align-items: center; }
+.plan-cta { display: flex; flex-direction: column; gap: 2px; margin: 16px 0 0; padding: 14px 16px; background: var(--navy); color: #fff; border: 1px solid var(--gold); border-radius: var(--r); text-decoration: none; }
+.plan-cta .qf-t { color: #fff; }
+.plan-cta .qf-n { color: var(--gold-soft); }
+.plan-cta:hover { background: var(--navy-2); }
+.plan-how { margin: 22px 0 0; }
+.plan-days { margin-top: 26px; display: grid; gap: 14px; }
+.pday { border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: var(--r); padding: 14px 16px 14px; background: #fff; }
+.pday h2 { margin: 0 0 8px; font-size: 24px; }
+.pday.empty h2 { color: var(--muted); }
+.pnone { margin: 0 0 10px; font-size: 14.5px; color: var(--muted); font-style: italic; }
+.pmeals { list-style: none; margin: 0 0 10px; padding: 0; }
+.pmeal { display: grid; grid-template-columns: 56px 1fr auto auto; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.pmeal img { width: 56px; height: 56px; object-fit: cover; border: 1px solid var(--gold); border-radius: 3px; }
+.pm-name { display: flex; flex-direction: column; min-width: 0; text-decoration: none; color: var(--ink); }
+.pm-dish { font: 700 19px/1.15 var(--display); color: var(--navy); }
+.pm-scr { font-size: 13.5px; color: var(--gold-ink); }
+.pm-serv { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+.pm-n { font-size: 14.5px; min-width: 6.5em; text-align: center; }
+.pm-n b { font-size: 17px; }
+.step-btn { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--gold); background: #fff; color: var(--navy); font-size: 20px; line-height: 1; display: grid; place-items: center; }
+.step-btn:hover:not(:disabled) { background: var(--cream); }
+.step-btn:disabled { opacity: .35; cursor: default; }
+.pm-x { width: 32px; height: 32px; border: 0; background: none; color: var(--muted); font-size: 22px; border-radius: 50%; }
+.pm-x:hover { background: var(--cream); color: var(--navy); }
+.padd select { width: 100%; height: 44px; padding: 0 12px; border: 1.5px solid var(--gold); border-radius: var(--r); background: var(--paper); font: 400 15.5px var(--body); color: var(--navy); }
+.plan-clear { margin: 12px 0 0; text-align: right; }
+.plan-shop { margin-top: 34px; }
+.aisle h3 { margin: 18px 0 4px; font-size: 21px; color: var(--navy); border-bottom: 1px solid var(--gold-soft); padding-bottom: 3px; }
+.aisle ul { list-style: none; margin: 0; padding: 0; }
+.aisle li label { display: grid; grid-template-columns: 22px 1fr; column-gap: 10px; padding: 7px 0; border-bottom: 1px dashed var(--line); cursor: pointer; }
+.aisle li input { grid-row: span 2; margin-top: 5px; width: 18px; height: 18px; accent-color: var(--navy); }
+.aisle .ing-note { grid-column: 2; font-size: 13px; color: var(--muted); }
+.aisle li.got .ing-line { text-decoration: line-through; text-decoration-color: var(--gold); color: var(--muted); }
+#shop-tools { margin-top: 20px; }
+#shop-tools[hidden] { display: none; }
+@media (max-width: 600px) {
+  .tb-home span { font-size: 15px; }
+  .tb-links .tb-toc { padding: 4px 10px; font-size: 13px; }
+  .pmeal { grid-template-columns: 48px 1fr auto; row-gap: 6px; }
+  .pmeal img { width: 48px; height: 48px; }
+  .pm-serv { grid-column: 2 / 4; grid-row: 2; justify-content: flex-start; }
+  .pm-x { grid-column: 3; grid-row: 1; }
+}
+@media print {
+  .pday { border: 0; border-bottom: 1px solid #ccc; border-radius: 0; padding: 4pt 0; break-inside: avoid; }
+  .pday.empty { display: none; }
+  .pday h2 { font-size: 14pt; margin: 0; }
+  .pmeal { grid-template-columns: 1fr auto; padding: 2pt 0; border: 0; }
+  .pmeal img { display: none; }
+  .pm-dish { font-size: 12pt; }
+  .plan-shop { break-before: page; margin-top: 0; }
+  .aisle { break-inside: avoid; }
+  .aisle h3 { font-size: 13pt; margin-top: 10pt; }
+  .aisle li label { padding: 2pt 0; }
+}
