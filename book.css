@@ -228,3 +228,18 @@ h1 .dish { display: block; margin-top: 8px; font-size: .52em; font-weight: 600; 
 .about-snaps.n6 .snap:nth-child(odd) { margin-left: 0; }
 .about-snaps .snap img[src*="shack-proud"] { object-position: center 30%; }
 .about-snaps .snap img[src*="shack-sign"] { object-position: center 40%; }
+
+/* golf ball fortunes: little paper strips */
+.fortunes { margin: 26px auto 6px; text-align: center; }
+.fortunes-label { font: italic 600 20px var(--display); color: var(--gold-ink); margin: 0 0 14px !important; letter-spacing: .02em; }
+.fortune-strips { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.about-ch .fortune { position: relative; margin: 0; max-width: 440px; padding: 6px 28px; background: #fffef9; background-image: linear-gradient(180deg, rgba(255,255,255,.9), rgba(246,240,226,.9)); border-top: 1px solid rgba(184,146,58,.25); border-bottom: 1px solid rgba(184,146,58,.25); box-shadow: 0 2px 5px rgba(28,43,76,.12), 0 1px 1px rgba(28,43,76,.08); font: 500 13.5px/1.4 var(--body, "Lora", serif); color: #9a2f2a; letter-spacing: .01em; text-align: center; clip-path: polygon(0 0, 100% 0, 99% 50%, 100% 100%, 0 100%, 1% 50%); }
+.about-ch .fortune::before, .about-ch .fortune::after { content: "\2726"; position: absolute; top: 50%; transform: translateY(-50%); font-size: 9px; color: rgba(184,146,58,.7); }
+.about-ch .fortune::before { left: 8px; } .about-ch .fortune::after { right: 8px; }
+.fortune:nth-child(1) { transform: rotate(-2.5deg); }
+.fortune:nth-child(2) { transform: rotate(1.5deg) translateX(30px); }
+.fortune:nth-child(3) { transform: rotate(2.2deg); }
+.fortune:nth-child(4) { transform: rotate(-1.4deg) translateX(-26px); }
+.fortune:nth-child(5) { transform: rotate(-2deg); }
+.fortune:nth-child(6) { transform: rotate(2.2deg) translateX(22px); }
+@media (max-width: 560px) { .about-ch .fortune { max-width: 92%; font-size: 13px; } .fortune:nth-child(n) { translate: 0; } .fortune:nth-child(2), .fortune:nth-child(4), .fortune:nth-child(6) { transform: rotate(1.5deg); } }

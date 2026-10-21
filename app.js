@@ -801,6 +801,17 @@
     bless: [["wyatt-shabbat-1", "Wyatt reading by the Shabbat candles"], ["wyatt-shabbat-2", "Wyatt reading his book by candlelight"]],
     away: [["rome", "Kevin and Alexis at the Colosseum in Rome"], ["venice", "Kevin and Alexis in Italy"], ["astros", "Wyatt, Alexis, and Kevin at an Astros game"], ["pool", "Alexis, Wyatt, and Kevin in the pool by the water"]]
   };
+  const FORTUNES = [
+    "If you think it's hard to meet new people, try picking up the wrong golf ball.",
+    "Golf is a fascinating game. It has taken me nearly forty years to discover that I can't play it.",
+    "You can hit a 2-acre fairway 10% of the time, and a 2-inch branch 90% of the time.",
+    "A bad day of golf always beats a good day of work.",
+    "Counting all your strokes is only for people who lack imagination.",
+    "Water hazards are just golf balls returning to their natural habitat."
+  ];
+  function fortunes() {
+    return `<div class="fortunes"><p class="fortunes-label">A few of the golf ball fortunes</p><div class="fortune-strips">${FORTUNES.map(f => `<p class="fortune">${f}</p>`).join("")}</div></div>`;
+  }
   function snaps(list) {
     if (!list) return "";
     return `<div class="about-snaps n${list.length}">${list.map(([f, alt]) => `<figure class="snap"><img src="assets/photos/family/${f}.jpg" alt="${alt}" loading="lazy" onerror="this.closest('figure').remove()"></figure>`).join("")}</div>`;
@@ -830,7 +841,7 @@
       <p class="about-intro">Mom, soon-to-be wife, child of God, and yes, a little bit of a smart mouth. If you've ever stood in a warm kitchen while something simmers on the stove, you know the feeling. The whole house smells like dinner, someone sneaks a taste before it's ready, and for a little while the rest of the world can wait.</p>
       <blockquote class="verse"><p>“Because of your lack of Emunah; for truly I say to you, if there is Emunah in you even as a grain of mustard, you will say to this mountain, ‘Move away from here,’ and it will move away; and nothing would prevail over you.”</p><cite>Matai 17:20, <a href="https://theword.link/ktuvim-shel-brit-hakhadashah-%D7%9B%D7%AA%D7%95%D7%91%D7%99%D7%9D-%D7%A9%D7%9C-%D7%91%D7%A8%D7%99%D7%AA-%D7%94%D7%97%D7%93%D7%A9%D7%94/matai-%D7%9E%D7%AA%D7%99/matai-17-%D7%9E%D7%AA%D7%99-%D7%99%D7%96/" target="_blank" rel="noopener">The Word of <span lang="he">יהוה</span></a></cite></blockquote>
       <div class="about-chapters">
-        ${chapters.map(([h, t], i) => `<section class="about-ch"><p class="ch-num">${["I","II","III","IV","V","VI","VII"][i]}</p><h2>${h}</h2><p>${t}</p>${snaps(SNAPS[i])}</section>`).join("")}
+        ${chapters.map(([h, t], i) => `<section class="about-ch"><p class="ch-num">${["I","II","III","IV","V","VI","VII"][i]}</p><h2>${h}</h2><p>${t}</p>${i === 2 ? fortunes() : ""}${snaps(SNAPS[i])}</section>`).join("")}
         <section class="about-ch about-bless"><p class="ch-num">VIII</p><h2>Before every meal</h2><p>This is the prayer we always say before we eat. It's called HaMotzi.</p>${HAMOTZI}${snaps(SNAPS.bless)}</section>
         <section class="about-ch"><p class="ch-num">IX</p><h2>When I'm not in the kitchen</h2><p>You'll probably find me near the water, on a hiking trail, riding bikes with my son, or traveling somewhere new. And yes, I'm usually already thinking about what we're cooking when we get home.</p>${snaps(SNAPS.away)}</section>
       </div>
