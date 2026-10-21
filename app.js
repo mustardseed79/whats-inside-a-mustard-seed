@@ -794,6 +794,8 @@
   const SNAPS = {
     1: [["astros", "Wyatt, Alexis, and Kevin at an Astros game"], ["pool", "Alexis, Wyatt, and Kevin in the pool by the water"], ["kevin-bakery", "Kevin at a bakery table with pastries and iced coffee"]],
     2: [["tallit", "Kevin in his tallit with Alexis"]],
+    4: [["wyatt-scroll", "Wyatt leaning over a long scroll laid out across the tables"]],
+    5: [["alexis-wyatt", "Alexis kissing Wyatt on the cheek"]],
     7: [["rome", "Kevin and Alexis at the Colosseum in Rome"], ["venice", "Kevin and Alexis in Italy"]]
   };
   function snaps(list) {
