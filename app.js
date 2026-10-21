@@ -3,6 +3,7 @@
   const BOOK = window.BOOK;
   const BY = Object.assign(Object.create(null), Object.fromEntries(BOOK.map(r => [r.slug, r])));
   const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const main = $("#main");
   const store = (() => { try { return window.localStorage; } catch (e) { return null; } })();
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -885,12 +886,41 @@
   const normName = s => strip(s).toLowerCase().replace(/\([^)]*\)/g, " ").replace(/[,;:].*$/, "").replace(/\b(large|medium|small|fresh|finely|optional|for garnish)\b/g, " ").replace(/\s+/g, " ").trim();
   const unitName = (r, n) => { const u = r.unit || "servings"; return n === 1 ? (u === "glasses" ? "glass" : u.replace(/s$/, "")) : u; };
   const minFor = r => (r.meat && r.meat.noSingle ? Math.ceil((r.meat.min / r.meat.baseLb) * r.base) : 1);
+  const SLOTS = [["breakfast", "Breakfast"], ["lunch", "Lunch"], ["dinner", "Dinner"], ["snacks", "Snacks and Drinks"]];
+  const SLOT_SHORT = { breakfast: "breakfast", lunch: "lunch", dinner: "dinner", snacks: "snack" };
+  const PORTIONS = [0.5, 1, 1.5, 2, 3];
+  const fracTxt = x => ({ 0.5: "½", 1: "1", 1.5: "1½", 2: "2", 3: "3" })[x] || String(x);
+  const emptyDay = () => Object.fromEntries(SLOTS.map(([k]) => [k, []]));
+  const freshPlan = () => ({ days: DAYS.map(emptyDay), have: [], day: 0, goal: 2000 });
+  const PS = {}; const psOf = r => PS[r.slug] || (PS[r.slug] = perServing(r));
   let plan = null;
   function loadPlan() {
-    try { const p = JSON.parse((store && store.getItem(PKEY)) || "null"); if (p && Array.isArray(p.days) && p.days.length === 7) { p.have = p.have || []; p.days = p.days.map(d => (d || []).filter(m => BY[m.slug] && BY[m.slug].groups)); return p; } } catch (e) {}
-    return { days: DAYS.map(() => []), have: [] };
+    try {
+      const p = JSON.parse((store && store.getItem(PKEY)) || "null");
+      if (p && Array.isArray(p.days) && p.days.length === 7) {
+        const ok = m => m && BY[m.slug] && BY[m.slug].groups;
+        const fix = m => ({ slug: m.slug, servings: m.servings || BY[m.slug].base, eat: PORTIONS.includes(m.eat) ? m.eat : 1 });
+        p.days = p.days.map(d => {
+          const out = emptyDay();
+          if (Array.isArray(d)) out.dinner = d.filter(ok).map(fix); // plans saved before meal times existed
+          else if (d) SLOTS.forEach(([k]) => (out[k] = (d[k] || []).filter(ok).map(fix)));
+          return out;
+        });
+        p.have = p.have || []; p.day = clamp(+p.day || 0, 0, 6); p.goal = clamp(+p.goal || 2000, 800, 6000);
+        return p;
+      }
+    } catch (e) {}
+    return freshPlan();
   }
   function savePlan() { try { store && store.setItem(PKEY, JSON.stringify(plan)); } catch (e) {} }
+  const eachMeal = fn => plan.days.forEach((day, d) => SLOTS.forEach(([k]) => day[k].forEach((m, i) => fn(m, d, k, i))));
+  const dayMeals = d => SLOTS.flatMap(([k]) => plan.days[d][k]);
+  const mealCount = () => { let n = 0; eachMeal(() => n++); return n; };
+  function dayTotals(d) {
+    const t = Object.fromEntries(NK.map(k => [k, 0]));
+    dayMeals(d).forEach(m => { const p = psOf(BY[m.slug]); NK.forEach(k => (t[k] += (p[k] || 0) * m.eat)); });
+    return t;
+  }
   function both(kind, lo, hi) {
     const a = smart(kind, lo, "us"), b = smart(kind, hi, "us");
     if (a === b) return a;
@@ -899,7 +929,7 @@
   }
   function shoppingList() {
     const map = new Map(), prevR = R;
-    plan.days.forEach((meals, d) => meals.forEach(m => {
+    eachMeal((m, d, slot) => {
       const r = BY[m.slug]; if (!r || !r.groups) return;
       const s = m.servings / r.base, opts = {};
       (r.options || []).forEach(o => (opts[o.id] = o.default));
@@ -919,12 +949,12 @@
         }
         const aisle = aisleOf(e.cls);
         if (aisle === "skip") return;
-        const use = DAYS[d].slice(0, 3) + " · " + r.dish;
+        const use = DAYS[d].slice(0, 3) + " " + SLOT_SHORT[slot] + " · " + r.dish;
         const cur = map.get(e.key);
         if (cur) { cur.n++; cur.lo += e.lo || 0; cur.hi += e.hi || 0; cur.uses.add(use); }
         else map.set(e.key, Object.assign(e, { n: 1, uses: new Set([use]), aisle }));
       }));
-    }));
+    });
     R = prevR;
     const lines = [...map.values()].map(e => {
       let qty = "", name = e.name;
@@ -935,17 +965,43 @@
         if (c) { qty = c.qty; name = strip(c.rest); }
         else { const nv = niceEach(e.lo); qty = nv.str + (e.q.uw ? " " + unitWord(e.q.uw, nv.val) : ""); const b = dropAside(e.base); name = e.q.uw ? b : nv.val > 1 ? pluralHead(b) : single(b); }
       } else { qty = both(e.kind, e.lo, e.hi); name = e.alias || dropAside(e.base.replace(/\s*\(\d[\d.]* (?:oz|ounces?)\)/gi, "")); }
-      return { key: e.key, aisle: e.aisle, qty: (e.n === 1 && e.q && e.q.pre ? "" : "") + qty, name, uses: [...e.uses] };
+      return { key: e.key, aisle: e.aisle, qty: String(qty).replace(/\s+/g, " ").trim(), name, uses: [...e.uses] };
     });
     return AISLE_ORDER.map(a => ({ aisle: a, items: lines.filter(l => l.aisle === a).sort((x, y) => x.name.localeCompare(y.name)) })).filter(g => g.items.length);
   }
-  function recipeOptions() {
-    const groups = [];
-    CATS.forEach(c => {
+  // breakfast-y categories first in the breakfast menu, drinks and snacks first in the snack menu
+  const SLOT_FIRST = { breakfast: ["Coffee"], lunch: [], dinner: [], snacks: ["Snacks", "Desserts", "Coffee", "Sauces"] };
+  function recipeOptions(slot) {
+    const first = SLOT_FIRST[slot] || [];
+    const cats = [...CATS].sort((a, b) => { const ia = first.findIndex(x => x === a.id || x === a.title), ib = first.findIndex(x => x === b.id || x === b.title); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); });
+    return cats.map(c => {
       const list = PLANNABLE.filter(r => r.cat === c.id);
-      if (list.length) groups.push(`<optgroup label="${esc(c.title)}">${list.map(r => `<option value="${r.slug}">${esc(r.dish)} (${esc(r.scripture)})</option>`).join("")}</optgroup>`);
-    });
-    return groups.join("");
+      return list.length ? `<optgroup label="${esc(c.title)}">${list.map(r => `<option value="${r.slug}">${esc(r.dish)} (${Math.round(psOf(r).cal / 10) * 10} cal)</option>`).join("")}</optgroup>` : "";
+    }).join("");
+  }
+  const gr = x => (x > 0 && x < 1 ? "<1" : Math.round(x)) + "g";
+  const cal5 = x => Math.round(x / 5) * 5;
+  // FDA daily values on a 2,000-calorie diet; scaled to the reader's own calorie goal
+  const DAY_ROWS = [["protein", "Protein", 50, "min"], ["carb", "Carbs", 275], ["sugar", "Sugars", 50, "sugar"], ["fiber", "Fiber", 28, "min"], ["fat", "Total fat", 78], ["sat", "Saturated fat", 20], ["sodium", "Sodium", 2300, "fixed"]];
+  function totalsHTML(d) {
+    const t = dayTotals(d), n = dayMeals(d).length, goal = plan.goal, f = goal / 2000;
+    if (!n) return `<p class="dt-empty">Add meals to see this day's totals.</p>`;
+    const left = goal - t.cal, pc = Math.min(100, (t.cal / goal) * 100);
+    const rows = DAY_ROWS.map(([k, label, dv, kind]) => {
+      const lim = kind === "fixed" ? dv : Math.round(dv * f), v = t[k] || 0, p = Math.round((v / lim) * 100);
+      const over = kind !== "min" && p > 100, low = kind === "min" && p < 100;
+      const val = k === "sodium" ? Math.round(v / 10) * 10 + "mg" : gr(v), limTxt = k === "sodium" ? lim.toLocaleString() + "mg" : lim + "g";
+      const tip = kind === "min" ? `the ${limTxt} goal` : kind === "sugar" ? `the ${limTxt} added-sugar limit` : `the ${limTxt} limit`;
+      return `<li class="${over ? "over" : ""}${low ? " low" : ""}"><span class="dt-l">${label}</span><span class="dt-v">${val}</span>
+        <span class="dt-bar" aria-hidden="true"><i style="width:${Math.min(100, p)}%"></i></span><span class="dt-p">${p}% <small>of ${tip}</small></span></li>`;
+    }).join("");
+    return `<div class="dt-cal">
+        <div><span class="dt-k">Calories</span><strong>${cal5(t.cal).toLocaleString()}</strong><span class="dt-of">of ${goal.toLocaleString()}</span></div>
+        <p class="dt-left${left < 0 ? " over" : ""}">${left >= 0 ? `${cal5(left).toLocaleString()} left` : `${cal5(-left).toLocaleString()} over`}</p>
+      </div>
+      <div class="dt-calbar${left < 0 ? " over" : ""}" aria-hidden="true"><i style="width:${pc}%"></i></div>
+      <ul class="dt-rows">${rows}</ul>
+      <p class="dt-net">Net carbs <b>${gr(Math.max(0, t.carb - t.fiber))}</b> (carbs minus fiber)</p>`;
   }
   function renderPlan() {
     document.title = "Weekly Meal Plan | What's Inside a Mustard Seed?";
@@ -961,12 +1017,23 @@
       </header>
       <blockquote class="verse"><p>“She rises also while it is yet night, and gives food to her household, and a portion to her maidens.”</p><cite>Mishlei 31:15, <a href="https://dvaryahuah.org/haketuvim-%d7%94%d7%9b%d7%aa%d7%95%d7%91%d7%99%d7%9d/mishlei-shlomo-%d7%9e%d7%a9%d7%9c%d7%99-%d7%a9%d7%9c%d7%9e%d7%94/mishlim-31-%d7%9e%d7%a9%d7%9c%d7%99%d7%9d-%d7%9c%d7%90/" target="_blank" rel="noopener">The Word of <span lang="he">יהוה</span></a></cite></blockquote>
       <ol class="tips plan-how no-print">
-        <li><b>Pick a recipe for each day.</b> Add more than one if you want a side or a dessert.</li>
-        <li><b>Set the servings.</b> Use the minus and plus buttons for how many you're feeding.</li>
+        <li><b>Pick a day, then fill in breakfast, lunch, dinner, and snacks.</b> Add more than one dish to any meal, like a main and a side.</li>
+        <li><b>Set how many you're feeding.</b> The minus and plus buttons change the shopping list.</li>
+        <li><b>Set your portion.</b> "I eat" is how many servings one person eats. The day's nutrition totals add up from that, so you can swap dishes or portions until the day looks right.</li>
         <li><b>Shop the list.</b> Everything is added up and sorted by store section. Tap an item to check it off.</li>
       </ol>
+      <div class="plan-goal no-print">
+        <label for="plan-goal">My daily calorie goal</label>
+        <input id="plan-goal" type="number" inputmode="numeric" min="800" max="6000" step="50" value="${plan.goal}">
+        <span class="hint">The daily limits below adjust to this. 2,000 is the standard label amount.</span>
+      </div>
+      <nav class="plan-tabs no-print" id="plan-tabs" aria-label="Days of the week"></nav>
       <div id="plan-days" class="plan-days"></div>
-      <p class="plan-clear no-print"><button type="button" class="link-btn" id="plan-reset">Clear the whole week</button></p>
+      <p class="plan-clear no-print"><button type="button" class="link-btn" id="plan-copy">Copy this day to the next day</button><button type="button" class="link-btn" id="plan-reset">Clear the whole week</button></p>
+      <section class="block plan-week" aria-labelledby="week-h">
+        <div class="block-head"><h2 id="week-h">Week at a Glance</h2><span class="scale-note">per person, from your portions</span></div>
+        <div class="week-wrap"><table class="week-t" id="week-t"></table></div>
+      </section>
       <section class="block plan-shop" aria-labelledby="shop-h">
         <div class="block-head"><h2 id="shop-h">Shopping List</h2><span class="scale-note" id="shop-count"></span></div>
         <div id="shop"></div>
@@ -975,72 +1042,132 @@
           <button type="button" class="btn" id="shop-share">Share or copy the list</button>
           <button type="button" class="btn" id="shop-uncheck">Uncheck everything</button>
         </div>
-        <p class="hint">Amounts are added up from each recipe at the servings you picked. Double-check your pantry for salt, pepper, oil, and spices before you go.</p>
+        <p class="hint">Amounts are added up from each recipe at the number you're feeding. Double-check your pantry for salt, pepper, oil, and spices before you go.</p>
       </section>
+      <p class="n-note plan-nnote">Nutrition numbers are estimates per serving from typical USDA values for each recipe's ingredients. Optional toppings, garnishes, and to-taste seasonings aren't counted, and brands will change them. Sugars are total sugars; the 50g line is the FDA limit for added sugars, so treat it as a guide. Limits scale with your calorie goal, except sodium, which stays at 2,300mg.</p>
       <nav class="pager no-print"><span></span><a href="#/" class="pg mid">Table of Contents</a><span></span></nav>
       <footer class="foot"><div class="rule"></div><p>What's Inside a Mustard Seed? • Weekly Meal Plan</p></footer>
+      <a href="#plan-days" class="plan-mini no-print" id="plan-mini" aria-live="polite"></a>
     </article>`;
-    const opts = recipeOptions();
-    const drawDays = () => {
-      $("#plan-days").innerHTML = plan.days.map((meals, d) => `
-        <section class="pday${meals.length ? "" : " empty"}" data-day="${d}">
-          <h2>${DAYS[d]}</h2>
-          ${meals.length ? `<ul class="pmeals">${meals.map((m, i) => { const r = BY[m.slug], mn = minFor(r); return `
-            <li class="pmeal" data-i="${i}">
-              <img src="assets/thumbs/${r.slug}.jpg" alt="" width="56" height="56" loading="lazy">
-              <a class="pm-name" href="#/${r.slug}?servings=${m.servings}"><span class="pm-dish">${esc(r.dish)}</span><span class="pm-scr">${esc(r.scripture)}</span></a>
-              <div class="pm-serv" role="group" aria-label="Servings for ${esc(r.dish)}">
-                <button type="button" class="step-btn no-print" data-act="dec" aria-label="Fewer servings"${m.servings <= mn ? " disabled" : ""}>−</button>
-                <span class="pm-n"><b>${m.servings}</b> ${esc(unitName(r, m.servings))}</span>
-                <button type="button" class="step-btn no-print" data-act="inc" aria-label="More servings"${m.servings >= 99 ? " disabled" : ""}>+</button>
-              </div>
-              <button type="button" class="pm-x no-print" data-act="del" aria-label="Remove ${esc(r.dish)}">×</button>
-            </li>`; }).join("")}</ul>` : `<p class="pnone">Nothing planned yet</p>`}
-          <label class="padd no-print"><span class="sr-only">Add a recipe to ${DAYS[d]}</span>
-            <select data-add="${d}"><option value="">${meals.length ? "+ Add another dish" : "+ Choose a recipe"}</option>${opts}</select>
+    const OPTS = Object.fromEntries(SLOTS.map(([k]) => [k, recipeOptions(k)]));
+    const mealRow = (m, d, k, i) => {
+      const r = BY[m.slug], mn = minFor(r), p = psOf(r), e = m.eat;
+      return `<li class="pmeal" data-slot="${k}" data-i="${i}">
+        <img src="assets/thumbs/${r.slug}.jpg" alt="" width="56" height="56" loading="lazy">
+        <div class="pm-main">
+          <a class="pm-name" href="#/${r.slug}?servings=${m.servings}"><span class="pm-dish">${esc(r.dish)}</span><span class="pm-scr">${esc(r.scripture)}</span></a>
+          <p class="pm-nut"><b>${cal5(p.cal * e)} cal</b> · ${gr(p.protein * e)} protein · ${gr(p.carb * e)} carbs · ${gr(p.sugar * e)} sugars · ${gr(p.fiber * e)} fiber · ${gr(p.fat * e)} fat · ${gr(p.sat * e)} sat fat · ${Math.round((p.sodium * e) / 10) * 10}mg sodium${e !== 1 ? ` <span class="pm-for">(for ${fracTxt(e)} servings)</span>` : ""}</p>
+        </div>
+        <div class="pm-ctl">
+          <div class="pm-serv" role="group" aria-label="How many you're feeding with ${esc(r.dish)}">
+            <span class="pm-lab">Feeding</span>
+            <button type="button" class="step-btn no-print" data-act="dec" aria-label="Fewer servings"${m.servings <= mn ? " disabled" : ""}>−</button>
+            <span class="pm-n"><b>${m.servings}</b> ${esc(unitName(r, m.servings))}</span>
+            <button type="button" class="step-btn no-print" data-act="inc" aria-label="More servings"${m.servings >= 99 ? " disabled" : ""}>+</button>
+          </div>
+          <label class="pm-eat"><span class="pm-lab">I eat</span>
+            <select data-eat aria-label="Servings one person eats of ${esc(r.dish)}">${PORTIONS.map(x => `<option value="${x}"${x === e ? " selected" : ""}>${fracTxt(x)} ${x === 1 ? unitName(r, 1) : esc(r.unit || "servings")}</option>`).join("")}</select>
           </label>
-        </section>`).join("");
+        </div>
+        <button type="button" class="pm-x no-print" data-act="del" aria-label="Remove ${esc(r.dish)}">×</button>
+      </li>`;
+    };
+    const drawTabs = () => {
+      $("#plan-tabs").innerHTML = DAYS.map((name, d) => { const n = dayMeals(d).length, c = n ? cal5(dayTotals(d).cal) : 0;
+        return `<button type="button" class="ptab${d === plan.day ? " on" : ""}${n && c > plan.goal ? " over" : ""}" data-day="${d}" aria-pressed="${d === plan.day}"><span class="pt-d">${name.slice(0, 3)}</span><span class="pt-c">${n ? c.toLocaleString() + " cal" : "empty"}</span></button>`; }).join("");
+    };
+    const drawDays = () => {
+      $("#plan-days").innerHTML = plan.days.map((day, d) => { const any = dayMeals(d).length;
+        return `<section class="pday${any ? "" : " empty"}${d === plan.day ? " on" : ""}" data-day="${d}" aria-label="${DAYS[d]}">
+          <h2>${DAYS[d]}</h2>
+          <div class="pday-grid">
+            <div class="pslots">${SLOTS.map(([k, label]) => { const meals = day[k];
+              return `<div class="pslot${meals.length ? "" : " empty"}" data-slot="${k}">
+                <h3>${label}</h3>
+                ${meals.length ? `<ul class="pmeals">${meals.map((m, i) => mealRow(m, d, k, i)).join("")}</ul>` : ""}
+                <label class="padd no-print"><span class="sr-only">Add a dish to ${DAYS[d]} ${label}</span>
+                  <select data-add="${d}" data-slot="${k}"><option value="">${meals.length ? "+ Add another dish" : `+ Add ${label === "Snacks and Drinks" ? "a snack or drink" : label.toLowerCase()}`}</option>${OPTS[k]}</select>
+                </label>
+              </div>`; }).join("")}</div>
+            <aside class="dtot" aria-label="${DAYS[d]} nutrition totals"><h3>${DAYS[d]} Totals <small>per person</small></h3>${totalsHTML(d)}</aside>
+          </div>
+        </section>`; }).join("");
+    };
+    const drawWeek = () => {
+      const has = DAYS.map((_, d) => dayMeals(d).length > 0), T = DAYS.map((_, d) => dayTotals(d)), nd = has.filter(Boolean).length;
+      const cols = [["cal", "Calories"], ["protein", "Protein"], ["carb", "Carbs"], ["sugar", "Sugars"], ["fiber", "Fiber"], ["fat", "Fat"], ["sat", "Sat fat"], ["sodium", "Sodium"]];
+      const fmt = (k, v) => (k === "cal" ? cal5(v).toLocaleString() : k === "sodium" ? (Math.round(v / 10) * 10).toLocaleString() + "mg" : gr(v));
+      const avg = k => T.reduce((a, t, d) => a + (has[d] ? t[k] : 0), 0) / (nd || 1);
+      $("#week-t").innerHTML = `<thead><tr><th scope="col">Day</th>${cols.map(([, l]) => `<th scope="col">${l}</th>`).join("")}</tr></thead>
+        <tbody>${DAYS.map((name, d) => `<tr${has[d] ? "" : ' class="none"'}><th scope="row"><button type="button" class="link-btn" data-goto="${d}">${name}</button></th>${cols.map(([k]) => `<td${k === "cal" && has[d] && T[d].cal > plan.goal ? ' class="over"' : ""}>${has[d] ? fmt(k, T[d][k]) : "–"}</td>`).join("")}</tr>`).join("")}</tbody>
+        ${nd ? `<tfoot><tr><th scope="row">Daily average</th>${cols.map(([k]) => `<td>${fmt(k, avg(k))}</td>`).join("")}</tr></tfoot>` : ""}`;
     };
     const drawShop = () => {
       const list = shoppingList(), have = new Set(plan.have);
-      const n = list.reduce((a, g) => a + g.items.length, 0), meals = plan.days.reduce((a, d) => a + d.length, 0);
-      $("#shop-count").textContent = n ? `${n} items for ${meals} ${meals === 1 ? "meal" : "meals"}` : "";
+      const n = list.reduce((a, g) => a + g.items.length, 0), meals = mealCount();
+      $("#shop-count").textContent = n ? `${n} items for ${meals} ${meals === 1 ? "dish" : "dishes"}` : "";
       $("#shop-tools").hidden = !n;
       $("#shop").innerHTML = n ? list.map(g => `
         <div class="aisle"><h3>${g.aisle}</h3><ul>${g.items.map(it => `
           <li${have.has(it.key) ? ' class="got"' : ""}><label><input type="checkbox" data-key="${esc(it.key)}"${have.has(it.key) ? " checked" : ""}>
             <span class="ing-line">${it.qty ? `<span class="qty">${esc(it.qty)}</span> ` : ""}<span class="ing-name">${esc(it.name)}</span></span>
             <span class="ing-note">${esc(it.uses.join(", "))}</span></label></li>`).join("")}</ul></div>`).join("")
-        : `<p class="toc-empty">Pick a recipe for any day above and your shopping list will show up here.</p>`;
+        : `<p class="toc-empty">Pick a dish for any meal above and your shopping list will show up here.</p>`;
     };
-    const redraw = () => { savePlan(); drawDays(); drawShop(); };
+    const drawMini = () => {
+      const d = plan.day, n = dayMeals(d).length, t = dayTotals(d), el = $("#plan-mini");
+      el.hidden = !n;
+      el.innerHTML = n ? `<b>${DAYS[d].slice(0, 3)}</b><span><b>${cal5(t.cal).toLocaleString()}</b> / ${plan.goal.toLocaleString()} cal</span><span>${gr(t.protein)} protein</span><span>${gr(t.carb)} carbs</span><span>${gr(t.sugar)} sugars</span>` : "";
+      el.classList.toggle("over", t.cal > plan.goal);
+    };
+    const redraw = () => { savePlan(); drawTabs(); drawDays(); drawWeek(); drawShop(); drawMini(); };
+    const refocus = sel => { const el = $(sel); el && !el.disabled && el.focus(); };
     redraw();
+    const showDay = d => { plan.day = d; savePlan(); drawTabs(); drawMini(); $$(".pday").forEach(s => s.classList.toggle("on", +s.dataset.day === d)); };
+    $("#plan-tabs").addEventListener("click", e => { const b = e.target.closest(".ptab"); if (b) { showDay(+b.dataset.day); refocus(`.ptab[data-day="${b.dataset.day}"]`); } });
+    $("#week-t").addEventListener("click", e => { const b = e.target.closest("[data-goto]"); if (b) { showDay(+b.dataset.goto); $("#plan-tabs").scrollIntoView({ behavior: "smooth", block: "start" }); } });
+    $("#plan-goal").addEventListener("change", e => { plan.goal = clamp(Math.round(+e.target.value || 2000), 800, 6000); e.target.value = plan.goal; redraw(); });
     $("#plan-days").addEventListener("change", e => {
-      const sel = e.target.closest("select[data-add]"); if (!sel || !sel.value) return;
-      const r = BY[sel.value], d = +sel.dataset.add;
-      plan.days[d].push({ slug: r.slug, servings: Math.max(r.base, minFor(r)) });
-      redraw(); toast(`${r.dish} added to ${DAYS[d]}`);
-      const s = $(`.pday[data-day="${d}"] select`); s && s.focus();
+      const sel = e.target.closest("select[data-add]");
+      if (sel && sel.value) {
+        const r = BY[sel.value], d = +sel.dataset.add, k = sel.dataset.slot, label = SLOTS.find(s => s[0] === k)[1];
+        plan.days[d][k].push({ slug: r.slug, servings: Math.max(r.base, minFor(r)), eat: 1 });
+        redraw(); toast(`${r.dish} added to ${DAYS[d]} ${label === "Snacks and Drinks" ? "snacks" : label.toLowerCase()}`);
+        refocus(`.pday[data-day="${d}"] select[data-slot="${k}"][data-add]`);
+        return;
+      }
+      const eat = e.target.closest("select[data-eat]");
+      if (eat) {
+        const li = eat.closest(".pmeal"), d = +eat.closest(".pday").dataset.day, k = li.dataset.slot, i = +li.dataset.i;
+        plan.days[d][k][i].eat = +eat.value; redraw();
+        refocus(`.pday[data-day="${d}"] .pmeal[data-slot="${k}"][data-i="${i}"] select[data-eat]`);
+      }
     });
     $("#plan-days").addEventListener("click", e => {
       const b = e.target.closest("button[data-act]"); if (!b) return;
-      const d = +b.closest(".pday").dataset.day, i = +b.closest(".pmeal").dataset.i, m = plan.days[d][i], r = BY[m.slug];
-      if (b.dataset.act === "del") plan.days[d].splice(i, 1);
+      const li = b.closest(".pmeal"), d = +b.closest(".pday").dataset.day, k = li.dataset.slot, i = +li.dataset.i, m = plan.days[d][k][i], r = BY[m.slug];
+      if (b.dataset.act === "del") plan.days[d][k].splice(i, 1);
       else m.servings = clamp(m.servings + (b.dataset.act === "inc" ? 1 : -1), minFor(r), 99);
       redraw();
-      const again = $(`.pday[data-day="${d}"] .pmeal[data-i="${i}"] button[data-act="${b.dataset.act}"]`); again && !again.disabled && again.focus();
+      refocus(b.dataset.act === "del" ? `.pday[data-day="${d}"] select[data-slot="${k}"][data-add]` : `.pday[data-day="${d}"] .pmeal[data-slot="${k}"][data-i="${i}"] button[data-act="${b.dataset.act}"]`);
     });
     $("#shop").addEventListener("change", e => {
       const c = e.target.closest("input[data-key]"); if (!c) return;
       const have = new Set(plan.have); c.checked ? have.add(c.dataset.key) : have.delete(c.dataset.key);
       plan.have = [...have]; savePlan(); c.closest("li").classList.toggle("got", c.checked);
     });
-    $("#plan-reset").onclick = () => { if (!plan.days.some(d => d.length) || confirm("Clear every meal from this week?")) { plan = { days: DAYS.map(() => []), have: [] }; redraw(); } };
+    $("#plan-copy").onclick = () => {
+      const d = plan.day, n = (d + 1) % 7;
+      if (!dayMeals(d).length) return toast(`${DAYS[d]} doesn't have any meals yet`);
+      if (dayMeals(n).length && !confirm(`Replace everything on ${DAYS[n]} with ${DAYS[d]}'s meals?`)) return;
+      plan.days[n] = JSON.parse(JSON.stringify(plan.days[d])); plan.day = n; redraw(); toast(`${DAYS[d]} copied to ${DAYS[n]}`);
+    };
+    $("#plan-reset").onclick = () => { if (!mealCount() || confirm("Clear every meal from this week?")) { const g = plan.goal; plan = freshPlan(); plan.goal = g; redraw(); } };
     $("#shop-uncheck").onclick = () => { plan.have = []; redraw(); };
     $("#shop-print").onclick = () => printAs("full");
     $("#shop-share").onclick = async () => {
       const lines = ["Shopping List, What's Inside a Mustard Seed?", ""];
-      plan.days.forEach((m, d) => m.length && lines.push(`${DAYS[d]}: ${m.map(x => `${BY[x.slug].dish} (${x.servings} ${unitName(BY[x.slug], x.servings)})`).join(", ")}`));
+      plan.days.forEach((day, d) => { const parts = SLOTS.filter(([k]) => day[k].length).map(([k, l]) => `${l}: ${day[k].map(x => `${BY[x.slug].dish} (${x.servings} ${unitName(BY[x.slug], x.servings)})`).join(", ")}`); if (parts.length) lines.push(`${DAYS[d]}`, ...parts.map(p => "  " + p)); });
       shoppingList().forEach(g => { lines.push("", g.aisle.toUpperCase()); g.items.forEach(it => lines.push(`[ ] ${it.qty ? it.qty + " " : ""}${it.name}`)); });
       const text = lines.join("\n");
       try { if (navigator.share) return await navigator.share({ title: "Shopping List", text }); await navigator.clipboard.writeText(text); toast("Shopping list copied"); } catch (err) { if (err && err.name !== "AbortError") toast("Couldn't copy the list"); }
