@@ -1003,12 +1003,67 @@
       <ul class="dt-rows">${rows}</ul>
       <p class="dt-net">Net carbs <b>${gr(Math.max(0, t.carb - t.fiber))}</b> (carbs minus fiber)</p>`;
   }
-  function renderPlan() {
+  // ---- share links: the whole week packed into the link itself (no accounts) ----
+  // each dish = 3-letter recipe code + 2-char servings + 1-digit portion; slots split by ".", days by "~"
+  const codeOf = s => { let x = 2166136261; for (const c of s) { x ^= c.charCodeAt(0); x = Math.imul(x, 16777619) >>> 0; } return (x % 46656).toString(36).padStart(3, "0"); };
+  const BY_CODE = {}; PLANNABLE.forEach(r => (BY_CODE[codeOf(r.slug)] = r.slug));
+  function encodePlan(p) {
+    const days = p.days.map(day => SLOTS.map(([k]) => day[k].map(m => codeOf(m.slug) + clamp(m.servings, 1, 99).toString(36).padStart(2, "0") + Math.max(0, PORTIONS.indexOf(m.eat))).join("")).join("."));
+    return "1-" + p.goal.toString(36) + "-" + days.join("~").replace(/(~\.\.\.)+$/, "");
+  }
+  function decodePlan(str) {
+    try {
+      const [v, g, body = ""] = String(str).split("-");
+      if (v !== "1") return null;
+      const out = freshPlan(); out.goal = clamp(parseInt(g, 36) || 2000, 800, 6000);
+      body.split("~").slice(0, 7).forEach((day, d) => day.split(".").slice(0, 4).forEach((slot, si) => {
+        for (let i = 0; i + 6 <= slot.length; i += 6) {
+          const slug = BY_CODE[slot.slice(i, i + 3)]; if (!slug) continue;
+          const r = BY[slug], serv = clamp(parseInt(slot.slice(i + 3, i + 5), 36) || r.base, minFor(r), 99);
+          out.days[d][SLOTS[si][0]].push({ slug, servings: serv, eat: PORTIONS[+slot[i + 5]] || 1 });
+        }
+      }));
+      return out;
+    } catch (e) { return null; }
+  }
+  const planLink = () => location.href.split("#")[0] + "#/plan?p=" + encodePlan(plan);
+  function planText(withLink) {
+    const lines = ["Weekly Meal Plan, What's Inside a Mustard Seed?", ""];
+    plan.days.forEach((day, d) => {
+      if (!dayMeals(d).length) return;
+      const t = dayTotals(d);
+      lines.push(DAYS[d].toUpperCase());
+      SLOTS.forEach(([k, l]) => day[k].length && lines.push(`  ${l}: ${day[k].map(x => { const r = BY[x.slug]; return `${r.dish} (feeding ${x.servings} ${unitName(r, x.servings)}${x.eat !== 1 ? `, I eat ${fracTxt(x.eat)}` : ""})`; }).join(", ")}`));
+      lines.push(`  Day totals per person: ${cal5(t.cal).toLocaleString()} cal, ${gr(t.protein)} protein, ${gr(t.carb)} carbs, ${gr(t.sugar)} sugars, ${gr(t.fiber)} fiber, ${gr(t.fat)} fat, ${gr(t.sat)} sat fat, ${Math.round(t.sodium / 10) * 10}mg sodium`, "");
+    });
+    lines.push(`Daily calorie goal: ${plan.goal.toLocaleString()}`, "", "SHOPPING LIST");
+    shoppingList().forEach(g => { lines.push("", g.aisle.toUpperCase()); g.items.forEach(it => lines.push(`[ ] ${it.qty ? it.qty + " " : ""}${it.name}`)); });
+    if (withLink) lines.push("", "Open this plan on any phone or computer:", planLink());
+    return lines.join("\n");
+  }
+  function qrSVG(text) {
+    if (typeof qrcode !== "function") return "";
+    try { const q = qrcode(0, "M"); q.addData(text); q.make(); return q.createSvgTag({ cellSize: 4, margin: 3, scalable: true }); } catch (e) { return ""; }
+  }
+
+  function renderPlan(params) {
     document.title = "Weekly Meal Plan | What's Inside a Mustard Seed?";
     $("#tb-toc").hidden = false;
     plan = loadPlan();
+    const incoming = params && params.get("p") ? decodePlan(params.get("p")) : null;
+    if (params && params.get("p")) { try { history.replaceState(null, "", "#/plan"); } catch (e) {} }
+    let pending = null;
+    if (incoming) {
+      const mine = mealCount(), same = mine && encodePlan(plan) === encodePlan(incoming);
+      if (!mine) { incoming.day = Math.max(0, incoming.days.findIndex((_, d) => SLOTS.some(([k]) => incoming.days[d][k].length))); plan = incoming; savePlan(); setTimeout(() => toast("Shared plan opened and saved on this device"), 300); }
+      else if (!same) pending = incoming;
+    }
     main.innerHTML = `
     <article class="page plan">
+      <div class="plan-incoming no-print" id="plan-incoming" hidden>
+        <p><b>Someone shared a meal plan with you.</b> This device already has a plan saved. Do you want to replace it with the shared one?</p>
+        <div class="pi-btns"><button type="button" class="btn primary" id="pi-use">Use the shared plan</button><button type="button" class="btn" id="pi-keep">Keep my plan</button></div>
+      </div>
       <header class="masthead">
         <div class="rule"></div>
         <img class="emblem" src="assets/emblem.png" alt="What's Inside a Mustard Seed? emblem" width="120" height="120">
@@ -1033,6 +1088,27 @@
       <section class="block plan-week" aria-labelledby="week-h">
         <div class="block-head"><h2 id="week-h">Week at a Glance</h2><span class="scale-note">per person, from your portions</span></div>
         <div class="week-wrap"><table class="week-t" id="week-t"></table></div>
+      </section>
+      <section class="block plan-save no-print" aria-labelledby="save-h">
+        <div class="block-head"><h2 id="save-h">Save or Share Your Plan</h2></div>
+        <p class="ps-lead">Your plan saves on this device by itself. To open it on another phone or computer, or to send it to someone, use a link. The whole week lives inside the link, so there's no account or password.</p>
+        <div class="export-grid ps-btns" id="ps-btns">
+          <button type="button" class="btn primary" id="ps-send">Send my plan</button>
+          <button type="button" class="btn" id="ps-copy">Copy the link</button>
+          <button type="button" class="btn" id="ps-qr" aria-expanded="false" aria-controls="ps-qrbox">Show a QR code</button>
+          <button type="button" class="btn" id="ps-print">Print or save as PDF</button>
+          <button type="button" class="btn" id="ps-dl">Download to my phone</button>
+        </div>
+        <div class="ps-qrbox" id="ps-qrbox" hidden>
+          <div class="ps-qr" id="ps-qrimg"></div>
+          <p>Point your phone's camera at this code to open the plan there.</p>
+        </div>
+        <p class="ps-empty" id="ps-empty" hidden>Add a meal first, then you can save or share your plan.</p>
+        <ul class="ps-tips">
+          <li><b>Keep it on your phone:</b> tap Send my plan and save it to Notes or text it to yourself. On iPhone you can also open the plan, tap Share, then Add to Home Screen. On Android, tap the menu, then Add to Home screen.</li>
+          <li><b>Changed something?</b> The link holds the plan as it was when you sent it. Send a new link after you make changes.</li>
+          <li><b>Shopping together?</b> Each person checks off their own list. Check marks don't travel with the link.</li>
+        </ul>
       </section>
       <section class="block plan-shop" aria-labelledby="shop-h">
         <div class="block-head"><h2 id="shop-h">Shopping List</h2><span class="scale-note" id="shop-count"></span></div>
@@ -1120,7 +1196,8 @@
       el.innerHTML = n ? `<b>${DAYS[d].slice(0, 3)}</b><span><b>${cal5(t.cal).toLocaleString()}</b> / ${plan.goal.toLocaleString()} cal</span><span>${gr(t.protein)} protein</span><span>${gr(t.carb)} carbs</span><span>${gr(t.sugar)} sugars</span>` : "";
       el.classList.toggle("over", t.cal > plan.goal);
     };
-    const redraw = () => { savePlan(); drawTabs(); drawDays(); drawWeek(); drawShop(); drawMini(); };
+    const redrawHooks = [];
+    const redraw = () => { savePlan(); drawTabs(); drawDays(); drawWeek(); drawShop(); drawMini(); redrawHooks.forEach(f => f()); };
     const refocus = sel => { const el = $(sel); el && !el.disabled && el.focus(); };
     redraw();
     const showDay = d => { plan.day = d; savePlan(); drawTabs(); drawMini(); $$(".pday").forEach(s => s.classList.toggle("on", +s.dataset.day === d)); };
@@ -1165,6 +1242,35 @@
     $("#plan-reset").onclick = () => { if (!mealCount() || confirm("Clear every meal from this week?")) { const g = plan.goal; plan = freshPlan(); plan.goal = g; redraw(); } };
     $("#shop-uncheck").onclick = () => { plan.have = []; redraw(); };
     $("#shop-print").onclick = () => printAs("full");
+    const hasMeals = () => { if (mealCount()) return true; toast("Add a meal first"); return false; };
+    const drawSave = () => { const n = mealCount(); $("#ps-empty").hidden = !!n; $$("#ps-btns .btn").forEach(b => (b.disabled = !n)); if (!n) { $("#ps-qrbox").hidden = true; $("#ps-qr").setAttribute("aria-expanded", "false"); $("#ps-qr").textContent = "Show a QR code"; } else if (!$("#ps-qrbox").hidden) $("#ps-qrimg").innerHTML = qrSVG(planLink()); };
+    redrawHooks.push(drawSave); drawSave();
+    const copyText = async (text, msg) => { try { await navigator.clipboard.writeText(text); toast(msg); } catch (e) { window.prompt("Copy this link:", text); } };
+    $("#ps-send").onclick = async () => {
+      if (!hasMeals()) return;
+      const url = planLink();
+      try { if (navigator.share) return await navigator.share({ title: "My Weekly Meal Plan", text: "My weekly meal plan from What's Inside a Mustard Seed?", url }); } catch (err) { if (err && err.name === "AbortError") return; }
+      copyText(url, "Link copied. Paste it in a text, email, or your notes.");
+    };
+    $("#ps-copy").onclick = () => hasMeals() && copyText(planLink(), "Link copied");
+    $("#ps-qr").onclick = () => {
+      if (!hasMeals()) return;
+      const box = $("#ps-qrbox"), open = box.hidden;
+      box.hidden = !open; $("#ps-qr").setAttribute("aria-expanded", String(open)); $("#ps-qr").textContent = open ? "Hide the QR code" : "Show a QR code";
+      if (open) { const svg = qrSVG(planLink()); $("#ps-qrimg").innerHTML = svg || "<p>The QR code couldn't load. Use Copy the link instead.</p>"; }
+    };
+    $("#ps-print").onclick = () => hasMeals() && printAs("full");
+    $("#ps-dl").onclick = () => {
+      if (!hasMeals()) return;
+      const a = document.createElement("a"), blob = new Blob([planText(true)], { type: "text/plain" });
+      a.href = URL.createObjectURL(blob); a.download = "Weekly Meal Plan.txt"; document.body.appendChild(a); a.click();
+      setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500); toast("Saved as Weekly Meal Plan.txt");
+    };
+    if (pending) {
+      const box = $("#plan-incoming"); box.hidden = false;
+      $("#pi-use").onclick = () => { const g = pending; g.day = Math.max(0, g.days.findIndex((_, d) => SLOTS.some(([k]) => g.days[d][k].length))); plan = g; pending = null; box.hidden = true; redraw(); toast("Shared plan opened and saved on this device"); };
+      $("#pi-keep").onclick = () => { pending = null; box.hidden = true; toast("Kept your plan"); };
+    }
     $("#shop-share").onclick = async () => {
       const lines = ["Shopping List, What's Inside a Mustard Seed?", ""];
       plan.days.forEach((day, d) => { const parts = SLOTS.filter(([k]) => day[k].length).map(([k, l]) => `${l}: ${day[k].map(x => `${BY[x.slug].dish} (${x.servings} ${unitName(BY[x.slug], x.servings)})`).join(", ")}`); if (parts.length) lines.push(`${DAYS[d]}`, ...parts.map(p => "  " + p)); });
@@ -1181,7 +1287,7 @@
     if (suppress) return;
     const { slug, params } = parseHashQuery();
     R = null; state = null;
-    if (!slug) renderHome(); else if (slug === "about") renderAbout(); else if (slug === "plan") renderPlan(); else renderRecipe(slug, params);
+    if (!slug) renderHome(); else if (slug === "about") renderAbout(); else if (slug === "plan") renderPlan(params); else renderRecipe(slug, params);
     const pm = params.get("print");
     if (pm) setPrint(pm);
     main.focus({ preventScroll: true });

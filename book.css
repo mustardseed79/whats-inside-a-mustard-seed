@@ -407,3 +407,24 @@ h1 .dish { display: block; margin-top: 8px; font-size: .52em; font-weight: 600; 
   .page.plan { padding-bottom: 70px; }
 }
 .plan-clear { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px 20px; }
+
+/* ---------- meal plan: save and share ---------- */
+.plan-incoming { margin: 0 0 18px; padding: 14px 16px; background: var(--navy); color: #fff; border: 1px solid var(--gold); border-radius: var(--r); }
+.plan-incoming[hidden] { display: none; }
+.plan-incoming p { margin: 0 0 10px; }
+.plan-incoming .pi-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.plan-incoming .btn:not(.primary) { background: transparent; color: #fff; border-color: var(--gold-soft); }
+.plan-save { margin-top: 34px; }
+.ps-lead { margin: 6px 0 14px; }
+.ps-btns .btn:disabled { opacity: .45; cursor: default; }
+.ps-qrbox { margin: 16px 0 0; display: flex; align-items: center; gap: 16px; padding: 14px; background: var(--cream); border-radius: var(--r); }
+.ps-qrbox[hidden] { display: none; }
+.ps-qr { width: 200px; flex: 0 0 200px; background: #fff; border: 1px solid var(--gold); border-radius: var(--r); }
+.ps-qr svg { display: block; width: 100%; height: auto; }
+.ps-qrbox p { margin: 0; font-size: 15px; }
+.ps-empty { margin: 10px 0 0; color: var(--muted); font-style: italic; }
+.ps-empty[hidden] { display: none; }
+.ps-tips { margin: 16px 0 0; padding-left: 20px; font-size: 14.5px; color: var(--ink); }
+.ps-tips li { margin: 6px 0; }
+@media (max-width: 520px) { .ps-qrbox { flex-direction: column; text-align: center; } }
+.plan-incoming .btn.primary { background: var(--gold); border-color: var(--gold); color: var(--navy); }
