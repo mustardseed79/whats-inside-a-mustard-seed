@@ -6051,7 +6051,7 @@ window.BOOK = [
 },
 {
 "t": "li",
-"text": "For a milder pot for little ones, use mild Italian ground turkey sausage, or use half hot and half mild."
+"text": "Sensitive to heat? Use less or skip the hot sausage: use mild Italian ground turkey sausage, or half hot and half mild."
 }
 ],
 "family": false
@@ -6085,6 +6085,645 @@ window.BOOK = [
 "min": 0.5,
 "max": 10,
 "name": "Jennie-O Hot Italian ground turkey sausage"
+}
+},
+{
+"slug": "through-the-fire",
+"scripture": "Through the Fire",
+"dish": "Spicy Chipotle Beef Chili (No Beans)",
+"cat": "Soups",
+"sub": "More Soups",
+"photo": "assets/photos/through-the-fire.jpg",
+"subtitle": "Smoky, saucy, high-protein Instant Pot chili. About 30g protein and 7g net carbs per serving.",
+"verse": {
+"text": "When you pass through the waters, I will be with you, and through the rivers, they shall not overflow you; when you walk through the fire, you shall not be burned, neither shall the flame kindle upon you.",
+"ref": "Yesha-Yahu 43:2",
+"url": "https://dvaryahuah.org/haneviim-%d7%94%d7%a0%d7%91%d7%99%d7%90%d7%99%d7%9d/yesha-yahu-%d7%99%d7%a9%d7%a2%d7%99%d7%94%d7%95/yesha-yahu-43-%d7%99%d7%a9%d7%a2%d7%99%d7%94%d7%95-%d7%9e%d7%92/"
+},
+"servingsText": "6 servings",
+"base": 6,
+"unit": "bowls",
+"time": "About 1 hour (15 minutes prep, 12 minutes browning, 10 to 15 minutes to come to pressure, 15 minutes pressure cooking, 10 minutes natural release)",
+"need": "A 6-quart Instant Pot or other electric pressure cooker, a wooden spoon or flat spatula for scraping, a cutting board, and a knife. No pressure cooker? See Kitchen Notes for the stovetop way.",
+"clean": "Beef is clean (VaYikra 11:3). Check the beef broth and the chipotles in adobo labels (see notes). Cheese and sour cream on meat are allowed in this book.",
+"source": "",
+"extraMeta": {},
+"options": [],
+"groups": [
+{
+"name": "Chili",
+"note": "",
+"items": [
+{
+"text": "2 pounds ground beef (85/15)",
+"q": {
+"lo": 2,
+"hi": null,
+"kind": "wt",
+"f": 16,
+"uw": "pounds",
+"rest": "ground beef (85/15)",
+"pre": ""
+},
+"n": {
+"cal": 1950,
+"fat": 136,
+"sat": 53.5,
+"carb": 0,
+"fiber": 0,
+"sugar": 0,
+"protein": 169,
+"sodium": 599
+},
+"note": "Don't go leaner. The fat stays in and keeps it juicy.",
+"anchor": true,
+"atext": "ground beef (85/15)"
+},
+{
+"text": "1 tablespoon olive oil",
+"q": {
+"lo": 1,
+"hi": null,
+"kind": "vol",
+"f": 3,
+"uw": "tablespoon",
+"rest": "olive oil",
+"pre": ""
+},
+"n": {
+"cal": 119,
+"fat": 13.5,
+"sat": 1.9,
+"carb": 0,
+"fiber": 0,
+"sugar": 0,
+"protein": 0,
+"sodium": 0
+}
+},
+{
+"text": "1 medium onion, diced",
+"q": {
+"lo": 1,
+"hi": null,
+"kind": "each",
+"f": 1,
+"uw": "",
+"rest": "medium onion, diced",
+"pre": ""
+},
+"n": {
+"cal": 44,
+"fat": 0.1,
+"sat": 0,
+"carb": 10.3,
+"fiber": 1.9,
+"sugar": 4.7,
+"protein": 1.2,
+"sodium": 4
+}
+},
+{
+"text": "1 bell pepper, diced",
+"q": {
+"lo": 1,
+"hi": null,
+"kind": "each",
+"f": 1,
+"uw": "",
+"rest": "bell pepper, diced",
+"pre": ""
+},
+"n": {
+"cal": 24,
+"fat": 0.2,
+"sat": 0,
+"carb": 5.6,
+"fiber": 2,
+"sugar": 2.9,
+"protein": 1,
+"sodium": 4
+}
+},
+{
+"text": "2 jalapeños, minced",
+"q": {
+"lo": 2,
+"hi": null,
+"kind": "each",
+"f": 1,
+"uw": "",
+"rest": "jalapeños, minced",
+"pre": ""
+},
+"n": {
+"cal": 8,
+"fat": 0.1,
+"sat": 0,
+"carb": 1.8,
+"fiber": 0.8,
+"sugar": 1.2,
+"protein": 0.3,
+"sodium": 0
+},
+"note": "Keep the seeds for more heat. Use less or skip the seeds if you're sensitive to heat."
+},
+{
+"text": "4 garlic cloves, minced",
+"q": {
+"lo": 4,
+"hi": null,
+"kind": "each",
+"f": 1,
+"uw": "cloves",
+"rest": "garlic, minced",
+"pre": ""
+},
+"n": {
+"cal": 18,
+"fat": 0.1,
+"sat": 0,
+"carb": 4,
+"fiber": 0.3,
+"sugar": 0.1,
+"protein": 0.8,
+"sodium": 2
+}
+},
+{
+"text": "2 tablespoons chili powder",
+"q": {
+"lo": 2,
+"hi": null,
+"kind": "vol",
+"f": 3,
+"uw": "tablespoons",
+"rest": "chili powder",
+"pre": ""
+},
+"n": {
+"cal": 45,
+"fat": 2.3,
+"sat": 0.4,
+"carb": 7.9,
+"fiber": 5.5,
+"sugar": 1.2,
+"protein": 2.2,
+"sodium": 160
+}
+},
+{
+"text": "1 tablespoon ground cumin",
+"q": {
+"lo": 1,
+"hi": null,
+"kind": "vol",
+"f": 3,
+"uw": "tablespoon",
+"rest": "ground cumin",
+"pre": ""
+},
+"n": {
+"cal": 22,
+"fat": 1.3,
+"sat": 0.1,
+"carb": 2.6,
+"fiber": 0.6,
+"sugar": 0.1,
+"protein": 1.1,
+"sodium": 10
+}
+},
+{
+"text": "1 teaspoon smoked paprika",
+"q": {
+"lo": 1,
+"hi": null,
+"kind": "vol",
+"f": 1,
+"uw": "teaspoon",
+"rest": "smoked paprika",
+"pre": ""
+},
+"n": {
+"cal": 6,
+"fat": 0.3,
+"sat": 0,
+"carb": 1.2,
+"fiber": 0.8,
+"sugar": 0.2,
+"protein": 0.3,
+"sodium": 1
+}
+},
+{
+"text": "1 teaspoon dried oregano",
+"q": {
+"lo": 1,
+"hi": null,
+"kind": "vol",
+"f": 1,
+"uw": "teaspoon",
+"rest": "dried oregano",
+"pre": ""
+},
+"n": {
+"cal": 3,
+"fat": 0,
+"sat": 0,
+"carb": 0.7,
+"fiber": 0.4,
+"sugar": 0,
+"protein": 0.1,
+"sodium": 0
+}
+},
+{
+"text": "½ teaspoon cayenne",
+"q": {
+"lo": 0.5,
+"hi": null,
+"kind": "vol",
+"f": 1,
+"uw": "teaspoon",
+"rest": "cayenne",
+"pre": ""
+},
+"n": {
+"cal": 3,
+"fat": 0.2,
+"sat": 0,
+"carb": 0.5,
+"fiber": 0.2,
+"sugar": 0.1,
+"protein": 0.1,
+"sodium": 0
+},
+"note": "Use less or skip if you're sensitive to heat."
+},
+{
+"text": "1½ teaspoons salt",
+"q": {
+"lo": 1.5,
+"hi": null,
+"kind": "vol",
+"f": 1,
+"uw": "teaspoons",
+"rest": "salt",
+"pre": ""
+},
+"n": {
+"cal": 0,
+"fat": 0,
+"sat": 0,
+"carb": 0,
+"fiber": 0,
+"sugar": 0,
+"protein": 0,
+"sodium": 3488
+}
+},
+{
+"text": "2 tablespoons tomato paste",
+"q": {
+"lo": 2,
+"hi": null,
+"kind": "vol",
+"f": 3,
+"uw": "tablespoons",
+"rest": "tomato paste",
+"pre": ""
+},
+"n": {
+"cal": 27,
+"fat": 0.2,
+"sat": 0,
+"carb": 6.2,
+"fiber": 1.3,
+"sugar": 4.1,
+"protein": 1.4,
+"sodium": 20
+}
+},
+{
+"text": "½ cup beef broth",
+"q": {
+"lo": 0.5,
+"hi": null,
+"kind": "vol",
+"f": 48,
+"uw": "cup",
+"rest": "beef broth",
+"pre": ""
+},
+"n": {
+"cal": 8,
+"fat": 0.3,
+"sat": 0.1,
+"carb": 0.5,
+"fiber": 0,
+"sugar": 0.3,
+"protein": 1.3,
+"sodium": 450
+}
+},
+{
+"text": "1 can (14.5 oz) diced tomatoes with green chiles",
+"q": {
+"lo": 1,
+"hi": null,
+"kind": "each",
+"f": 1,
+"uw": "can",
+"rest": "(14.5 oz) diced tomatoes with green chiles, undrained",
+"pre": "",
+"wt": 14.5
+},
+"n": {
+"cal": 70,
+"fat": 0,
+"sat": 0,
+"carb": 14,
+"fiber": 3.5,
+"sugar": 7,
+"protein": 3.5,
+"sodium": 1645
+},
+"note": "Like Rotel. Pour in the juice too."
+},
+{
+"text": "2 chipotle peppers in adobo, chopped",
+"q": {
+"lo": 2,
+"hi": null,
+"kind": "each",
+"f": 1,
+"uw": "",
+"rest": "chipotle peppers in adobo, chopped",
+"pre": ""
+},
+"n": {
+"cal": 20,
+"fat": 0.5,
+"sat": 0,
+"carb": 4,
+"fiber": 2,
+"sugar": 2,
+"protein": 0.5,
+"sodium": 220
+},
+"note": "Use 1 if you're sensitive to heat."
+},
+{
+"text": "1 tablespoon adobo sauce from the can",
+"q": {
+"lo": 1,
+"hi": null,
+"kind": "vol",
+"f": 3,
+"uw": "tablespoon",
+"rest": "adobo sauce from the can",
+"pre": ""
+},
+"n": {
+"cal": 10,
+"fat": 0.3,
+"sat": 0,
+"carb": 2,
+"fiber": 0.5,
+"sugar": 1,
+"protein": 0,
+"sodium": 200
+}
+},
+{
+"text": "1 tablespoon lime juice",
+"q": {
+"lo": 1,
+"hi": null,
+"kind": "vol",
+"f": 3,
+"uw": "tablespoon",
+"rest": "lime juice",
+"pre": ""
+},
+"n": {
+"cal": 4,
+"fat": 0,
+"sat": 0,
+"carb": 1.3,
+"fiber": 0.1,
+"sugar": 0.3,
+"protein": 0.1,
+"sodium": 0
+}
+}
+]
+},
+{
+"name": "To Serve",
+"note": "",
+"items": [
+{
+"text": "Cauliflower rice, high-protein jasmine rice, or neither",
+"plain": true
+},
+{
+"text": "Fresh jalapeños, sliced, for mixing in",
+"plain": true
+}
+]
+}
+],
+"sections": [
+{
+"title": "Before You Start",
+"steps": [
+{
+"text": "<b>Drain the beef.</b> Open the package over the sink and pour off the juices. Pat the meat dry with paper towels."
+},
+{
+"text": "<b>Prep the vegetables.</b> Dice the onion and bell pepper, mince the jalapeños and garlic, and chop the chipotles. Keep the jalapeño seeds if you want more heat."
+},
+{
+"text": "<b>Measure the spices.</b> Put the chili powder, cumin, smoked paprika, oregano, cayenne, and salt in a small bowl so they're ready to go in all at once."
+}
+]
+},
+{
+"title": "Brown and Build",
+"steps": [
+{
+"text": "<b>Brown the beef.</b> Set the Instant Pot to Sauté on High. Add the olive oil, then the ground beef. Break it up and cook about 8 minutes, until no pink remains and it's well browned with some crispy bits. Don't drain the fat. It keeps the chili juicy.",
+"timer": 8
+},
+{
+"text": "<b>Cook the vegetables.</b> Add the onion, bell pepper, and jalapeños. Cook about 3 minutes, stirring, until they soften.",
+"timer": 3
+},
+{
+"text": "<b>Bloom the spices.</b> Stir in the garlic, the bowl of spices, and the tomato paste. Cook 1 minute, stirring, until it smells toasty.",
+"timer": 1
+},
+{
+"text": "<b>Deglaze.</b> Pour in the beef broth and scrape the bottom of the pot hard with a wooden spoon or flat spatula until nothing is stuck. This is what keeps the BURN warning away.",
+"tip": "Run the spoon over the whole bottom of the pot. If you feel anything stuck, keep scraping."
+},
+{
+"text": "<b>Layer, don't stir.</b> Turn off Sauté. Pour the tomatoes with their juice over the top, then add the chipotles and the adobo sauce. Don't stir. Tomatoes on top won't scorch."
+}
+]
+},
+{
+"title": "Pressure Cook",
+"steps": [
+{
+"text": "<b>Seal it.</b> Lock the lid and turn the valve to Sealing."
+},
+{
+"text": "<b>Cook.</b> Pressure cook on High for 15 minutes. It takes about 10 to 15 minutes to come up to pressure before the timer starts counting down.",
+"timer": 15
+},
+{
+"text": "<b>Natural release.</b> When it beeps, let the pressure come down on its own for 10 minutes.",
+"timer": 10
+},
+{
+"text": "<b>Release the rest.</b> Turn the valve to Venting with a long spoon, not your fingers, and keep your face and hands away from the steam. Open the lid only when the pin drops."
+}
+]
+},
+{
+"title": "Finish",
+"steps": [
+{
+"text": "<b>Stir.</b> Stir everything together well."
+},
+{
+"text": "<b>Thicken if you want.</b> For a thicker chili, set it to Sauté and let it bubble 3 to 5 minutes, stirring so the bottom doesn't stick, until a spoon dragged through leaves a trail.",
+"timer": 5
+},
+{
+"text": "<b>Season.</b> Turn it off. Stir in the lime juice, taste, and add more salt or heat if it needs it."
+},
+{
+"text": "<b>Serve.</b> Spoon it over cauliflower rice or jasmine rice, or eat it as is, and top with fresh jalapeños."
+}
+]
+}
+],
+"notes": [
+{
+"title": "Kitchen Notes",
+"sub": "",
+"items": [
+{
+"t": "li",
+"text": "We made this on a Wednesday night in October, and it was awesome. Two pounds of beef. I ate mine over cauliflower rice. My honey ate his over high-protein jasmine rice. Fresh jalapeños mixed in, because in this house the heat stays in."
+},
+{
+"t": "li",
+"text": "Keeps 4 days in the fridge and freezes well."
+},
+{
+"t": "li",
+"text": "<b>No Instant Pot?</b> Brown and build the same way in a heavy pot or Dutch oven on the stove over medium-high heat. After the tomatoes go in, cover, turn the heat to low, and simmer 45 minutes to 1 hour, stirring every 15 minutes so the bottom doesn't stick."
+}
+],
+"family": false
+},
+{
+"title": "Heat",
+"sub": "",
+"items": [
+{
+"t": "li",
+"text": "This one has jalapeños, chipotles, and cayenne. Use less or skip if you're sensitive to heat. Start with 1 chipotle and no jalapeño seeds, and taste at the end."
+},
+{
+"t": "li",
+"text": "<b>Want it spicier?</b> Keep the jalapeño seeds, add a third chipotle, or pile on fresh jalapeños like we do."
+}
+],
+"family": false
+},
+{
+"title": "Options",
+"sub": "",
+"items": [
+{
+"t": "li",
+"text": "<b>Serve it over:</b> cauliflower rice (keeps it low-carb), high-protein jasmine rice, or as is. It's also good stuffed into bell peppers."
+},
+{
+"t": "li",
+"text": "<b>Low-carb toppings:</b> shredded cheddar, sour cream, avocado, cilantro, and sliced jalapeños."
+},
+{
+"t": "li",
+"text": "<b>Ground chicken or turkey:</b> use thigh meat if you can, and add an extra tablespoon of oil since they're leaner and can dry out. Brown it until there's no pink and it reaches 165°F."
+},
+{
+"t": "li",
+"text": "<b>Ground lamb:</b> great here with a pinch of cinnamon added with the spices. Brown it until no pink remains and it reaches 160°F."
+}
+],
+"family": false
+},
+{
+"title": "Clean-Eating Notes",
+"sub": "",
+"items": [
+{
+"t": "li",
+"text": "<b>Beef, lamb, chicken, and turkey</b> are all clean (VaYikra 11:3 for beef and lamb)."
+},
+{
+"t": "li",
+"text": "<b>Beef broth:</b> Check the label on boxed broth and bouillon. A few blends add other meat stocks or flavorings."
+},
+{
+"t": "li",
+"text": "<b>Chipotle peppers in adobo:</b> Usually just chiles, tomato, vinegar, onion, salt, sugar, and spices. Still check the label on a new brand."
+},
+{
+"t": "li",
+"text": "<b>Cheese or sour cream on meat:</b> Allowed in this book."
+}
+],
+"family": false
+},
+{
+"title": "Feast Suggestions",
+"sub": "",
+"items": [
+{
+"t": "li",
+"text": "<b>Sukkot:</b> A warm, hearty bowl for cool evenings in the sukkah."
+},
+{
+"t": "li",
+"text": "<b>Shabbat:</b> Make it Friday before sundown and hold it on Keep Warm for dinner."
+},
+{
+"t": "li",
+"text": "<b>Yom Teruah:</b> A big pot that feeds a crowd for the fall feast."
+}
+],
+"family": false
+}
+],
+"nutritionNote": "Estimates per serving (1 of 6 bowls), calculated from USDA FoodData Central reference values and typical labels. Counts all of the fat in the beef since you don't drain it after browning. Rice, cauliflower rice, and toppings aren't counted.",
+"downloads": [],
+"meat": {
+"g": 0,
+"i": 0,
+"baseLb": 2,
+"yield": 0.75,
+"step": 0.5,
+"min": 0.5,
+"max": 10,
+"name": "ground beef (85/15)"
 }
 },
 {
@@ -7506,7 +8145,7 @@ window.BOOK = [
 },
 {
 "t": "li",
-"text": "<b>For little ones:</b> Make a separate plain fig roll so the kids have a mild option."
+"text": "<b>Sensitive to heat?</b> Make a separate roll with plain fig spread for a mild option."
 },
 {
 "t": "li",
