@@ -24,7 +24,7 @@
   // Way-of-eating sections. A recipe is listed only when the card itself fits as written.
   const DIETS = [
     { id: "carnivore", title: "Carnivore", blurb: "Meat, fish, eggs, and animal fats, seasoned with salt. Every recipe here still follows the clean rules of this book.", slugs: [] },
-    { id: "keto", title: "Keto", blurb: "Very low carb, with most of the energy from fat and protein. Look for the net-carb estimate on each recipe.", slugs: ["savory-food-such-as-i-love"] },
+    { id: "keto", title: "Keto", blurb: "Very low carb, with most of the energy from fat and protein. Look for the net-carb estimate on each recipe.", slugs: ["savory-food-such-as-i-love", "through-the-fire"] },
     { id: "carnivore-keto", title: "Carnivore Keto", blurb: "Animal foods only, kept fatty and close to zero carb. The strictest of the three.", slugs: [] }
   ];
   // Quick finders on the home page. Lists are hand-picked from each card's stated time and servings.
@@ -34,7 +34,7 @@
     { id: "crowd", title: "Feeds a Crowd", note: "10 or more servings", blurb: "Big batches for family gatherings, potlucks, and feast days.",
       slugs: ["a-portion-for-seven", "savory-food-such-as-i-love", "answer-me-speedily", "wait-patiently", "food-for-her-household", "taste-and-see", "rejoice-seven-days"] },
     { id: "ahead", title: "Make Ahead", note: "Prep early, serve later", blurb: "Recipes that chill, slow cook, or rest, so most of the work is done before guests arrive.",
-      slugs: ["savory-food-such-as-i-love", "a-portion-for-seven", "wait-patiently", "taste-and-see", "fruit-in-its-season", "garden-of-spices", "good-land", "sweeter-than-honey", "majestic-trees", "park-of-pomegranates"] }
+      slugs: ["savory-food-such-as-i-love", "a-portion-for-seven", "wait-patiently", "taste-and-see", "fruit-in-its-season", "garden-of-spices", "good-land", "sweeter-than-honey", "majestic-trees", "park-of-pomegranates", "through-the-fire"] }
   ];
   // HaMotzi, the family's blessing before every meal (text supplied by Alexis)
   const HAMOTZI = `<div class="blessing">
@@ -42,7 +42,7 @@
       <p class="bl-tr">Barukḥ Atah <bdi lang="he">יהוה</bdi>, Eloheinu, Melekḥ HaOlam, hamotzi lekḥem min ha’aretz, v’hotzi Yeshua HaMashi'akḥ min ha'she’ol.</p>
       <p class="bl-en">Blessed are You, O <bdi lang="he">יהוה</bdi> our Elohim, King of the Universe, who brings forth bread from the earth, and who brought forth Messiah Yeshua from the grave.</p>
     </div>`;
-  const NEWEST = "eat-with-joy";
+  const NEWEST = "through-the-fire"; // update this whenever a new recipe is added
   const dietsOf = slug => DIETS.filter(d => d.slugs.includes(slug)).map(d => d.title);
 
   // ---------------- nutrition helpers ----------------
