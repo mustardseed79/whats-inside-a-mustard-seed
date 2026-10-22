@@ -6103,7 +6103,7 @@ window.BOOK = [
 "servingsText": "6 servings",
 "base": 6,
 "unit": "bowls",
-"time": "About 1 hour (15 minutes prep, 12 minutes browning, 10 to 15 minutes to come to pressure, 15 minutes pressure cooking, 10 minutes natural release)",
+"time": "About 1 hour (mostly hands-off pressure cooking)",
 "need": "A 6-quart Instant Pot or other electric pressure cooker, a wooden spoon or flat spatula for scraping, a cutting board, and a knife. No pressure cooker? See Kitchen Notes for the stovetop way.",
 "clean": "Beef is clean (VaYikra 11:3). Check the beef broth and the chipotles in adobo labels (see notes). Cheese and sour cream on meat are allowed in this book.",
 "source": "",

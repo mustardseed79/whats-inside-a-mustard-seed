@@ -121,7 +121,7 @@
           ${HAMOTZI}
         </details>
         ${BY[NEWEST] ? `<div class="newest"><p class="eyebrow">Newest recipe</p><ul class="toc-list">${recipeRow(BY[NEWEST])}</ul></div>` : ""}
-        <a class="plan-cta" href="#/plan"><span class="qf-t">Weekly Meal Plan</span><span class="qf-n">Pick a meal for each day and get a shopping list sorted by store section</span></a>
+        <a class="plan-cta" href="#/plan"><span class="qf-t">Weekly Meal Plan</span><span class="qf-n">Plan breakfast, lunch, dinner, and snacks, see each day's nutrition, and get a shopping list sorted by store section</span></a>
         <h3 class="qf-h">Quick finders</h3>
         <div class="qf" role="group" aria-label="Quick finders">${FINDERS.map(f => `<button type="button" class="qf-btn fchip-like" data-cat="${f.id}" aria-pressed="${home.cat === f.id}"><span class="qf-t">${f.title}</span><span class="qf-n">${f.note} · ${f.slugs.filter(x => BY[x]).length} recipes</span></button>`).join("")}</div>
       </section>
