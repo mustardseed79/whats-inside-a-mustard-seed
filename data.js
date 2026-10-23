@@ -50,11 +50,10 @@ window.BOOK = [
 ],
 "sections": [
 {"title": "Before You Start", "steps": [
-{"text": "Set the thawed roast in a clean sink and pour off the blood and packaging juices."},
-{"text": "Rinse the roast under cool running water, keeping the stream low so it doesn't splash.", "tip": "Raw-meat juices can spray onto nearby surfaces. Afterward, clear the area around the sink and wash the sink, faucet, and counter with hot, soapy water."},
-{"text": "Move the roast to a cutting board and pat it thoroughly dry on all sides with paper towels. A dry surface is what gives you a good crust."},
+{"text": "Drain the blood off the roast and rinse it off."},
+{"text": "Put it on a cutting board and pat it dry."},
 {"text": "Season all sides with salt, black pepper, garlic powder, and rosemary."},
-{"text": "Leave the seasoned roast on a plate on the counter, loosely covered, until it comes to room temperature before searing, about 30–60 minutes. It should no longer feel refrigerator-cold on the outside. This is important: a room-temperature roast sears more evenly, just like a steak.", "tip": "Food safety: do not leave raw beef out longer than 2 hours total (1 hour if your kitchen is above 90°F)."},
+{"text": "Optional, but I like to: let the seasoned roast sit out and come to room temperature before searing. The salt has time to break the meat down, so it comes out even more tender.", "tip": "Don't leave raw beef out more than 2 hours."},
 {"text": "Cut the red onion into large pieces and the rainbow carrots into chunks. Leave little potatoes whole; halve any larger ones. Save the mushrooms and trimmed, cut green beans for the end."}
 ]},
 {"title": "Sear and Build the Broth", "steps": [
@@ -75,7 +74,7 @@ window.BOOK = [
 "notes": [
 {"title": "My Kitchen Notes", "items": [
 {"t": "li", "text": "This is the method I actually put in the Crock-Pot, not a claim that the first batch is already finished. Confirm the final time and green-bean texture after cooking."},
-{"t": "li", "text": "Season the roast and let it come to room temperature before it ever touches the skillet. Just like with any steak, that matters."},
+{"t": "li", "text": "I like to season the roast and let it sit out until it comes to room temperature before searing. You don't have to, but the salt breaks the meat down and makes it even more tender."},
 {"t": "li", "text": "I used rosemary and thyme sprigs from a fresh poultry-herb pack and removed the third herb. This recipe does not call for dried poultry seasoning."},
 {"t": "li", "text": "I simmered the broth in the searing skillet with the browned bits, tomato paste, Worcestershire, and extra herb sprigs before pouring it over the roast."},
 {"t": "li", "text": "Keep the white mushrooms substantial: small ones whole, large ones halved rather than thinly sliced. The mushrooms and fresh beans are late additions, not all-day vegetables."},
@@ -90,7 +89,7 @@ window.BOOK = [
 "title": "The Mushrooms Can Wait",
 "lede": "I want a pot roast, not a pot full of tiny, funky mushrooms and squishy green beans.",
 "paras": [
-"I started with a chuck roast, about 3.5 pounds. Drained the blood off, rinsed it, threw it on a cutting board, patted it dry, and seasoned it with salt, pepper, garlic powder, and rosemary. Seasoned roast sits until it's room temperature before it ever hits the pan, just like any steak. That part is important. Then it went into a super-hot skillet. Three or four minutes on each side, long enough to build that crispy outside. Then I plucked it out and put it right into the Crock-Pot.",
+"I started with a chuck roast, about 3.5 pounds. Drained the blood off, rinsed it, threw it on a cutting board, patted it dry, and seasoned it with salt, pepper, garlic powder, and rosemary. I like to let it sit out and come to room temperature after seasoning. That gives the salt time to break it down, and it comes out even more tender. Then it went into a super-hot skillet. Three or four minutes on each side, long enough to build that crispy outside. Then I plucked it out and put it right into the Crock-Pot.",
 "The red onion went around it, with a little underneath. Then came my colorful carrots: purple, orange, and yellow. I like those. A bag of the little yellow and red potatoes went in too.",
 "I got the rosemary and thyme out of a poultry-herb pack and took the other herb out. Three rosemary sprigs and three thyme sprigs got poked down in there, around the roast and vegetables. Those were the ones I wanted.",
 "And I wasn't leaving all those little brown bits in the skillet. In went the beef broth, a heaping tablespoon of tomato paste, probably two or three tablespoons of Worcestershire, salt, pepper, two rosemary sprigs, and a sprig of thyme. I let that simmer, then poured the whole thing into the pot and put the lid on.",
