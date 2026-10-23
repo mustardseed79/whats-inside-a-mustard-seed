@@ -1,6 +1,101 @@
 /* What's Inside a Mustard Seed? — generated from the recipe cards. */
 window.BOOK = [
 {
+"slug": "tender-and-good-rosemary-chuck-roast",
+"scripture": "Tender and Good Rosemary Chuck Roast",
+"dish": "Crock-Pot Chuck Roast with Rainbow Carrots, Mushrooms, and Green Beans",
+"cat": "Meats",
+"sub": "Beef",
+"photo": "assets/photos/tender-and-good-rosemary-chuck-roast.jpg",
+"subtitle": "My seared 3.6-pound chuck roast with red onion, little potatoes, rosemary, thyme, and a skillet-made broth",
+"status": "First batch in progress: final cooking time and vegetable texture not yet confirmed.",
+"verse": {
+"text": "And Avraham ran unto the herd, and fetched a calf tender and good, and gave it unto the servant; and he hastened to dress it.",
+"ref": "B'reshit 18:7",
+"url": "https://dvaryahuah.org/%D7%94%D7%93%D7%91%D7%A8-%D7%93%D7%91%D7%A8-%D7%99%D7%94%D7%95%D7%94/hatorah-%D7%94%D7%AA%D7%95%D7%A8%D7%94/genesis-%D7%91%D7%A8%D7%A9%D7%99%D7%AA/breshit-18-%D7%91%D7%A8%D7%A9%D7%99%D7%AA-%D7%99%D7%97/"
+},
+"servingsText": "About 6 servings (estimate; yield not yet confirmed)",
+"base": 6,
+"unit": "servings",
+"time": "Planned: 4 hours on HIGH, then 45 minutes with mushrooms and beans; allow longer until tender",
+"need": "Large slow cooker, heavy skillet, tongs, and a cutting board",
+"clean": "Beef follows this book's Leviticus 11 rules. Check beef broth and Worcestershire ingredients; see Clean-Eating Notes.",
+"source": "Alexis's own kitchen method, recorded October 23, 2026; first batch still cooking.",
+"extraMeta": {},
+"groups": [
+{
+"name": "Roast and vegetables",
+"note": "Potato bag size and mushroom and green-bean amounts were not measured. Keep those amounts to your preference; do not treat nutrition assumptions as the amounts actually used.",
+"items": [
+{"text": "About 3.6 lb beef chuck roast, thawed", "q": {"lo": 3.6, "hi": null, "kind": "wt", "f": 16, "uw": "lb", "rest": "beef chuck roast, thawed", "pre": "About "}, "n": {"cal": 3550, "fat": 245, "sat": 98, "carb": 0, "fiber": 0, "sugar": 0, "protein": 325, "sodium": 1050}},
+{"text": "Salt, black pepper, garlic powder (not garlic salt), and rosemary, to season the roast"},
+{"text": "1 red onion, cut into large pieces", "q": {"lo": 1, "hi": null, "kind": "each", "f": 1, "uw": "", "rest": "red onion, cut into large pieces", "pre": ""}, "n": {"cal": 60, "fat": 0.2, "sat": 0, "carb": 14, "fiber": 2.6, "sugar": 6.4, "protein": 1.7, "sodium": 6}},
+{"text": "About 4 large rainbow carrots (purple, orange, and yellow), cut into chunks", "q": {"lo": 4, "hi": null, "kind": "each", "f": 1, "uw": "", "rest": "large rainbow carrots (purple, orange, and yellow), cut into chunks", "pre": "About "}, "n": {"cal": 120, "fat": 0.7, "sat": 0.1, "carb": 28, "fiber": 8.4, "sugar": 14, "protein": 2.8, "sodium": 207}},
+{"text": "1 bag little yellow and red potatoes (bag weight not recorded); halve any larger ones", "n": {"cal": 525, "fat": 0.6, "sat": 0.2, "carb": 119, "fiber": 15, "sugar": 5.5, "protein": 13.6, "sodium": 41}},
+{"text": "Fresh rosemary and thyme sprigs, tucked among the roast and vegetables (amount not recorded)"},
+{"text": "Large white button mushrooms, cleaned and left whole or halved (amount not recorded)", "n": {"cal": 50, "fat": 0.8, "sat": 0.1, "carb": 7.4, "fiber": 2.3, "sugar": 4.5, "protein": 7, "sodium": 11}},
+{"text": "Fresh green beans, trimmed and cut into pieces (amount not recorded)", "n": {"cal": 105, "fat": 0.7, "sat": 0.2, "carb": 23.7, "fiber": 9.2, "sugar": 11, "protein": 6.2, "sodium": 20}}
+]
+},
+{
+"name": "Skillet broth",
+"items": [
+{"text": "2–2½ cups beef broth", "q": {"lo": 2, "hi": 2.5, "kind": "vol", "f": 48, "uw": "cups", "rest": "beef broth", "pre": ""}, "n": {"cal": 35, "fat": 1, "sat": 0.4, "carb": 2, "fiber": 0, "sugar": 0, "protein": 5, "sodium": 1800}},
+{"text": "1 heaping tablespoon tomato paste", "q": {"lo": 1, "hi": null, "kind": "vol", "f": 3, "uw": "tablespoon", "rest": "tomato paste (heaping measure)", "pre": ""}, "n": {"cal": 20, "fat": 0.1, "sat": 0, "carb": 4.5, "fiber": 1, "sugar": 3, "protein": 1, "sodium": 15}},
+{"text": "2–3 tablespoons Worcestershire sauce, checked for clean ingredients", "q": {"lo": 2, "hi": 3, "kind": "vol", "f": 3, "uw": "tablespoons", "rest": "Worcestershire sauce, checked for clean ingredients", "pre": ""}, "n": {"cal": 33, "fat": 0, "sat": 0, "carb": 8.3, "fiber": 0, "sugar": 4.2, "protein": 0, "sodium": 630}},
+{"text": "2 fresh rosemary sprigs and 1 fresh thyme sprig, for the skillet broth"},
+{"text": "Salt and black pepper, to taste"}
+]
+}
+],
+"sections": [
+{"title": "Before You Start", "steps": [
+{"text": "Drain any packaging juices from the thawed roast and pat it thoroughly dry with paper towels; do not rinse raw beef. Season all sides with salt, black pepper, garlic powder, and rosemary."},
+{"text": "Cut the red onion into large pieces and the rainbow carrots into chunks. Leave little potatoes whole; halve any larger ones. Save the mushrooms and trimmed, cut green beans for the end."}
+]},
+{"title": "Sear and Build the Broth", "steps": [
+{"text": "Heat a heavy skillet over medium-high to high heat until very hot, without letting it smoke excessively. Sear the roast for about 3–4 minutes per broad side, until it has a deeply browned crust. Use tongs and watch for hot splatters."},
+{"text": "Transfer the roast to the slow cooker. Arrange the red onion around it, with some tucked underneath, then add the carrots and potatoes. Tuck fresh rosemary and thyme among the meat and vegetables."},
+{"text": "Carefully pour the 2–2½ cups beef broth into the hot skillet. Scrape up the browned bits with a wooden spoon; keep your face and hands back from the rising steam."},
+{"text": "Stir the heaping tablespoon of tomato paste and 2–3 tablespoons Worcestershire into the broth. Add 2 rosemary sprigs, 1 thyme sprig, and salt and pepper to taste. Bring to a gentle simmer, stirring until the paste is dispersed; let the flavors mingle. The original simmer time was not measured."},
+{"text": "Carefully pour the skillet broth over the roast and vegetables. Cover the slow cooker with its lid."}
+]},
+{"title": "Slow Cook and Finish", "steps": [
+{"text": "Cook on HIGH for 4 hours before checking the roast. This is the first checkpoint, not a guaranteed finish time; keep the lid on between checks.", "timer": 240},
+{"text": "Check with a fork: the roast should be nearly tender before the late vegetables go in. If it is still firm, continue on HIGH and hold the mushrooms and green beans back."},
+{"text": "When the roast is nearly tender, add the whole or halved mushrooms and cut fresh green beans around it, settling them into the hot juices as space allows. Cover and cook on HIGH for a planned final 45 minutes, then check their texture.", "timer": 45, "tip": "The original plan was 4 hours plus 45 minutes. Final timing and vegetable texture have not yet been confirmed for this batch."},
+{"text": "Finish when the beef pulls apart easily with a fork and the potatoes and carrots are tender. Check the beans for the bite you prefer. If the vegetables finish before the meat, lift them out and keep cooking the roast rather than letting them turn mushy."},
+{"text": "Switch off the slow cooker and lift the lid away from your face. Remove the woody herb stems, transfer the roast and vegetables to a platter, and spoon the cooking juices over them."}
+]}
+],
+"notes": [
+{"title": "My Kitchen Notes", "items": [
+{"t": "li", "text": "This is the method I actually put in the Crock-Pot, not a claim that the first batch is already finished. Confirm the final time and green-bean texture after cooking."},
+{"t": "li", "text": "I used rosemary and thyme sprigs from a fresh poultry-herb pack and removed the third herb. This recipe does not call for dried poultry seasoning."},
+{"t": "li", "text": "I simmered the broth in the searing skillet with the browned bits, tomato paste, Worcestershire, and extra herb sprigs before pouring it over the roast."},
+{"t": "li", "text": "Keep the white mushrooms substantial: small ones whole, large ones halved rather than thinly sliced. The mushrooms and fresh beans are late additions, not all-day vegetables."},
+{"t": "li", "text": "The original batch did not record an added searing fat, exact vegetable bag weights, or seasoning measurements. Those details have not been invented."}
+]},
+{"title": "Clean-Eating Notes", "items": [
+{"t": "li", "text": "Check beef broth and Worcestershire for ingredients that do not fit the book's Leviticus 11 rules. If you cannot find a suitable Worcestershire, use an equal amount of a clean soy sauce or tamari as a flavor alternative; it will taste different. Choose coconut-free products for our home."}
+]}
+],
+"nutritionNote": "Rough planning estimate, not measured nutrition for this batch. Assumes 6 servings, the whole 3.6 lb raw chuck roast including its fat, one 150 g red onion, about 300 g carrots, a 1½ lb potato bag, 8 oz mushrooms, 12 oz green beans, 2¼ cups broth, about 1¼ tablespoons tomato paste, and 2½ tablespoons Worcestershire. Potato, mushroom, and bean weights were NOT recorded; these are assumptions for the calculator only. Counts all cooking liquid and beef fat; excludes to-taste salt, herbs, and garlic powder. Actual portions, chuck fat content, broth brand, and quantities can change these numbers substantially.",
+"story": {
+"title": "The Mushrooms Can Wait",
+"lede": "I want a pot roast, not a pot full of tiny, funky mushrooms and squishy green beans.",
+"paras": [
+"I started with a chuck roast that was about 3.6 pounds. Patted it dry, seasoned it with salt, pepper, garlic powder, and rosemary, and put it into a super-hot skillet. Three or four minutes on each side, long enough to build that crispy outside. Then I plucked it out and put it right into the Crock-Pot.",
+"The red onion went around it, with a little underneath. Then came my colorful carrots: purple, orange, and yellow. I like those. A bag of the little yellow and red potatoes went in too.",
+"I got the rosemary and thyme out of a poultry-herb pack and took the other herb out. The rosemary and thyme got poked down in there, around the roast and vegetables. Those were the ones I wanted.",
+"And I wasn't leaving all those little brown bits in the skillet. In went the beef broth, a heaping tablespoon of tomato paste, probably two or three tablespoons of Worcestershire, salt, pepper, two rosemary sprigs, and a sprig of thyme. I let that simmer, then poured the whole thing into the pot and put the lid on.",
+"Now it's on HIGH. My plan is four hours, then the big white mushrooms and fresh green beans for the last forty-five minutes. The mushrooms can wait. The beans can wait. I want them in my dinner, but I do not want them all squishy. How long this roast actually takes? That part of the story is still in the Crock-Pot."
+],
+"sign": "Alexis"
+},
+"downloads": []
+},
+{
 "slug": "manna-in-the-morning",
 "scripture": "Manna in the Morning",
 "dish": "Brown Sugar Shaken Espresso",

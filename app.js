@@ -42,7 +42,7 @@
       <p class="bl-tr">Barukḥ Atah <bdi lang="he">יהוה</bdi>, Eloheinu, Melekḥ HaOlam, hamotzi lekḥem min ha’aretz, v’hotzi Yeshua HaMashi'akḥ min ha'she’ol.</p>
       <p class="bl-en">Blessed are You, O <bdi lang="he">יהוה</bdi> our Elohim, King of the Universe, who brings forth bread from the earth, and who brought forth Messiah Yeshua from the grave.</p>
     </div>`;
-  const NEWEST = "through-the-fire"; // update this whenever a new recipe is added
+  const NEWEST = "tender-and-good-rosemary-chuck-roast"; // update this whenever a new recipe is added
   const dietsOf = slug => DIETS.filter(d => d.slugs.includes(slug)).map(d => d.title);
 
   // ---------------- nutrition helpers ----------------
@@ -866,7 +866,7 @@
     ["skip", /^water\b/],
     ["Coffee", /nespresso|brewed coffee|sweetener/],
     ["Frozen", /tots|cool whip|puff pastry|phyllo|^ice\b/],
-    ["Canned and Jarred", /broth|stock\b|diced tomatoes|tomato sauce|(black|pinto|kidney) beans|sun-dried|condensed milk|preserves|fig spread/],
+    ["Canned and Jarred", /^(?!.*sprig).*broth|stock\b|diced tomatoes|tomato sauce|tomato paste|(black|pinto|kidney) beans|sun-dried|condensed milk|preserves|fig spread/],
     ["Oils", /grease|olive oil|\boil\b/],
     ["Sauces and Condiments", /ketchup|mustard|worcestershire|hot sauce|chili sauce|vinegar|balsamic|dressing|remoulade|ranch|pickled/],
     ["Meat", /beef|bison|chicken|turkey|sausage|brisket|bacon/],
@@ -875,7 +875,7 @@
     ["Baking and Sweets", /flour|sugar|honey|maple|pudding|wafers|crackers|caramel|vanilla/],
     ["Pasta, Rice and Grains", /pasta|farfalle|noodles|rice/],
     ["Bread and Bakery", /\bbuns?\b|rolls|bread/],
-    ["Vegetables and Fruit", /onion|garlic|potato|tomato|pepper|jalape|kale|spinach|lettuce|cilantro|dill|thyme|lime|lemon|orange|pineapple|avocado|cucumber|zucchini|broccoli|corn|brussels|banana|pomegranate|vegetables/]
+    ["Vegetables and Fruit", /onion|garlic|potato|tomato|pepper|jalape|kale|spinach|lettuce|cilantro|dill|thyme|rosemary|carrot|mushroom|green beans|lime|lemon|orange|pineapple|avocado|cucumber|zucchini|broccoli|corn|brussels|banana|pomegranate|vegetables/]
   ];
   const AISLE_ORDER = ["Meat", "Dairy and Eggs", "Vegetables and Fruit", "Bread and Bakery", "Pasta, Rice and Grains", "Canned and Jarred", "Sauces and Condiments", "Spices and Seasonings", "Oils", "Baking and Sweets", "Frozen", "Coffee", "Everything Else"];
   const aisleOf = name => { const n = name.toLowerCase().replace(/\([^)]*\)/g, " ").trim(); const a = AISLES.find(([, re]) => re.test(n)); return a ? a[0] : "Everything Else"; };
