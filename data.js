@@ -7,7 +7,7 @@ window.BOOK = [
 "cat": "Meats",
 "sub": "Beef",
 "photo": "assets/photos/tender-and-good-rosemary-chuck-roast.jpg",
-"subtitle": "My seared 3.6-pound chuck roast with red onion, little potatoes, rosemary, thyme, and a skillet-made broth",
+"subtitle": "My seared 3.5-pound chuck roast with red onion, little potatoes, rosemary, thyme, and a skillet-made broth",
 "status": "First batch in progress: final cooking time and vegetable texture not yet confirmed.",
 "verse": {
 "text": "And Avraham ran unto the herd, and fetched a calf tender and good, and gave it unto the servant; and he hastened to dress it.",
@@ -27,7 +27,7 @@ window.BOOK = [
 "name": "Roast and vegetables",
 "note": "Potato bag size and mushroom and green-bean amounts were not measured. Keep those amounts to your preference; do not treat nutrition assumptions as the amounts actually used.",
 "items": [
-{"text": "About 3.6 lb beef chuck roast, thawed", "q": {"lo": 3.6, "hi": null, "kind": "wt", "f": 16, "uw": "lb", "rest": "beef chuck roast, thawed", "pre": "About "}, "n": {"cal": 3550, "fat": 245, "sat": 98, "carb": 0, "fiber": 0, "sugar": 0, "protein": 325, "sodium": 1050}},
+{"text": "3.5 lb beef chuck roast, thawed", "q": {"lo": 3.5, "hi": null, "kind": "wt", "f": 16, "uw": "lb", "rest": "beef chuck roast, thawed", "pre": ""}, "n": {"cal": 3450, "fat": 238, "sat": 95, "carb": 0, "fiber": 0, "sugar": 0, "protein": 316, "sodium": 1020}},
 {"text": "Salt, black pepper, garlic powder (not garlic salt), and rosemary, to season the roast"},
 {"text": "1 red onion, cut into large pieces", "q": {"lo": 1, "hi": null, "kind": "each", "f": 1, "uw": "", "rest": "red onion, cut into large pieces", "pre": ""}, "n": {"cal": 60, "fat": 0.2, "sat": 0, "carb": 14, "fiber": 2.6, "sugar": 6.4, "protein": 1.7, "sodium": 6}},
 {"text": "About 4 large rainbow carrots (purple, orange, and yellow), cut into chunks", "q": {"lo": 4, "hi": null, "kind": "each", "f": 1, "uw": "", "rest": "large rainbow carrots (purple, orange, and yellow), cut into chunks", "pre": "About "}, "n": {"cal": 120, "fat": 0.7, "sat": 0.1, "carb": 28, "fiber": 8.4, "sugar": 14, "protein": 2.8, "sodium": 207}},
@@ -51,6 +51,7 @@ window.BOOK = [
 "sections": [
 {"title": "Before You Start", "steps": [
 {"text": "Drain any packaging juices from the thawed roast and pat it thoroughly dry with paper towels; do not rinse raw beef. Season all sides with salt, black pepper, garlic powder, and rosemary."},
+{"text": "Leave the seasoned roast on a plate on the counter, loosely covered, until it comes to room temperature before searing, about 30–60 minutes. It should no longer feel refrigerator-cold on the outside. This is important: a room-temperature roast sears more evenly, just like a steak.", "tip": "Food safety: do not leave raw beef out longer than 2 hours total (1 hour if your kitchen is above 90°F)."},
 {"text": "Cut the red onion into large pieces and the rainbow carrots into chunks. Leave little potatoes whole; halve any larger ones. Save the mushrooms and trimmed, cut green beans for the end."}
 ]},
 {"title": "Sear and Build the Broth", "steps": [
@@ -71,6 +72,7 @@ window.BOOK = [
 "notes": [
 {"title": "My Kitchen Notes", "items": [
 {"t": "li", "text": "This is the method I actually put in the Crock-Pot, not a claim that the first batch is already finished. Confirm the final time and green-bean texture after cooking."},
+{"t": "li", "text": "Season the roast and let it come to room temperature before it ever touches the skillet. Just like with any steak, that matters."},
 {"t": "li", "text": "I used rosemary and thyme sprigs from a fresh poultry-herb pack and removed the third herb. This recipe does not call for dried poultry seasoning."},
 {"t": "li", "text": "I simmered the broth in the searing skillet with the browned bits, tomato paste, Worcestershire, and extra herb sprigs before pouring it over the roast."},
 {"t": "li", "text": "Keep the white mushrooms substantial: small ones whole, large ones halved rather than thinly sliced. The mushrooms and fresh beans are late additions, not all-day vegetables."},
@@ -80,12 +82,12 @@ window.BOOK = [
 {"t": "li", "text": "Check beef broth and Worcestershire for ingredients that do not fit the book's Leviticus 11 rules. If you cannot find a suitable Worcestershire, use an equal amount of a clean soy sauce or tamari as a flavor alternative; it will taste different. Choose coconut-free products for our home."}
 ]}
 ],
-"nutritionNote": "Rough planning estimate, not measured nutrition for this batch. Assumes 6 servings, the whole 3.6 lb raw chuck roast including its fat, one 150 g red onion, about 300 g carrots, a 1½ lb potato bag, 8 oz mushrooms, 12 oz green beans, 2¼ cups broth, about 1¼ tablespoons tomato paste, and 2½ tablespoons Worcestershire. Potato, mushroom, and bean weights were NOT recorded; these are assumptions for the calculator only. Counts all cooking liquid and beef fat; excludes to-taste salt, herbs, and garlic powder. Actual portions, chuck fat content, broth brand, and quantities can change these numbers substantially.",
+"nutritionNote": "Rough planning estimate, not measured nutrition for this batch. Assumes 6 servings, the whole 3.5 lb raw chuck roast including its fat, one 150 g red onion, about 300 g carrots, a 1½ lb potato bag, 8 oz mushrooms, 12 oz green beans, 2¼ cups broth, about 1¼ tablespoons tomato paste, and 2½ tablespoons Worcestershire. Potato, mushroom, and bean weights were NOT recorded; these are assumptions for the calculator only. Counts all cooking liquid and beef fat; excludes to-taste salt, herbs, and garlic powder. Actual portions, chuck fat content, broth brand, and quantities can change these numbers substantially.",
 "story": {
 "title": "The Mushrooms Can Wait",
 "lede": "I want a pot roast, not a pot full of tiny, funky mushrooms and squishy green beans.",
 "paras": [
-"I started with a chuck roast that was about 3.6 pounds. Patted it dry, seasoned it with salt, pepper, garlic powder, and rosemary, and put it into a super-hot skillet. Three or four minutes on each side, long enough to build that crispy outside. Then I plucked it out and put it right into the Crock-Pot.",
+"I started with a chuck roast, about 3.5 pounds. Patted it dry and seasoned it with salt, pepper, garlic powder, and rosemary. Seasoned roast sits until it's room temperature before it ever hits the pan, just like any steak. That part is important. Then it went into a super-hot skillet. Three or four minutes on each side, long enough to build that crispy outside. Then I plucked it out and put it right into the Crock-Pot.",
 "The red onion went around it, with a little underneath. Then came my colorful carrots: purple, orange, and yellow. I like those. A bag of the little yellow and red potatoes went in too.",
 "I got the rosemary and thyme out of a poultry-herb pack and took the other herb out. The rosemary and thyme got poked down in there, around the roast and vegetables. Those were the ones I wanted.",
 "And I wasn't leaving all those little brown bits in the skillet. In went the beef broth, a heaping tablespoon of tomato paste, probably two or three tablespoons of Worcestershire, salt, pepper, two rosemary sprigs, and a sprig of thyme. I let that simmer, then poured the whole thing into the pot and put the lid on.",
