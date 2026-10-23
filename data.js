@@ -32,7 +32,7 @@ window.BOOK = [
 {"text": "1 red onion, cut into large pieces", "q": {"lo": 1, "hi": null, "kind": "each", "f": 1, "uw": "", "rest": "red onion, cut into large pieces", "pre": ""}, "n": {"cal": 60, "fat": 0.2, "sat": 0, "carb": 14, "fiber": 2.6, "sugar": 6.4, "protein": 1.7, "sodium": 6}},
 {"text": "About 4 large rainbow carrots (purple, orange, and yellow), cut into chunks", "q": {"lo": 4, "hi": null, "kind": "each", "f": 1, "uw": "", "rest": "large rainbow carrots (purple, orange, and yellow), cut into chunks", "pre": "About "}, "n": {"cal": 120, "fat": 0.7, "sat": 0.1, "carb": 28, "fiber": 8.4, "sugar": 14, "protein": 2.8, "sodium": 207}},
 {"text": "1 bag little yellow and red potatoes (bag weight not recorded); halve any larger ones", "n": {"cal": 525, "fat": 0.6, "sat": 0.2, "carb": 119, "fiber": 15, "sugar": 5.5, "protein": 13.6, "sodium": 41}},
-{"text": "Fresh rosemary and thyme sprigs, tucked among the roast and vegetables (amount not recorded)"},
+{"text": "3 fresh rosemary sprigs and 3 fresh thyme sprigs, for the Crock-Pot"},
 {"text": "Large white button mushrooms, cleaned and left whole or halved (amount not recorded)", "n": {"cal": 50, "fat": 0.8, "sat": 0.1, "carb": 7.4, "fiber": 2.3, "sugar": 4.5, "protein": 7, "sodium": 11}},
 {"text": "Fresh green beans, trimmed and cut into pieces (amount not recorded)", "n": {"cal": 105, "fat": 0.7, "sat": 0.2, "carb": 23.7, "fiber": 9.2, "sugar": 11, "protein": 6.2, "sodium": 20}}
 ]
@@ -43,20 +43,23 @@ window.BOOK = [
 {"text": "2–2½ cups beef broth", "q": {"lo": 2, "hi": 2.5, "kind": "vol", "f": 48, "uw": "cups", "rest": "beef broth", "pre": ""}, "n": {"cal": 35, "fat": 1, "sat": 0.4, "carb": 2, "fiber": 0, "sugar": 0, "protein": 5, "sodium": 1800}},
 {"text": "1 heaping tablespoon tomato paste", "q": {"lo": 1, "hi": null, "kind": "vol", "f": 3, "uw": "tablespoon", "rest": "tomato paste (heaping measure)", "pre": ""}, "n": {"cal": 20, "fat": 0.1, "sat": 0, "carb": 4.5, "fiber": 1, "sugar": 3, "protein": 1, "sodium": 15}},
 {"text": "2–3 tablespoons Worcestershire sauce, checked for clean ingredients", "q": {"lo": 2, "hi": 3, "kind": "vol", "f": 3, "uw": "tablespoons", "rest": "Worcestershire sauce, checked for clean ingredients", "pre": ""}, "n": {"cal": 33, "fat": 0, "sat": 0, "carb": 8.3, "fiber": 0, "sugar": 4.2, "protein": 0, "sodium": 630}},
-{"text": "2 fresh rosemary sprigs and 1 fresh thyme sprig, for the skillet broth"},
+{"text": "2 fresh rosemary sprigs and 1 fresh thyme sprig, for the skillet broth (5 rosemary and 4 thyme sprigs total)"},
 {"text": "Salt and black pepper, to taste"}
 ]
 }
 ],
 "sections": [
 {"title": "Before You Start", "steps": [
-{"text": "Drain any packaging juices from the thawed roast and pat it thoroughly dry with paper towels; do not rinse raw beef. Season all sides with salt, black pepper, garlic powder, and rosemary."},
+{"text": "Set the thawed roast in a clean sink and pour off the blood and packaging juices."},
+{"text": "Rinse the roast under cool running water, keeping the stream low so it doesn't splash.", "tip": "Raw-meat juices can spray onto nearby surfaces. Afterward, clear the area around the sink and wash the sink, faucet, and counter with hot, soapy water."},
+{"text": "Move the roast to a cutting board and pat it thoroughly dry on all sides with paper towels. A dry surface is what gives you a good crust."},
+{"text": "Season all sides with salt, black pepper, garlic powder, and rosemary."},
 {"text": "Leave the seasoned roast on a plate on the counter, loosely covered, until it comes to room temperature before searing, about 30–60 minutes. It should no longer feel refrigerator-cold on the outside. This is important: a room-temperature roast sears more evenly, just like a steak.", "tip": "Food safety: do not leave raw beef out longer than 2 hours total (1 hour if your kitchen is above 90°F)."},
 {"text": "Cut the red onion into large pieces and the rainbow carrots into chunks. Leave little potatoes whole; halve any larger ones. Save the mushrooms and trimmed, cut green beans for the end."}
 ]},
 {"title": "Sear and Build the Broth", "steps": [
 {"text": "Heat a heavy skillet over medium-high to high heat until very hot, without letting it smoke excessively. Sear the roast for about 3–4 minutes per broad side, until it has a deeply browned crust. Use tongs and watch for hot splatters."},
-{"text": "Transfer the roast to the slow cooker. Arrange the red onion around it, with some tucked underneath, then add the carrots and potatoes. Tuck fresh rosemary and thyme among the meat and vegetables."},
+{"text": "Transfer the roast to the slow cooker. Arrange the red onion around it, with some tucked underneath, then add the carrots and potatoes. Tuck 3 rosemary sprigs and 3 thyme sprigs among the meat and vegetables. Set the remaining 2 rosemary sprigs and 1 thyme sprig aside for the skillet broth."},
 {"text": "Carefully pour the 2–2½ cups beef broth into the hot skillet. Scrape up the browned bits with a wooden spoon; keep your face and hands back from the rising steam."},
 {"text": "Stir the heaping tablespoon of tomato paste and 2–3 tablespoons Worcestershire into the broth. Add 2 rosemary sprigs, 1 thyme sprig, and salt and pepper to taste. Bring to a gentle simmer, stirring until the paste is dispersed; let the flavors mingle. The original simmer time was not measured."},
 {"text": "Carefully pour the skillet broth over the roast and vegetables. Cover the slow cooker with its lid."}
@@ -87,9 +90,9 @@ window.BOOK = [
 "title": "The Mushrooms Can Wait",
 "lede": "I want a pot roast, not a pot full of tiny, funky mushrooms and squishy green beans.",
 "paras": [
-"I started with a chuck roast, about 3.5 pounds. Patted it dry and seasoned it with salt, pepper, garlic powder, and rosemary. Seasoned roast sits until it's room temperature before it ever hits the pan, just like any steak. That part is important. Then it went into a super-hot skillet. Three or four minutes on each side, long enough to build that crispy outside. Then I plucked it out and put it right into the Crock-Pot.",
+"I started with a chuck roast, about 3.5 pounds. Drained the blood off, rinsed it, threw it on a cutting board, patted it dry, and seasoned it with salt, pepper, garlic powder, and rosemary. Seasoned roast sits until it's room temperature before it ever hits the pan, just like any steak. That part is important. Then it went into a super-hot skillet. Three or four minutes on each side, long enough to build that crispy outside. Then I plucked it out and put it right into the Crock-Pot.",
 "The red onion went around it, with a little underneath. Then came my colorful carrots: purple, orange, and yellow. I like those. A bag of the little yellow and red potatoes went in too.",
-"I got the rosemary and thyme out of a poultry-herb pack and took the other herb out. The rosemary and thyme got poked down in there, around the roast and vegetables. Those were the ones I wanted.",
+"I got the rosemary and thyme out of a poultry-herb pack and took the other herb out. Three rosemary sprigs and three thyme sprigs got poked down in there, around the roast and vegetables. Those were the ones I wanted.",
 "And I wasn't leaving all those little brown bits in the skillet. In went the beef broth, a heaping tablespoon of tomato paste, probably two or three tablespoons of Worcestershire, salt, pepper, two rosemary sprigs, and a sprig of thyme. I let that simmer, then poured the whole thing into the pot and put the lid on.",
 "Now it's on HIGH. My plan is four hours, then the big white mushrooms and fresh green beans for the last forty-five minutes. The mushrooms can wait. The beans can wait. I want them in my dinner, but I do not want them all squishy. How long this roast actually takes? That part of the story is still in the Crock-Pot."
 ],
