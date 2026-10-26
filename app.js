@@ -868,7 +868,7 @@
     ["Frozen", /tots|cool whip|puff pastry|phyllo|^ice\b/],
     ["Canned and Jarred", /^(?!.*sprig).*broth|stock\b|diced tomatoes|tomato sauce|tomato paste|(black|pinto|kidney) beans|sun-dried|condensed milk|preserves|fig spread/],
     ["Oils", /grease|olive oil|\boil\b/],
-    ["Sauces and Condiments", /ketchup|mustard|worcestershire|hot sauce|chili sauce|vinegar|balsamic|dressing|remoulade|ranch|pickled/],
+    ["Sauces and Condiments", /ketchup|mustard|worcestershire|hot sauce|chili sauce|vinegar|balsamic|dressing|remoulade|ranch|pickled|bbq sauce/],
     ["Meat", /beef|bison|chicken|turkey|sausage|brisket|bacon/],
     ["Dairy and Eggs", /cheese|parmesan|mozzarella|ricotta|feta|cream|butter|milk|yogurt|\beggs?\b/],
     ["Spices and Seasonings", /salt|black pepper|pepper flakes|paprika|cayenne|chili powder|chili flakes|garlic powder|onion powder|seasoning|dried basil|dried parsley|basil or parsley|mrs\.? dash|cinnamon|sesame seeds|\brub\b|bay lea/],
