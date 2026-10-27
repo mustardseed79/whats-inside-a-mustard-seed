@@ -13,7 +13,7 @@
   const CATS = [
     { id: "Coffee", title: "Coffee" },
     { id: "Alcoholic Drinks", title: "Alcoholic Drinks" },
-    { id: "Mocktails", title: "Mocktails (Kid-Friendly)" },
+    { id: "Mocktails", title: "Mocktails", blurb: "Every non-alcoholic and kid-friendly drink in the book, for the kids and for anyone skipping the alcohol." },
     { id: "Meats", title: "Meats", subs: ["Beef", "Bison", "Chicken"],
       empty: ["Lamb", "Goat", "Venison", "Turkey", "Duck and Goose", "Dove", "Quail", "Chukar", "Fish", "Meatless"] },
     { id: "Soups", title: "Soups" },
@@ -172,7 +172,7 @@
           body += `<ul class="toc-list">${list.map(recipeRow).join("")}</ul>`;
         });
       }
-      out.push(`<section class="toc-cat" id="cat-${c.id}"><h2>${c.title}</h2>${body}</section>`);
+      out.push(`<section class="toc-cat" id="cat-${c.id}"><h2>${c.title}</h2>${c.blurb ? `<p class="diet-blurb">${c.blurb}</p>` : ""}${body}</section>`);
     });
     // Ways of eating
     const dietBlocks = DIETS.filter(d => want(d.id)).map(d => {
