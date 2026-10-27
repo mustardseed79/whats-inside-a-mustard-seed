@@ -12,6 +12,7 @@
   // ---------------- Table of contents structure ----------------
   const CATS = [
     { id: "Coffee", title: "Coffee" },
+    { id: "Alcoholic Drinks", title: "Alcoholic Drinks" },
     { id: "Meats", title: "Meats", subs: ["Beef", "Bison", "Chicken"],
       empty: ["Lamb", "Goat", "Venison", "Turkey", "Duck and Goose", "Dove", "Quail", "Chukar", "Fish", "Meatless"] },
     { id: "Soups", title: "Soups" },
