@@ -14,6 +14,7 @@
     { id: "Coffee", title: "Coffee" },
     { id: "Alcoholic Drinks", title: "Alcoholic Drinks" },
     { id: "Mocktails", title: "Mocktails", blurb: "Every non-alcoholic and kid-friendly drink in the book, for the kids and for anyone skipping the alcohol." },
+    { id: "Breakfast", title: "Breakfast and Brunch" },
     { id: "Meats", title: "Meats", subs: ["Beef", "Bison", "Chicken"],
       empty: ["Lamb", "Goat", "Venison", "Turkey", "Duck and Goose", "Dove", "Quail", "Chukar", "Fish", "Meatless"] },
     { id: "Soups", title: "Soups" },
@@ -32,7 +33,7 @@
   // Quick finders on the home page. Lists are hand-picked from each card's stated time and servings.
   const FINDERS = [
     { id: "quick", title: "Quick Meals", note: "45 minutes or less", blurb: "Recipes with a stated total time of 45 minutes or less, plus the coffee drinks.",
-      slugs: ["manna-in-the-morning", "morning-by-morning", "my-cup-overflows", "heritage", "with-joy", "banner-of-love", "every-bitter-thing-is-sweet", "satisfy-every-living-thing", "food-for-her-household", "come-here-and-eat"] },
+      slugs: ["manna-in-the-morning", "morning-by-morning", "if-he-should-ask-for-an-egg", "my-cup-overflows", "heritage", "with-joy", "banner-of-love", "every-bitter-thing-is-sweet", "satisfy-every-living-thing", "food-for-her-household", "come-here-and-eat"] },
     { id: "crowd", title: "Feeds a Crowd", note: "10 or more servings", blurb: "Big batches for family gatherings, potlucks, and feast days.",
       slugs: ["a-portion-for-seven", "savory-food-such-as-i-love", "answer-me-speedily", "wait-patiently", "food-for-her-household", "taste-and-see", "rejoice-seven-days"] },
     { id: "ahead", title: "Make Ahead", note: "Prep early, serve later", blurb: "Recipes that chill, slow cook, or rest, so most of the work is done before guests arrive.",
@@ -972,7 +973,7 @@
     return AISLE_ORDER.map(a => ({ aisle: a, items: lines.filter(l => l.aisle === a).sort((x, y) => x.name.localeCompare(y.name)) })).filter(g => g.items.length);
   }
   // breakfast-y categories first in the breakfast menu, drinks and snacks first in the snack menu
-  const SLOT_FIRST = { breakfast: ["Coffee"], lunch: [], dinner: [], snacks: ["Snacks", "Desserts", "Coffee", "Sauces"] };
+  const SLOT_FIRST = { breakfast: ["Breakfast", "Coffee"], lunch: [], dinner: [], snacks: ["Snacks", "Desserts", "Coffee", "Sauces"] };
   function recipeOptions(slot) {
     const first = SLOT_FIRST[slot] || [];
     const cats = [...CATS].sort((a, b) => { const ia = first.findIndex(x => x === a.id || x === a.title), ib = first.findIndex(x => x === b.id || x === b.title); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); });
