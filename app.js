@@ -45,7 +45,10 @@
       <p class="bl-tr">Barukḥ Atah <bdi lang="he">יהוה</bdi>, Eloheinu, Melekḥ HaOlam, hamotzi lekḥem min ha’aretz, v’hotzi Yeshua HaMashi'akḥ min ha'she’ol.</p>
       <p class="bl-en">Blessed are You, O <bdi lang="he">יהוה</bdi> our Elohim, King of the Universe, who brings forth bread from the earth, and who brought forth Messiah Yeshua from the grave.</p>
     </div>`;
-  const NEWEST = "of-all-clean-winged-things-little-chickies"; // update this whenever a new recipe is added
+  // Newest recipes on the front page update automatically from each recipe's "added" date
+  // (same-day ties: the one added later in data.js wins). Every new recipe needs an "added" date.
+  const NEWEST = BOOK.map((r, i) => ({ r, i })).filter(x => x.r.added && x.r.cat !== "Feasts")
+    .sort((a, b) => (b.r.added.localeCompare(a.r.added)) || (b.i - a.i)).slice(0, 3).map(x => x.r);
   const dietsOf = slug => DIETS.filter(d => d.slugs.includes(slug)).map(d => d.title);
 
   // ---------------- nutrition helpers ----------------
@@ -123,7 +126,7 @@
           <h3 class="bl-h">HaMotzi</h3>
           ${HAMOTZI}
         </details>
-        ${BY[NEWEST] ? `<div class="newest"><p class="eyebrow">Newest recipe</p><ul class="toc-list">${recipeRow(BY[NEWEST])}</ul></div>` : ""}
+        ${NEWEST.length ? `<div class="newest"><p class="eyebrow">${NEWEST.length > 1 ? "Newest recipes" : "Newest recipe"}</p><ul class="toc-list">${NEWEST.map(recipeRow).join("")}</ul></div>` : ""}
         <a class="plan-cta" href="#/plan"><span class="qf-t">Weekly Meal Plan</span><span class="qf-n">Plan breakfast, lunch, dinner, and snacks, see each day's nutrition, and get a shopping list sorted by store section</span></a>
         <h3 class="qf-h">Quick finders</h3>
         <div class="qf" role="group" aria-label="Quick finders">${FINDERS.map(f => `<button type="button" class="qf-btn fchip-like" data-cat="${f.id}" aria-pressed="${home.cat === f.id}"><span class="qf-t">${f.title}</span><span class="qf-n">${f.note} · ${f.slugs.filter(x => BY[x]).length} recipes</span></button>`).join("")}</div>
