@@ -15,6 +15,7 @@
     { id: "Alcoholic Drinks", title: "Alcoholic Drinks" },
     { id: "Mocktails", title: "Mocktails", blurb: "Every non-alcoholic and kid-friendly drink in the book, for the kids and for anyone skipping the alcohol." },
     { id: "Breakfast", title: "Breakfast and Brunch" },
+    { id: "Wine", title: "Wine", blurb: "The wines we've tried, with Alexis's rating, tasting notes, what to serve them with, and the story behind each bottle.", emptyNote: "Our first bottle is coming soon.", wine: true },
     { id: "Meats", title: "Meats", subs: ["Beef", "Bison", "Chicken"],
       empty: ["Lamb", "Goat", "Venison", "Turkey", "Duck and Goose", "Dove", "Quail", "Chukar", "Fish", "Meatless"] },
     { id: "Soups", title: "Soups" },
@@ -72,10 +73,21 @@
 
   // ---------------- HOME / TABLE OF CONTENTS ----------------
   const home = { q: "", cat: "all" };
+  const WINE_TYPES = ["Red", "White", "Rosé", "Sparkling", "Dessert"];
+  const stars = n => { const h = Math.round(n * 2) / 2, f = Math.floor(h); return "★".repeat(f) + (h > f ? "½" : "") + "☆".repeat(5 - Math.ceil(h)); };
   function recipeRow(r) {
     const ps = r.groups ? perServing(r) : null;
     const tags = dietsOf(r.slug);
     const meta = [];
+    if (r.type === "wine") {
+      const w = r.wine || {};
+      const m = [w.winery, w.grape, w.vintage].filter(Boolean).map(esc).join(" · ") + (w.rating ? ` · <span class="stars" aria-label="${w.rating} out of 5">${stars(w.rating)}</span>` : "");
+      return `<li><a class="toc-row" href="#/${r.slug}">
+      <img src="assets/thumbs/${r.slug}.jpg" alt="" loading="lazy" width="84" height="84">
+      <span class="toc-text"><span class="toc-scr">${esc(r.scripture)}</span><span class="toc-dish">${esc(r.dish)}</span>
+        <span class="toc-meta">${m}</span>${w.favorite ? `<span class="toc-tags"><span class="tag fav">Alexis's Favorite</span></span>` : ""}</span>
+      <span class="toc-ref">${esc(r.verse.ref)}</span></a></li>`;
+    }
     if (r.time) meta.push(esc(strip(r.time).replace(/\.$/, "")));
     if (r.servingsText) meta.push(esc(strip(r.servingsText)));
     return `<li><a class="toc-row" href="#/${r.slug}">
@@ -92,7 +104,7 @@
   function matches(r) {
     const q = home.q.trim().toLowerCase();
     if (!q) return true;
-    const hay = [r.scripture, r.dish, r.subtitle, r.cat, r.sub, r.verse && r.verse.ref, ...(r.groups || []).flatMap(g => g.items.map(i => i.text || (i.q && i.q.rest)))].map(strip).join(" ").toLowerCase();
+    const hay = [r.scripture, r.dish, r.subtitle, r.cat, r.sub, r.verse && r.verse.ref, ...(r.wine ? [r.wine.winery, r.wine.grape, r.wine.region] : []), ...(r.groups || []).flatMap(g => g.items.map(i => i.text || (i.q && i.q.rest)))].map(strip).join(" ").toLowerCase();
     return q.split(/\s+/).every(w => hay.includes(w));
   }
   function renderHome() {
@@ -170,7 +182,10 @@
         if (!home.q) body += `<p class="toc-empty">Folders waiting for recipes: ${c.empty.join(" · ")}</p>`;
       } else {
         const groups = {};
+        if (c.wine) WINE_TYPES.forEach(t => (groups[t] = []));
         rs.forEach(r => { (groups[r.sub || ""] = groups[r.sub || ""] || []).push(r); });
+        if (c.wine) Object.keys(groups).forEach(k => { if (!groups[k].length) delete groups[k]; else groups[k].sort((a, b) => (b.wine.favorite ? 1 : 0) - (a.wine.favorite ? 1 : 0) || (b.wine.rating || 0) - (a.wine.rating || 0)); });
+        if (!rs.length && c.emptyNote) body += `<p class="toc-empty">${c.emptyNote}</p>`;
         Object.entries(groups).forEach(([s, list]) => {
           if (s) body += `<h3 class="toc-sub">${s}</h3>`;
           body += `<ul class="toc-list">${list.map(recipeRow).join("")}</ul>`;
@@ -367,6 +382,7 @@
     $("#tb-toc").hidden = false;
     document.title = `${R.scripture} — ${R.dish} | What's Inside a Mustard Seed?`;
     if (R.type === "menu") return renderMenu();
+    if (R.type === "wine") return renderWine();
     KEY = "ms-book-" + R.slug;
     state = {
       servings: clamp(parseInt(params.get("servings"), 10) || R.base, minServ(), 99),
@@ -768,6 +784,44 @@
   window.addEventListener("afterprint", () => document.body.classList.remove("print-card"));
 
   // ---------------- FEAST MENU ----------------
+  function renderWine() {
+    state = null;
+    const w = R.wine || {};
+    const paras = a => (a || []).map(p => `<p>${p}</p>`).join("");
+    const fact = (k, v) => (v ? `<div><dt>${k}:</dt><dd>${v}</dd></div>` : "");
+    const pairs = (w.pairsWith || []).filter(x => BY[x]);
+    main.innerHTML = `
+    <article class="page wine-page">
+      <header class="masthead">
+        <div class="rule"></div>
+        <img class="emblem" src="assets/emblem.png" alt="What's Inside a Mustard Seed? emblem" width="120" height="120">
+        <p class="book"><a href="#/">What's Inside a Mustard Seed?</a></p>
+        <h1>${esc(R.scripture)}<span class="dish">${esc(R.dish)}</span></h1>
+        ${R.subtitle ? `<p class="subtitle">${R.subtitle}</p>` : ""}
+        ${w.rating ? `<p class="wine-rating"><span class="stars" aria-label="${w.rating} out of 5 stars">${stars(w.rating)}</span> <span>Alexis's rating: ${w.rating} of 5</span></p>` : ""}
+        ${w.favorite ? `<p class="status fav">Alexis's Favorite</p>` : ""}
+      </header>
+      <figure class="photo"><img src="${R.photo}" alt="${esc(R.dish)}"></figure>
+      <blockquote class="verse"><p>“${R.verse.text}”</p><cite>${esc(R.verse.ref)}, <a href="${R.verse.url}" target="_blank" rel="noopener">The Word of <span lang="he">יהוה</span></a></cite></blockquote>
+      <dl class="facts">
+        ${fact("Category", "Wine" + (R.sub ? " / " + esc(R.sub) : ""))}${fact("Winery", esc(w.winery))}${fact("Grape", esc(w.grape))}${fact("From", esc(w.region))}${fact("Vintage", esc(w.vintage))}
+        ${fact("Where we found it", esc(w.where))}${fact("Price", esc(w.price))}${fact("Serve at", esc(w.serve))}${fact("Kosher", esc(w.kosher))}
+      </dl>
+      ${w.tasting ? `<section class="block note-block"><h2>Tasting Note</h2>${paras(w.tasting)}</section>` : ""}
+      ${w.chef || pairs.length ? `<section class="block note-block"><h2>Chef's Note</h2>${paras(w.chef)}
+        ${pairs.length ? `<h3>From the book, try it with</h3><ul class="toc-list">${pairs.map(x => recipeRow(BY[x])).join("")}</ul>` : ""}</section>` : ""}
+      ${(R.notes || []).map(n => `<section class="block note-block"><h2>${n.title}</h2>${noteItems(n.items)}</section>`).join("")}
+      ${storyHTML(R)}
+      <section class="block export no-print"><div class="export-grid">
+        <button type="button" class="btn primary" id="print-wine">Print or save as PDF</button>
+        <button type="button" class="btn" id="share-wine">Share this wine</button></div></section>
+      <nav class="pager no-print"><span></span><a href="#/" class="pg mid">Table of Contents</a><span></span></nav>
+      <footer class="foot"><div class="rule"></div><p>What's Inside a Mustard Seed? • Wine${R.sub ? " • " + esc(R.sub) : ""}</p></footer>
+    </article>`;
+    $("#print-wine").onclick = () => printAs("full");
+    $("#share-wine").onclick = async () => { try { if (navigator.share) return await navigator.share({ title: `${R.scripture} — ${R.dish}`, url: location.href }); await navigator.clipboard.writeText(location.href); toast("Link copied"); } catch (e) {} };
+    window.scrollTo(0, 0);
+  }
   function renderMenu() {
     state = null;
     main.innerHTML = `

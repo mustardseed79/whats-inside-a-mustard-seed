@@ -428,3 +428,10 @@ h1 .dish { display: block; margin-top: 8px; font-size: .52em; font-weight: 600; 
 .ps-tips li { margin: 6px 0; }
 @media (max-width: 520px) { .ps-qrbox { flex-direction: column; text-align: center; } }
 .plan-incoming .btn.primary { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+
+/* Wine pages */
+.stars { color: var(--gold-ink); letter-spacing: 1px; }
+.wine-rating { margin: 8px 0 0; font-size: 15px; color: var(--muted); }
+.wine-rating .stars { font-size: 20px; margin-right: 4px; }
+.status.fav, .tag.fav { border-color: var(--gold); color: var(--gold-ink); font-style: normal; font-weight: 600; }
+.wine-page .note-block h3 { margin-top: 14px; }
