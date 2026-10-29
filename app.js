@@ -118,7 +118,7 @@
         <img class="emblem big" src="assets/emblem.png" alt="What's Inside a Mustard Seed? emblem" width="200" height="200">
         <h1 class="book-title">What's Inside a Mustard Seed?</h1>
         <p class="subtitle">Clean-eating recipes, each named from The Word of <span lang="he">יהוה</span></p>
-        <p class="home-count">${BOOK.length} pages · scale any recipe · check off steps · print a card</p>
+        <p class="home-count">${BOOK.length} pages · recipe tools · check off steps · print a card</p>
       </header>
       <section class="start no-print" aria-labelledby="start-h">
         <h2 id="start-h">Welcome to the Staton Family Kitchen</h2>
@@ -385,7 +385,7 @@
     if (R.type === "wine") return renderWine();
     KEY = "ms-book-" + R.slug;
     state = {
-      servings: clamp(parseInt(params.get("servings"), 10) || R.base, minServ(), 99),
+      servings: R.fixedBatch ? R.base : clamp(parseInt(params.get("servings"), 10) || R.base, minServ(), 99),
       mode: R.meat && params.get("mode") !== "servings" ? "meat" : "servings",
       lb: R.meat ? clamp(parseFloat(params.get("lb")) || R.meat.baseLb, R.meat.min, R.meat.max) : 0,
       units: params.get("units") === "metric" ? "metric" : "us",
@@ -502,6 +502,10 @@
     return text.replace(/\{\{(\w+)\}\}/g, (m, k) => (T[k] != null ? T[k] : m));
   }
   function renderScaleTool() {
+    if (R.fixedBatch) {
+      $("#scale-tool").innerHTML = `<span class="tool-label">One original batch</span><span>Jam ratios stay fixed</span><input id="servings" type="hidden" value="${R.base}">`;
+      return;
+    }
     const M = R.meat, meat = state.mode === "meat";
     const single = !(M && M.noSingle);
     const presets = meat ? (M.presets || [0.5, 1, 2, 3].map(x => Math.max(M.min, Math.round((M.baseLb * x) / M.step) * M.step))) : null;
@@ -531,7 +535,9 @@
     const n = servingsNow(), M = R.meat, unit = R.unit || "servings";
     const nr = Math.max(1, Math.round(n));
     let html = "";
-    if (M) {
+    if (R.fixedBatch) {
+      html = `<b>Make one batch at a time:</b> Keep the fruit, sugar, lemon juice, and pectin quantities as written. The estimate below uses ${nr} tablespoon-size portions, not ${nr} jars. Do not double the pot or scale this to one serving.`;
+    } else if (M) {
       const lb = M.baseLb * scale();
       const raw = (lb * 16) / n, cooked = raw * M.yield;
       html = `<b>Single portions:</b> ${state.mode === "meat" ? `${fmtW(lb, state.units)} of ${esc(M.name)} makes` : "This makes"} about ${nr} ${esc(unitN(nr))}${nr > 1 ? ", each" : ""} with about ${ozs(cooked)} cooked meat (${ozs(raw)} raw).${nr > 1 ? ` For single meals, divide it into ${nr} containers.` : ""}`;
@@ -662,7 +668,7 @@
   function renderCard() {
     const secs = visibleSections();
     const nIng = R.groups.filter(on).reduce((a, g) => a + g.items.filter(on).length, 0);
-    const ingFront = nIng <= 18;
+    const ingFront = !R.ingredientsOnBack && nIng <= 18;
     const ingBlock = `<div class="card-ing">${ingredientHTML(false)}</div>`;
     $("#card").innerHTML = `
       <section class="card-face front${ingFront ? "" : " photo-big"}">
@@ -704,7 +710,7 @@
       suppress = false;
     }
   }
-  function setServings(n) { state.servings = clamp(Math.round(n) || 1, minServ(), 99); update(); }
+  function setServings(n) { state.servings = R.fixedBatch ? R.base : clamp(Math.round(n) || 1, minServ(), 99); update(); }
   function bindRecipe() {
     $("#reset-steps").onclick = () => { state.done.clear(); store && store.removeItem(KEY + "-done"); renderSteps(); };
     $("#print-full").onclick = () => printAs("full");
