@@ -1,5 +1,140 @@
 /* What's Inside a Mustard Seed? — generated from the recipe cards. */
 window.BOOK = [
+{
+  "slug": "the-instruction-of-your-father-chickpea-hummus",
+  "added": "2026-10-29",
+  "scripture": "The Instruction of Your Father Chickpea Hummus",
+  "dish": "Dad's Hummus",
+  "cat": "Snacks",
+  "sub": null,
+  "photo": "assets/photos/the-instruction-of-your-father-chickpea-hummus.jpg",
+  "subtitle": "Dad's chickpea hummus with lemon, tahini, and his olive oil, pine nut, garlic, and paprika topping",
+  "verse": {
+    "text": "Hear, my son, the instruction of your father, and forsake not the teaching of your mother;",
+    "ref": "Mishlim 1:8",
+    "url": "https://theword.link/mishlim-template-2/"
+  },
+  "servingsText": "About 16 appetizer servings (estimated; final yield depends on water added)",
+  "base": 16,
+  "unit": "servings",
+  "time": "About 25–35 minutes, depending on how many chickpea skins you remove",
+  "need": "Colander, food processor, small skillet, spatula, and a serving bowl; blender or potato masher as a backup",
+  "clean": "The hummus and Dad's pine nut topping contain plant ingredients. Optional meat must be a clean protein; see Options.",
+  "source": "Alexis's dad's own hummus recipe, preserved from her Apple iCloud Notes screenshot shared October 29, 2026. Alexis confirmed regular-sized cans; listed here as standard 15 oz cans. Topping quantities were not specified in Dad's note.",
+  "extraMeta": {},
+  "groups": [
+    {
+      "name": "Hummus",
+      "note": "Dad's original quantities. Water is added only as needed, not all at once.",
+      "items": [
+        {"text": "4 standard (15 oz) cans chickpeas, drained and rinsed", "q": {"lo": 4, "hi": null, "kind": "each", "f": 1, "uw": "", "rest": "standard (15 oz) cans chickpeas, drained and rinsed", "pre": ""}, "n": {"cal": 1397, "fat": 25.3, "sat": 2.1, "carb": 231.7, "fiber": 63.8, "sugar": 40.5, "protein": 70.8, "sodium": 2145}},
+        {"text": "2 lemons, juiced; discard seeds", "q": {"lo": 2, "hi": null, "kind": "each", "f": 1, "uw": "", "rest": "lemons, juiced; discard seeds", "pre": ""}, "n": {"cal": 24, "fat": 0.2, "sat": 0, "carb": 8, "fiber": 0.3, "sugar": 3, "protein": 0.4, "sodium": 1}},
+        {"text": "2–3 cloves garlic, peeled", "q": {"lo": 2, "hi": 3, "kind": "each", "f": 1, "uw": "cloves", "rest": "garlic, peeled", "pre": ""}, "n": {"cal": 11, "fat": 0, "sat": 0, "carb": 2.5, "fiber": 0.2, "sugar": 0.1, "protein": 0.5, "sodium": 1}},
+        {"text": "6 tablespoons tahini", "q": {"lo": 6, "hi": null, "kind": "vol", "f": 3, "uw": "tablespoons", "rest": "tahini", "pre": ""}, "n": {"cal": 534, "fat": 48, "sat": 6.7, "carb": 19, "fiber": 8.4, "sugar": 0.4, "protein": 15.5, "sodium": 103}},
+        {"text": "1 tablespoon olive oil", "q": {"lo": 1, "hi": null, "kind": "vol", "f": 3, "uw": "tablespoon", "rest": "olive oil", "pre": ""}, "n": {"cal": 120, "fat": 14, "sat": 2, "carb": 0, "fiber": 0, "sugar": 0, "protein": 0, "sodium": 0}},
+        {"text": "½ teaspoon salt, then adjust to taste", "q": {"lo": 0.5, "hi": null, "kind": "vol", "f": 1, "uw": "teaspoon", "rest": "salt, then adjust to taste", "pre": ""}, "n": {"cal": 0, "fat": 0, "sat": 0, "carb": 0, "fiber": 0, "sugar": 0, "protein": 0, "sodium": 1160}},
+        {"text": "Up to ½ cup water, added a little at a time as needed", "q": {"lo": 0.5, "hi": null, "kind": "vol", "f": 48, "uw": "cup", "rest": "water, added a little at a time as needed", "pre": "Up to "}}
+      ]
+    },
+    {
+      "name": "Dad's topping (optional)",
+      "note": "Dad did not give amounts. Use as much as you like; use enough olive oil to coat the pine nuts and garlic in the skillet. This oil and garlic are extra, separate from the hummus quantities above.",
+      "items": [
+        {"text": "Olive oil, to taste"},
+        {"text": "Pine nuts, to taste"},
+        {"text": "Garlic, peeled and finely chopped, to taste"},
+        {"text": "Paprika, to taste"}
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Before You Start",
+      "steps": [
+        {"text": "Drain the chickpeas in a colander and rinse under cool running water."},
+        {"text": "Rub the chickpeas gently between your hands in a bowl of cool water to loosen the skins. Skim off the loose skins, then drain. Remove as many as practical; Dad does this for a smoother paste."},
+        {"text": "Juice the lemons and discard the seeds. Stir the tahini in its jar until any separated oil is mixed back in."}
+      ]
+    },
+    {
+      "title": "Make the Topping",
+      "steps": [
+        {"text": "Warm the topping olive oil in a small skillet over medium-low heat for about 30 seconds. It should flow easily, not smoke."},
+        {"text": "Add the pine nuts, chopped topping garlic, and paprika. Stir constantly for about 30–90 seconds, watching the nuts rather than the clock."},
+        {"text": "As soon as the pine nuts show their first light-brown patches, turn off the heat and scrape the topping into a heatproof bowl. Dad warns it will burn if left on the heat; the hot pan can keep browning it even after the burner is off."},
+        {"text": "Let the topping cool while you make the hummus. Treat the oil and bowl as hot."}
+      ]
+    },
+    {
+      "title": "Blend: Option A, Food Processor",
+      "steps": [
+        {"text": "Put the drained chickpeas, lemon juice, 2–3 garlic cloves, tahini, 1 tablespoon olive oil, and ½ teaspoon salt in the food processor. If your bowl is too small, divide every ingredient evenly and work in batches."},
+        {"text": "Secure the lid and process for 1 minute. Stop the machine before scraping down the sides with a spatula; keep utensils away from moving blades."},
+        {"text": "With the lid secured, process again, adding water through the feed tube 1 tablespoon at a time. Start with less than the full ½ cup and stop when the hummus moves freely around the bowl but still holds soft spoon swirls."},
+        {"text": "Process for another 1–3 minutes, stopping to scrape as needed, until there are no whole chickpeas and the paste is as smooth as you like. Taste and adjust the salt, lemon, or garlic to your liking, as Dad does."}
+      ]
+    },
+    {
+      "title": "No Food Processor? Option B or C",
+      "steps": [
+        {"text": "Option B, blender: divide all hummus ingredients into small, evenly proportioned batches. Add a little of the measured water first, secure the lid, and blend on low for 30 seconds."},
+        {"text": "Stop and unplug before scraping. Continue in 30-second bursts, adding water a tablespoon at a time only as needed, until no whole chickpeas remain. Do not force a stalled blender; use the masher option if it cannot move this thick mixture."},
+        {"text": "Option C, potato masher: finely mince the hummus garlic. Mash the drained chickpeas in a large bowl for 3–5 minutes, until no whole beans remain."},
+        {"text": "Stir in the lemon juice, minced garlic, tahini, oil, and salt. Mash again and stir in water a tablespoon at a time until scoopable. This version will be more rustic than Dad's food-processor hummus."}
+      ]
+    },
+    {
+      "title": "Finish",
+      "steps": [
+        {"text": "Spoon the hummus into a serving bowl and make shallow swirls with the back of a spoon."},
+        {"text": "Spoon the cooled pine nut topping and its oil over the hummus, then serve."}
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "title": "In Dad's Own Words",
+      "items": [
+        {"t": "p", "text": "(for the hummus I cheat and use canned beans...lol)"},
+        {"t": "p", "text": "Toppings can be anything you like, this is simply my pick..."},
+        {"t": "p", "text": "Sometimes I use the toppings in the grind as well."},
+        {"t": "p", "text": "It’s all very flexible so play around with it... spiced ground meat makes a good topping also..."}
+      ]
+    },
+    {
+      "title": "Options",
+      "items": [
+        {"t": "li", "text": "Blend in the topping: Dad sometimes adds some of the cooled topping with the hummus ingredients before processing. Keep the rest for the top if you like."},
+        {"t": "li", "text": "Spiced ground meat: use fully cooked ground beef or lamb as another topping. Drain the raw package juices before cooking and prepare the meat separately; never put raw ground meat on hummus. Keep this optional topping on the same card."},
+        {"t": "li", "text": "Adjust to taste: Dad encourages changing the salt, lemon, garlic, and toppings to your liking. Keep the original quantities as your starting point."}
+      ]
+    },
+    {
+      "title": "Clean-Eating Notes",
+      "items": [
+        {"t": "li", "text": "Chickpeas, sesame tahini, olive oil, pine nuts, garlic, lemon, salt, and paprika fit this book's clean-eating ingredient rules. Check any prepared topping or seasoning blend for hidden pork, shellfish, or carmine/cochineal."},
+        {"t": "li", "text": "Tahini contains sesame, and the topping contains pine nuts. Tell guests about both; omit the pine nut topping if needed, but the hummus itself still contains sesame."}
+      ]
+    },
+    {
+      "title": "Feast Suggestions",
+      "items": [
+        {"t": "li", "text": "Shabbat or Sukkot: serve as an appetizer with fresh vegetables and pita."},
+        {"t": "li", "text": "Passover and Unleavened Bread: serve with vegetables or matzah instead of leavened pita."}
+      ]
+    }
+  ],
+  "nutritionNote": "Rough planning estimate for 1 of 16 appetizer servings, not a measured yield. Assumes about 1,012 g drained chickpeas total, typical tahini and produce values, and about ½ cup lemon juice from the two lemons. All topping ingredients and extra to-taste adjustments are excluded. Chickpea reference: https://www.myfoodanalysis.com/food/canned-chickpeas-drained-rinsed-173801 ; can-drained-weight reference: https://www.myfoodanalysis.com/food/canned-chickpeas-drained-173800 .",
+  "downloads": [],
+  "story": {
+    "title": "Straight from Dad",
+    "lede": "This one is literally from my dad.",
+    "paras": [
+      "I've been finding a bunch of recipes in my Apple iCloud Notes, and this is my dad's hummus. This isn't a version I put together from memory. It's his own recipe, in his own words."
+    ],
+    "sign": "Alexis"
+  }
+},
 {"slug":"of-all-clean-winged-things-little-chickies","added":"2026-10-25","scripture":"Of All Clean Winged Things","dish":"Traeger Sweet-Heat Little Chickies (Wingettes and Drumsticks)","cat":"Meats","sub":"Chicken","photo":"assets/photos/of-all-clean-winged-things-little-chickies.jpg?v=2","subtitle":"One pack of wingettes and one pack of drumsticks, seasoned generously with Sweet TX Heat rub, chilled, and cooked on the Traeger at 375°F","verse":{"text":"Of all clean winged things you may eat.","ref":"D'varim 14:20","url":"https://theword.link/%d7%94%d7%93%d7%91%d7%a8-%d7%93%d7%91%d7%a8-%d7%99%d7%94%d7%95%d7%94/hatorah-%d7%94%d7%aa%d7%95%d7%a8%d7%94/dvarim-%d7%93%d7%91%d7%a8%d7%99%d7%9d/dvarim-14-%d7%93%d7%91%d7%a8%d7%99%d7%9d-%d7%99%d7%93/"},"servingsText":"About 4 servings (estimate)","base":4,"unit":"servings","time":"30 minutes to overnight in the fridge (overnight is best), then about 45 minutes on the Traeger","need":"Colander, paper towels, a large bowl, a sheet pan, a Traeger or other pellet grill, and an instant-read meat thermometer","clean":"Chicken is a clean bird under this book's Leviticus 11 and D'varim 14 rules. The Sweet TX Heat rub lists brown sugar, spices, salt, paprika, garlic, and rice concentrate.","source":"Alexis's own kitchen method, recorded October 25, 2026. Chicken packs and rub from H-E-B in Willis, Texas.","extraMeta":{},"groups":[{"name":"Little chickies","note":"Shopping at H-E-B: look in the Meat Market for Hill Country Fare Chicken Wingettes (about 1.86 lb, around $7–8; the pack is usually a mix of flats and drumettes) and a pack of chicken drumsticks (about 1.8 lb). For a bigger crowd, double everything.","items":[{"text":"1 pack chicken wingettes (flats and drumettes), about 1.86 lb","q":{"lo":1.86,"hi":null,"kind":"wt","f":16,"uw":"lb","rest":"chicken wingettes (flats and drumettes)","pre":"About "},"n":{"cal":1130,"fat":76,"sat":22,"carb":0,"fiber":0,"sugar":0,"protein":104,"sodium":430}},{"text":"1 pack chicken drumsticks, about 1.8 lb","q":{"lo":1.8,"hi":null,"kind":"wt","f":16,"uw":"lb","rest":"chicken drumsticks","pre":"About "},"n":{"cal":940,"fat":51,"sat":14,"carb":0,"fiber":0,"sugar":0,"protein":113,"sodium":555}},{"text":"True Texas BBQ Sweet TX Heat Rub (H-E-B), a very generous coating (about 2–3 tablespoons)","n":{"cal":50,"fat":0,"sat":0,"carb":12,"fiber":0.5,"sugar":9,"protein":0.5,"sodium":1800}}]},{"name":"Sides we like with it","note":"Serve as much as you like; side amounts are not counted in the nutrition estimate.","items":[{"text":"Alexia Sweet Potato Tots, baked per the bag"},{"text":"Fresh cucumbers and celery, cut for snacking"},{"text":"Blues Hog Raspberry Chipotle BBQ Sauce, for dipping the chicken and cucumbers (optional)"},{"text":"Mini sweet snacking peppers, halved, for the stuffed peppers below"},{"text":"Whipped cream cheese, for filling the peppers"},{"text":"Tony Chachere's Original Creole Seasoning, for a light dusting"}]}],"sections":[{"title":"Clean and Season","steps":[{"text":"Take the chicken out of the packages, rinse it off really well in a colander, and clean it properly. Afterward, wash the sink and anything the raw chicken touched with hot, soapy water."},{"text":"Lay the chicken on paper towels and dab it off really, really well."},{"text":"Dry the bowl out completely, put the chicken back in, and sprinkle the Sweet TX Heat rub over it. Be generous. Every piece should be well coated so the seasoning soaks in."}]},{"title":"Let It Marinate","steps":[{"text":"Put down another layer of paper towels on a sheet pan, set the seasoned chicken on it, and refrigerate.","tip":"Overnight is the best. Season it the night before if you can. If not, 30 minutes to an hour (about how long the Traeger takes to preheat) works just fine."}]},{"title":"On the Traeger","steps":[{"text":"Preheat the Traeger to 375°F."},{"text":"Put the chicken on the grates. Check it every 15 minutes.","timer":15},{"text":"It usually takes about 45 minutes total. It's done when the thickest drumstick reads at least 165°F next to (not touching) the bone. Wings and drumsticks are often juicier and more tender closer to 175°F.","timer":45}]},{"title":"Dip It (Optional)","steps":[{"text":"Serve Blues Hog Raspberry Chipotle BBQ Sauce on the side for dipping the chicken and the fresh cucumbers."}]},{"title":"Stuffed Snacking Peppers (Optional Side)","steps":[{"text":"Cut the mini sweet peppers in half and clean out the seeds."},{"text":"Fill each cavity with a blob of whipped cream cheese."},{"text":"Dust the tops lightly with Tony Chachere's Creole Seasoning. Just enough."}]}],"notes":[{"title":"Alexis's Kitchen Notes","items":[{"t":"li","text":"This recipe is written for one pack of wingettes and one pack of drumsticks. When we make two of each, I just double the rub and use a second pan."},{"t":"li","text":"Where I shop: H-E-B in Willis, Texas, first. If not, Kroger in Willis, or the Kroger on North Loop 336 or South Loop 336 in Conroe."},{"t":"li","text":"The rub is True Texas BBQ Sweet TX Heat Rub, sold at H-E-B in a 10 oz shaker and a 22 oz Texas-Size Pack."},{"t":"li","text":"My newfound love: Blues Hog Raspberry Chipotle BBQ Sauce (25 oz squeeze bottle). I dip my chicken and my cucumbers in it. So, so good."}]},{"title":"Clean-Eating Notes","items":[{"t":"li","text":"Blues Hog's current Raspberry Chipotle label lists no pork or shellfish. Older bottles listed anchovies in the Worcestershire, and anchovies are a clean fish with fins and scales. It fits this book's Leviticus 11 rules."}]},{"title":"Safety Notes","items":[{"t":"li","text":"USDA says all poultry is safe at 165°F. Check more than one piece; if any piece is under 165°F, keep cooking."},{"t":"li","text":"USDA advises against rinsing raw chicken because the splashes spread bacteria. If you rinse, clean and sanitize the sink and counters afterward."}]}],"nutritionNote":"Rough planning estimate, not measured for this batch. Assumes 4 servings, a 1.86 lb wingette pack and a 1.8 lb drumstick pack (edible meat and skin only, about 70% of the pack weight), and about 2½ tablespoons of rub. Side dishes are not included.","story":{"title": "Season the Crap Out of Them", "lede": "Little chickies. That's what we call them, and that's what they are.", "paras": ["We get these at H-E-B in those little Styrofoam packs, seven or eight bucks apiece. One pack of winglets, one pack of drums. Tonight we did two of each, because why not?", "First, they get a bath. Out of the package, into the colander, and rinsed off really good. Then onto the paper towels, where I dab them off really, really well. And I dry out that bowl before they go back in. We're seasoning chicken here, not making a puddle.", "Then comes the Texas Sweet Heat, and this is not the part where I get shy. I season the crap out of them. Not a polite little sprinkle from three feet away. Generous. I want that rub soaking into the chicken, not sitting in the bottom of the bowl wondering what it came here for.", "Onto a fresh layer of paper towels on a pan, and into the fridge they go while the Traeger heats up to 375. One time I did this the day before and let them sit until the next day. Let me tell you: chicken is always best when it marinates overnight. Always. Thirty minutes to an hour works just fine, but if you can do it the night before, do it the night before.", "Then on the Traeger they go. I check on them every fifteen minutes, and about forty-five minutes later, they're done.", "And my newfound love? Blues Hog Raspberry Chipotle BBQ Sauce. I dip my chicken in it. I dip my cucumbers in it. So, so good.", "Tonight we had Alexia sweet potato tots on the side, plus a bunch of cut-up cucumbers and celery to snack on. And my little sweet peppers: cut in half, a blob of whipped cream cheese in each one, and just a little dusting of Tony Chachere's on top. Just enough. I snack on those all the time. Don't judge me."], "sign": "Alexis"},"downloads":[]},
 {
 "slug": "tender-and-good-rosemary-chuck-roast",
