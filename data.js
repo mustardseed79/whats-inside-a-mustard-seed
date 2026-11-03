@@ -10853,5 +10853,740 @@ window.BOOK = [
     ],
     "sign": "Alexis"
   }
+},
+{
+  "slug": "a-merry-heart-chicken-flautas",
+  "added": "2026-11-03",
+  "scripture": "A Merry Heart Chicken Flautas",
+  "dish": "Rotisserie Chicken Flautas with Homemade Tortilla Chips",
+  "cat": "Meats",
+  "sub": "Chicken",
+  "photo": "assets/photos/a-merry-heart-chicken-flautas.jpg",
+  "subtitle": "Crispy flautas filled with a whole shredded rotisserie chicken, Monterey Jack, Clint's hot salsa, hot green chiles, and Pollo Rojo seasoning, with homemade tortilla chips fried alongside",
+  "verse": {
+    "text": "A merry heart is a good medicine; but a broken spirit dries the bones.",
+    "ref": "Mishlim 17:22",
+    "url": "https://theword.link/haketuvim-%d7%94%d7%9b%d7%aa%d7%95%d7%91%d7%99%d7%9d/mishlei-shlomo-%d7%9e%d7%a9%d7%9c%d7%99-%d7%a9%d7%9c%d7%9e%d7%94/mishlim-17-%d7%9e%d7%a9%d7%9c%d7%99%d7%9d/"
+  },
+  "servingsText": "20 flautas (about 6–7 people at 3 each), plus homemade chips",
+  "base": 20,
+  "unit": "flautas",
+  "time": "20–25 minutes to prep and roll, plus cooking time for your method (frying in batches takes about 30–40 minutes)",
+  "need": "Large mixing bowl, large soup spoon, tongs, wooden toothpicks, a tray, a wire rack set over a rimmed baking sheet, and a large heavy skillet (or an oven or air fryer). An oil thermometer helps for frying.",
+  "clean": "Chicken is a clean bird. Check the tortilla package for lard and the rotisserie chicken label for added broth or flavorings from unclean animals. Chicken and cheese together are fine in this book.",
+  "source": "Alexis's version of Chicken Flautas by Jen at Carlsbad Cravings (carlsbadcravings.com/chicken-flautas). Alexis's changes: a whole rotisserie chicken, 2 cups Monterey Jack only, double the salsa using Clint's hot salsa, no sour cream, hot green chiles, about 2 tablespoons Kinder's Pollo Rojo seasoning, wooden toothpicks, and frying in olive oil. The oven, air-fryer, and skillet-toasting methods and the reheating times come from the original recipe; Alexis's tested method is frying in olive oil.",
+  "extraMeta": {},
+  "groups": [
+    {
+      "name": "Chicken filling",
+      "note": "No sour cream and no cheddar in this version.",
+      "items": [
+        {
+          "text": "Meat from 1 whole rotisserie chicken, skin and bones removed, shredded",
+          "q": {
+            "lo": 1,
+            "hi": null,
+            "kind": "each",
+            "f": 1,
+            "uw": "",
+            "rest": "whole rotisserie chicken, skin and bones removed, meat shredded",
+            "pre": ""
+          },
+          "n": {
+            "cal": 1290,
+            "fat": 50,
+            "sat": 14,
+            "carb": 0,
+            "fiber": 0,
+            "sugar": 0,
+            "protein": 190,
+            "sodium": 2700
+          }
+        },
+        {
+          "text": "1 cup Clint's hot salsa",
+          "q": {
+            "lo": 1,
+            "hi": null,
+            "kind": "vol",
+            "f": 48,
+            "uw": "cup",
+            "rest": "Clint's hot salsa",
+            "pre": ""
+          },
+          "n": {
+            "cal": 40,
+            "fat": 0,
+            "sat": 0,
+            "carb": 8,
+            "fiber": 2,
+            "sugar": 4,
+            "protein": 2,
+            "sodium": 1600
+          },
+          "note": "Double the original recipe's salsa. Use a milder salsa if you're sensitive to heat."
+        },
+        {
+          "text": "1 can (4 oz) hot chopped green chiles",
+          "q": {
+            "lo": 1,
+            "hi": null,
+            "kind": "each",
+            "f": 1,
+            "uw": "can",
+            "rest": "(4 oz) hot chopped green chiles",
+            "pre": "",
+            "wt": 4
+          },
+          "n": {
+            "cal": 15,
+            "fat": 0,
+            "sat": 0,
+            "carb": 3,
+            "fiber": 1,
+            "sugar": 1,
+            "protein": 0,
+            "sodium": 400
+          },
+          "note": "Use mild green chiles if you're sensitive to heat."
+        },
+        {
+          "text": "2 cups packaged shredded Monterey Jack cheese",
+          "q": {
+            "lo": 2,
+            "hi": null,
+            "kind": "vol",
+            "f": 48,
+            "uw": "cups",
+            "rest": "packaged shredded Monterey Jack cheese",
+            "pre": ""
+          },
+          "n": {
+            "cal": 840,
+            "fat": 68,
+            "sat": 43,
+            "carb": 1.5,
+            "fiber": 0,
+            "sugar": 0.5,
+            "protein": 55,
+            "sodium": 1200
+          }
+        },
+        {
+          "text": "About 2 tablespoons Kinder's Street Tacos Pollo Rojo seasoning",
+          "q": {
+            "lo": 2,
+            "hi": null,
+            "kind": "vol",
+            "f": 3,
+            "uw": "tablespoons",
+            "rest": "Kinder's Street Tacos Pollo Rojo seasoning",
+            "pre": "About "
+          },
+          "n": {
+            "cal": 20,
+            "fat": 0,
+            "sat": 0,
+            "carb": 4,
+            "fiber": 1,
+            "sugar": 1,
+            "protein": 0,
+            "sodium": 1400
+          }
+        },
+        {
+          "text": "2 teaspoons chili powder",
+          "q": {
+            "lo": 2,
+            "hi": null,
+            "kind": "vol",
+            "f": 1,
+            "uw": "teaspoons",
+            "rest": "chili powder",
+            "pre": ""
+          },
+          "n": {
+            "cal": 16,
+            "fat": 0.8,
+            "sat": 0.1,
+            "carb": 2.7,
+            "fiber": 1.8,
+            "sugar": 0.4,
+            "protein": 0.7,
+            "sodium": 60
+          }
+        },
+        {
+          "text": "1 teaspoon ground cumin",
+          "q": {
+            "lo": 1,
+            "hi": null,
+            "kind": "vol",
+            "f": 1,
+            "uw": "teaspoon",
+            "rest": "ground cumin",
+            "pre": ""
+          },
+          "n": {
+            "cal": 8,
+            "fat": 0.5,
+            "sat": 0,
+            "carb": 0.9,
+            "fiber": 0.2,
+            "sugar": 0,
+            "protein": 0.4,
+            "sodium": 4
+          }
+        },
+        {
+          "text": "1 teaspoon garlic powder",
+          "q": {
+            "lo": 1,
+            "hi": null,
+            "kind": "vol",
+            "f": 1,
+            "uw": "teaspoon",
+            "rest": "garlic powder",
+            "pre": ""
+          },
+          "n": {
+            "cal": 10,
+            "fat": 0,
+            "sat": 0,
+            "carb": 2.2,
+            "fiber": 0.3,
+            "sugar": 0.1,
+            "protein": 0.5,
+            "sodium": 1
+          }
+        },
+        {
+          "text": "½ teaspoon onion powder",
+          "q": {
+            "lo": 0.5,
+            "hi": null,
+            "kind": "vol",
+            "f": 1,
+            "uw": "teaspoon",
+            "rest": "onion powder",
+            "pre": ""
+          },
+          "n": {
+            "cal": 4,
+            "fat": 0,
+            "sat": 0,
+            "carb": 1,
+            "fiber": 0.2,
+            "sugar": 0.1,
+            "protein": 0.1,
+            "sodium": 1
+          }
+        },
+        {
+          "text": "½ teaspoon smoked paprika",
+          "q": {
+            "lo": 0.5,
+            "hi": null,
+            "kind": "vol",
+            "f": 1,
+            "uw": "teaspoon",
+            "rest": "smoked paprika",
+            "pre": ""
+          },
+          "n": {
+            "cal": 3,
+            "fat": 0.1,
+            "sat": 0,
+            "carb": 0.6,
+            "fiber": 0.4,
+            "sugar": 0.1,
+            "protein": 0.1,
+            "sodium": 0
+          }
+        },
+        {
+          "text": "½ teaspoon dried oregano",
+          "q": {
+            "lo": 0.5,
+            "hi": null,
+            "kind": "vol",
+            "f": 1,
+            "uw": "teaspoon",
+            "rest": "dried oregano",
+            "pre": ""
+          },
+          "n": {
+            "cal": 1.5,
+            "fat": 0,
+            "sat": 0,
+            "carb": 0.4,
+            "fiber": 0.2,
+            "sugar": 0,
+            "protein": 0,
+            "sodium": 0
+          }
+        },
+        {
+          "text": "½ teaspoon salt",
+          "q": {
+            "lo": 0.5,
+            "hi": null,
+            "kind": "vol",
+            "f": 1,
+            "uw": "teaspoon",
+            "rest": "salt",
+            "pre": ""
+          },
+          "n": {
+            "cal": 0,
+            "fat": 0,
+            "sat": 0,
+            "carb": 0,
+            "fiber": 0,
+            "sugar": 0,
+            "protein": 0,
+            "sodium": 1163
+          }
+        },
+        {
+          "text": "Cayenne pepper or hot sauce, to taste (optional; skip if you're sensitive to heat)",
+          "plain": true
+        }
+      ]
+    },
+    {
+      "name": "Flautas",
+      "items": [
+        {
+          "text": "20 fresh H-E-B flour tortillas (one 20-count package)",
+          "q": {
+            "lo": 20,
+            "hi": null,
+            "kind": "each",
+            "f": 1,
+            "uw": "",
+            "rest": "fresh H-E-B flour tortillas (one 20-count package)",
+            "pre": ""
+          },
+          "n": {
+            "cal": 2600,
+            "fat": 70,
+            "sat": 30,
+            "carb": 420,
+            "fiber": 20,
+            "sugar": 20,
+            "protein": 60,
+            "sodium": 6000
+          }
+        },
+        {
+          "text": "20 wooden toothpicks",
+          "q": {
+            "lo": 20,
+            "hi": null,
+            "kind": "each",
+            "f": 1,
+            "uw": "",
+            "rest": "wooden toothpicks",
+            "pre": ""
+          },
+          "note": "One per flauta. Every one comes out before serving."
+        },
+        {
+          "text": "Olive oil: about 1 cup to start for shallow-frying",
+          "q": {
+            "lo": 1,
+            "hi": null,
+            "kind": "vol",
+            "f": 48,
+            "uw": "cup",
+            "rest": "olive oil for shallow-frying, plus more between batches as needed",
+            "pre": "About "
+          },
+          "n": {
+            "cal": 360,
+            "fat": 40,
+            "sat": 5.6,
+            "carb": 0,
+            "fiber": 0,
+            "sugar": 0,
+            "protein": 0,
+            "sodium": 0
+          },
+          "note": "For the oven or air fryer, you only need enough to brush the flautas lightly. For skillet toasting, 1 teaspoon per batch. The nutrition estimate counts about 3 tablespoons soaked up while frying."
+        }
+      ]
+    },
+    {
+      "name": "Homemade tortilla chips",
+      "note": "Not counted in the nutrition estimate.",
+      "items": [
+        {
+          "text": "1 extra package fresh H-E-B flour tortillas (use as many as you like)",
+          "plain": true
+        },
+        {
+          "text": "Olive oil for frying (the same skillet of oil as the flautas)",
+          "plain": true
+        },
+        {
+          "text": "Salt, for sprinkling (optional)",
+          "plain": true
+        }
+      ]
+    },
+    {
+      "name": "For serving (optional)",
+      "note": "Not counted in the nutrition estimate.",
+      "items": [
+        {
+          "text": "Extra Clint's hot salsa",
+          "plain": true
+        },
+        {
+          "text": "Guacamole",
+          "plain": true
+        },
+        {
+          "text": "Pico de gallo",
+          "plain": true
+        },
+        {
+          "text": "Shredded lettuce",
+          "plain": true
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Before You Start",
+      "steps": [
+        {
+          "text": "Take the rotisserie chicken out of its container and pour off any juices that collected in the bottom of the package."
+        },
+        {
+          "text": "Pull off the skin and throw it away."
+        },
+        {
+          "text": "Pull all the meat off the bones. Feel through it with your fingers for small bones, cartilage, and gristle, and throw those away.",
+          "tip": "It's easiest while the chicken is still a little warm. Every bit of meat from the whole chicken goes in."
+        },
+        {
+          "text": "Shred the meat into small, thin strands with two forks or your fingers. No chunks bigger than a bite."
+        },
+        {
+          "text": "Set out the tortillas, toothpicks, and bag of shredded Monterey Jack."
+        },
+        {
+          "text": "Set a wire rack over a rimmed baking sheet for the cooked flautas.",
+          "tip": "No wire rack? Use a platter lined with paper towels and keep the cooked flautas in a single layer."
+        }
+      ]
+    },
+    {
+      "title": "Make the Filling",
+      "steps": [
+        {
+          "text": "Pour the 1 cup Clint's hot salsa into the large mixing bowl."
+        },
+        {
+          "text": "Add the hot green chiles, juice and all."
+        },
+        {
+          "text": "Add the Pollo Rojo seasoning, chili powder, cumin, garlic powder, onion powder, smoked paprika, oregano, and salt."
+        },
+        {
+          "text": "Stir until you can't see any dry spice clumps and the salsa is one even color."
+        },
+        {
+          "text": "Add all the shredded chicken and stir until every strand is coated red. No plain white chicken should show."
+        },
+        {
+          "text": "Add the 2 cups Monterey Jack and stir until the cheese is spread evenly through the filling."
+        },
+        {
+          "text": "Taste a small spoonful. Add cayenne or hot sauce if you want more heat.",
+          "tip": "Want it spicier? Add cayenne or a few shakes of hot sauce, stir, and taste again."
+        }
+      ]
+    },
+    {
+      "title": "Fill, Roll, and Secure",
+      "steps": [
+        {
+          "text": "If the tortillas crack when you bend one, stack 6 under a damp paper towel and microwave about 60 seconds, until they bend without cracking. Repeat with the rest as needed."
+        },
+        {
+          "text": "Lay one tortilla flat on a clean counter or cutting board."
+        },
+        {
+          "text": "Scoop one heaping soup-spoonful of filling and set it near the bottom edge of the tortilla."
+        },
+        {
+          "text": "Spread the filling into a short line, leaving a little room at each end."
+        },
+        {
+          "text": "Roll the tortilla up tightly from the bottom, keeping it snug around the filling with no big air pockets."
+        },
+        {
+          "text": "Push a wooden toothpick through the seam and into the roll to hold it closed. Leave enough sticking out to grab easily later."
+        },
+        {
+          "text": "Set it seam-side down on the tray."
+        },
+        {
+          "text": "Repeat with the rest of the tortillas until all 20 are filled.",
+          "tip": "If you run out of filling early, make the spoonfuls a little smaller next time. If you have filling left over, add a little more to the last few."
+        }
+      ]
+    },
+    {
+      "title": "Option A: Shallow-Fry in Olive Oil (Alexis's Method)",
+      "steps": [
+        {
+          "para": true,
+          "text": "Choose one cooking method: Option A, B, C, or D."
+        },
+        {
+          "text": "If you want to keep batches warm, turn the oven on to 200°F."
+        },
+        {
+          "text": "Pour about 1 cup olive oil into a large, heavy skillet. It should cover the bottom about ¼ inch deep."
+        },
+        {
+          "text": "Heat over medium-high until the oil reaches 325°F on a thermometer, about 4–6 minutes.",
+          "tip": "No thermometer? Drop in a small scrap of tortilla. It should bubble steadily right away. If it turns dark within a few seconds, the oil is too hot; take the pan off the burner for a minute and test again."
+        },
+        {
+          "text": "Using tongs, lower 2–4 flautas into the oil seam-side down, laying them away from you so the oil doesn't splash toward you. Leave space between them.",
+          "tip": "Hot oil: Keep water and wet hands away from the skillet. Never leave heating oil alone. If it starts to smoke, turn off the burner and let it cool before going on."
+        },
+        {
+          "text": "Fry about 3–4 minutes total, turning with tongs every minute or so, until golden brown and crisp on all sides.",
+          "timer": 4
+        },
+        {
+          "text": "Watch the color and adjust the burner to stay near 325°F. If the tortillas brown before the cheese inside melts, turn the heat down a notch."
+        },
+        {
+          "text": "Lift the flautas out with tongs and let them drain on paper towels for a few seconds."
+        },
+        {
+          "text": "Move them to the wire rack in a single layer. Don't stack them; trapped steam makes them soggy."
+        },
+        {
+          "text": "Repeat with the rest, adding more olive oil between batches if the level drops. Keep finished batches in the 200°F oven if you like."
+        }
+      ]
+    },
+    {
+      "title": "Option B: Oven-Bake",
+      "steps": [
+        {
+          "text": "Heat the oven to 425°F."
+        },
+        {
+          "text": "Set an oven-safe wire rack inside a rimmed baking sheet and lightly grease the rack."
+        },
+        {
+          "text": "Arrange the flautas seam-side down in one layer, with space between them."
+        },
+        {
+          "text": "Brush them lightly all over with olive oil."
+        },
+        {
+          "text": "Bake 15–20 minutes. Start checking at 15 minutes. They're done when golden and crisp and the cheese is melted inside.",
+          "timer": 15
+        },
+        {
+          "text": "If the flautas were rolled ahead and chilled in the fridge, add about 5 more minutes and make sure the centers are hot.",
+          "tip": "No oven-safe rack? Bake them on a lightly oiled baking sheet and turn them over halfway through."
+        }
+      ]
+    },
+    {
+      "title": "Option C: Air-Fry",
+      "steps": [
+        {
+          "text": "Heat the air fryer to 400°F."
+        },
+        {
+          "text": "Brush the flautas lightly all over with olive oil."
+        },
+        {
+          "text": "Lay them seam-side down in the basket in a single layer, not touching. Work in batches."
+        },
+        {
+          "text": "Air-fry 6–8 minutes total, turning halfway through.",
+          "timer": 8
+        },
+        {
+          "text": "They're done when golden and crisp with hot filling and melted cheese. Check the first batch early because air fryers vary."
+        },
+        {
+          "text": "Repeat with the rest."
+        }
+      ]
+    },
+    {
+      "title": "Option D: Toast in a Lightly Oiled Skillet",
+      "steps": [
+        {
+          "para": true,
+          "text": "This uses much less oil than frying. The original recipe says it works best with raw (uncooked) flour tortillas but also works with regular ones."
+        },
+        {
+          "text": "If you want to keep batches warm, turn the oven on to 200°F."
+        },
+        {
+          "text": "Heat 1 teaspoon olive oil in a large nonstick skillet over medium heat."
+        },
+        {
+          "text": "Add a few flautas seam-side down, without crowding."
+        },
+        {
+          "text": "Cook, turning with tongs every minute or two, until golden on all sides and hot in the middle. There's no set time; go by color and hot, melted filling."
+        },
+        {
+          "text": "If the outside browns before the cheese melts, turn the heat down a little."
+        },
+        {
+          "text": "Move to the wire rack and repeat, adding a little more oil for each batch."
+        }
+      ]
+    },
+    {
+      "title": "Make the Homemade Tortilla Chips",
+      "steps": [
+        {
+          "para": true,
+          "text": "These get fried in olive oil no matter which way you cook the flautas. If you fried the flautas (Option A), fry the chips in the same skillet between batches."
+        },
+        {
+          "text": "Cut the tortillas from the extra package into triangles or other chip-size pieces. A pizza cutter or kitchen scissors makes this fast."
+        },
+        {
+          "text": "Heat olive oil in the skillet to 325°F, the same as Option A."
+        },
+        {
+          "text": "Drop in a small handful of pieces. Don't crowd them, and don't fry chips and flautas in the pan at the same time."
+        },
+        {
+          "text": "Separate the pieces with tongs or a slotted metal spoon so they don't stick together, and turn them as they fry."
+        },
+        {
+          "text": "Take them out when they're light golden and crisp, usually 1–2 minutes. Go by color, since thicker pieces take longer."
+        },
+        {
+          "text": "Drain on the rack or paper towels and sprinkle with salt while they're still hot, if you like."
+        },
+        {
+          "text": "Repeat with the rest of the pieces."
+        }
+      ]
+    },
+    {
+      "title": "Finish and Serve",
+      "steps": [
+        {
+          "text": "Pull out every wooden toothpick. Count them: you should have 20."
+        },
+        {
+          "text": "Check each flauta once more for a toothpick before it goes on the platter."
+        },
+        {
+          "text": "Serve hot with the homemade chips and extra Clint's hot salsa. Add guacamole, pico de gallo, or shredded lettuce if you like."
+        }
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "title": "Make Ahead, Store and Reheat",
+      "items": [
+        {
+          "t": "li",
+          "text": "Freeze: Take out all toothpicks, let the cooked flautas cool, then freeze them in a single layer on a baking sheet, not touching, for 1–2 hours until solid. Move to a freezer bag, press out the air, seal, label, and freeze up to 3 months."
+        },
+        {
+          "t": "li",
+          "text": "Air fryer: 400°F, 6–8 minutes from the fridge or about 10 minutes from frozen. Turn halfway."
+        },
+        {
+          "t": "li",
+          "text": "Oven: on a rack over a baking sheet, 400°F for 10–12 minutes from the fridge, or 425°F for 15–20 minutes from frozen."
+        },
+        {
+          "t": "li",
+          "text": "Microwave: start with 60 seconds from the fridge (about 2 minutes from frozen), then add 15 seconds at a time. Quick, but they won't be crispy."
+        },
+        {
+          "t": "li",
+          "text": "Skillet (from the fridge): heat over low, turning, until hot inside, then turn the heat up briefly to crisp the outside."
+        },
+        {
+          "t": "li",
+          "text": "These are starting times. Keep heating until the centers are hot."
+        }
+      ]
+    },
+    {
+      "title": "Clean-Eating Notes",
+      "items": [
+        {
+          "t": "li",
+          "text": "Tortillas: Some flour tortillas are made with lard. Check the package. If it lists lard, use flour tortillas made with vegetable oil or another clean fat."
+        },
+        {
+          "t": "li",
+          "text": "Rotisserie chicken: Check the label for added broth or flavorings that could come from an unclean animal."
+        },
+        {
+          "t": "li",
+          "text": "Seasoning: Check the label any time you buy a different seasoning or a new bottle."
+        },
+        {
+          "t": "li",
+          "text": "Cheese: Monterey Jack made with microbial or vegetable enzymes is an easy pick when you see it. Kosher certification is nice but not required."
+        },
+        {
+          "t": "li",
+          "text": "Chicken and cheese together are fine in this book."
+        }
+      ]
+    },
+    {
+      "title": "Heat",
+      "items": [
+        {
+          "t": "li",
+          "text": "This version keeps the heat: Clint's hot salsa, hot green chiles, and the full seasoning amounts. Use a milder salsa or mild green chiles if you're sensitive to heat."
+        },
+        {
+          "t": "li",
+          "text": "Want it spicier? Add cayenne or hot sauce to the filling, or serve with sliced jalapeños on the side."
+        }
+      ]
+    },
+    {
+      "title": "Feast Suggestions",
+      "items": [
+        {
+          "t": "li",
+          "text": "Hanukkah: Fried in oil, so they fit right in with the season of the oil."
+        },
+        {
+          "t": "li",
+          "text": "Sukkot: Easy to pass around outside, with chips and salsa on the side."
+        },
+        {
+          "t": "li",
+          "text": "Not for Passover / Unleavened Bread: regular flour tortillas contain leavening."
+        }
+      ]
+    }
+  ],
+  "nutritionNote": "Rough planning estimate per flauta, not measured. Assumes about 1½ lb of meat from the rotisserie chicken, 20 fresh flour tortillas, and about 3 tablespoons of olive oil soaked up while frying. Baking or air-frying will be lower in fat. Chips and serving extras are not included."
 }
 ];
