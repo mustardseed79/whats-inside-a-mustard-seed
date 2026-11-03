@@ -10861,7 +10861,7 @@ window.BOOK = [
   "dish": "Rotisserie Chicken Flautas with Homemade Tortilla Chips",
   "cat": "Meats",
   "sub": "Chicken",
-  "photo": "assets/photos/a-merry-heart-chicken-flautas.jpg",
+  "photo": "assets/photos/a-merry-heart-chicken-flautas.jpg?v=2",
   "subtitle": "Crispy flautas filled with a whole shredded rotisserie chicken, Monterey Jack, Clint's hot salsa, hot green chiles, and Pollo Rojo seasoning, with homemade tortilla chips fried alongside",
   "verse": {
     "text": "A merry heart is a good medicine; but a broken spirit dries the bones.",
